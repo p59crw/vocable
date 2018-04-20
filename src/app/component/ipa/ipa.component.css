@@ -1,0 +1,59 @@
+table {
+  margin: auto;
+  border-collapse: collapse;
+  width: 80%;
+  font-family: 'Doulos SIL';
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 4px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+td:not(.ipa_blank):not(.ipa_empty):hover {
+  background-color: #50CBFF;
+  color: #000000;
+}
+
+button {
+  margin: 2px;
+  padding: 2px;
+}
+
+.center_div {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ipa_category {
+  background-color: #FFFF99;
+}
+
+.ipa_blank {
+  background-color: #c0c0c0;
+}
+
+.ipa_selected {
+  background-color: #005BAF;
+  color: #FFFFFF;
+}
+
+.no_border_left {
+  border-left: 0px;
+}
+
+.no_border_right {
+  border-right: 0px;
+}
+
+.no_borders {
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#inventory_buttons {
+  margin-top: 20px;
+  width: 80%;
+}

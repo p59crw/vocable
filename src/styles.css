@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face { font-family: "Doulos SIL"; src: url("./assets/font/DoulosSIL-R.woff"); }
+
+.text-center {
+  text-align: center;
+}
+
+.component-spacing {
+  margin: 10px 10px 30px 10px;
+  padding: 5px;
+}
