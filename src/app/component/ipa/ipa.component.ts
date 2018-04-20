@@ -24,7 +24,7 @@ export class IpaComponent implements OnInit {
   lateralApproximants: Consonant[] = [];
   lateralTaps: Consonant[] = [];
 
-  constructor(private ipa: IpaService, private inventoryService: InventoryService) {
+  constructor(private ipaService: IpaService, private inventoryService: InventoryService) {
 
   }
 
@@ -33,20 +33,20 @@ export class IpaComponent implements OnInit {
   }
 
   initChart() {
-    this.ipa.initIPA();
-    this.nasals = this.ipa.nasals;
-    this.stops = this.ipa.stops;
-    this.sibilantAffricates = this.ipa.sibilantAffricates;
-    this.nonsibilantAffricates = this.ipa.nonsibilantAffricates;
-    this.sibilantFricatives = this.ipa.sibilantFricatives;
-    this.nonsibilantFricatives = this.ipa.nonsibilantFricatives;
-    this.approximants = this.ipa.approximants;
-    this.taps = this.ipa.taps;
-    this.trills = this.ipa.trills;
-    this.lateralAffricates = this.ipa.lateralAffricates;
-    this.lateralFricatives = this.ipa.lateralFricatives;
-    this.lateralApproximants = this.ipa.lateralApproximants;
-    this.lateralTaps = this.ipa.lateralTaps;
+    this.ipaService.initIPA();
+    this.nasals = this.ipaService.nasals;
+    this.stops = this.ipaService.stops;
+    this.sibilantAffricates = this.ipaService.sibilantAffricates;
+    this.nonsibilantAffricates = this.ipaService.nonsibilantAffricates;
+    this.sibilantFricatives = this.ipaService.sibilantFricatives;
+    this.nonsibilantFricatives = this.ipaService.nonsibilantFricatives;
+    this.approximants = this.ipaService.approximants;
+    this.taps = this.ipaService.taps;
+    this.trills = this.ipaService.trills;
+    this.lateralAffricates = this.ipaService.lateralAffricates;
+    this.lateralFricatives = this.ipaService.lateralFricatives;
+    this.lateralApproximants = this.ipaService.lateralApproximants;
+    this.lateralTaps = this.ipaService.lateralTaps;
   }
 
   updateInventory(item) {
