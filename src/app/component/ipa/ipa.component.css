@@ -19,7 +19,7 @@ td:not(.ipa_blank):not(.ipa_empty):hover {
 
 button {
   margin: 2px;
-  padding: 2px;
+  padding: 6px;
 }
 
 .center_div {

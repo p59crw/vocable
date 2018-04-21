@@ -142,10 +142,10 @@
         </div>
         <div id="inventory_buttons" class="center_div">
           <h5>Inventory Options</h5>
-          <button (click)="clearInventory()" [disabled]="isInventoryLocked()">Clear</button>
-          <button id="lockInventoryButton" (click)="lockInventory()" [disabled]="noneSelected()">Lock</button>
-          <button (click)="saveInventory()" [disabled]="noneSelected()">Save</button>
-          <button (click)="loadInventory()" [disabled]="isInventoryLocked()">Load</button>
+          <button type="button" class="btn btn-primary" (click)="clearInventory()" [disabled]="isInventoryLocked()">Clear</button>
+          <button type="button" class="btn btn-primary" id="lockInventoryButton" (click)="lockInventory()" [disabled]="noneSelected()">Lock</button>
+          <button type="button" class="btn btn-secondary" (click)="saveInventory()" [disabled]="noneSelected()">Save</button>
+          <button type="button" class="btn btn-secondary" (click)="loadInventory()" [disabled]="isInventoryLocked()">Load</button>
         </div>
     </div>
 </div>
