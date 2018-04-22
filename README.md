@@ -6,9 +6,9 @@ Vocable allows conlangers prepare lexicons based on the sound structure of their
 
 Upon selecting a set of sounds (consonants and vowels) for the language, the user can then save their sound inventory to JSON for future reuse or load an existing saved inventory. The inventory can be locked so that accidental changes do not take hold while working with the app.
 
-Next the user must specify a word structure in a shorthand-notation. Use V for vowels and C for consonants. Sorthand placed in parentheses () are considered optional by the parser. If you wish to specify certain sounds or sound clusters, they can be placed in square brackets [].
+Next the user must specify a word structure in a shorthand-notation. Use V for vowels and C for consonants. Sorthand placed in parentheses () are considered optional by the parser. If you wish to specify certain sounds or sound clusters, they can also be placed in curly brackets {}.
 
-For example, a word structure of VC will produce only two-symbol permutations of a vowel and a consonant in the specified order such as "ip" or "ak". A structure of [st](V)C will produce permutations of three or four symbols, always beginning with st, such as "stak" or "str".
+For example, a word structure of VC will produce only two-symbol permutations of a vowel and a consonant in the specified order such as "ip" or "ak". A structure of {st}(V)C will produce permutations of three or four symbols, always beginning with st, such as "stak" or "str".
 
 The word structure forms a base word or a gloss, an original form the word takes before further phonetic changes are made during speech. these glosses will be output in forward slashes //.
 
