@@ -19,6 +19,10 @@ export class InventoryService {
     }
   }
 
+  public getInventory() {
+    return this.inventory;
+  }
+
   addItem(item) {
     this.inventory.push(item);
     item.isSelected = true;

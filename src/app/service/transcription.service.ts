@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Gloss } from './../class/index';
+import { Consonant, Gloss, Sound, Vowel } from './../class/index';
+import { InventoryService } from './inventory.service';
 
 @Injectable()
 export class TranscriptionService {
 
   wordStructureInput: HTMLInputElement;
 
-  constructor() { }
+  constructor(private inventoryService: InventoryService) { }
 
   private parseWordStructure(): Array<string> {
     this.wordStructureInput = <HTMLInputElement>document.getElementById('word_structure');
@@ -37,10 +38,35 @@ export class TranscriptionService {
     }
 
     uniqueChars = removeDuplicates(uniqueChars);
-    return this.generatePermutations(wordStructure, uniqueChars);
+    return this.generatePermutations(wordStructure, uniqueChars, this.inventoryService.getInventory());
   }
 
-  private generatePermutations(wordStructure: Array<string>, uniqueChars: Array<string>): Array<string> {
+  private generatePermutations(wordStructure: Array<string>, uniqueChars: Array<string>, inventory: Array<Sound>): Array<string> {
+    const assignSoundsToLetter = function(letter: string, sounds: Array<Sound>) {
+      console.log(letter, sounds);
+    };
+
+    uniqueChars.forEach(function(element) {
+      switch (element) {
+        case 'C': {
+          const consonants = inventory.filter(function(item, index, array) {
+            return item instanceof Consonant;
+          });
+          assignSoundsToLetter(element.toString(), consonants);
+          break;
+        }
+        case 'V': {
+          const vowels = inventory.filter(function(item, index, array) {
+            return item instanceof Vowel;
+          });
+          assignSoundsToLetter(element.toString(), vowels);
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    });
     return null;
   }
 
