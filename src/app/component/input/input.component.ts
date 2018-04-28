@@ -9,7 +9,7 @@ import { Gloss } from './../../class/index';
 })
 export class InputComponent {
 
-  glosses: Array<Gloss> = [];
+  glosses: Array<string> = [];
 
   constructor(private transcriptionService: TranscriptionService) { }
 

@@ -8,29 +8,44 @@ export class TranscriptionService {
 
   constructor() { }
 
-  public parseWordStructure(): Array<string> {
+  private parseWordStructure(): Array<string> {
     this.wordStructureInput = <HTMLInputElement>document.getElementById('word_structure');
-    const symbols = [];
+    const wordStructure = [];
+    let uniqueChars = [];
     let isOptional = false;
+
+    const removeDuplicates = function(array: Array<string>) {
+      return array.reduce(function(accum, current) {
+        if (accum.indexOf(current) < 0) {
+          accum.push(current);
+        }
+        return accum;
+      }, []);
+    };
+
     for (let i = 0; i < this.wordStructureInput.value.length; i++) {
       if (this.wordStructureInput.value.charAt(i) === '(') {
         isOptional = true;
+        wordStructure.push(this.wordStructureInput.value.charAt(i));
       } else if (this.wordStructureInput.value.charAt(i) === ')') {
         isOptional = false;
+        wordStructure.push(this.wordStructureInput.value.charAt(i));
       } else {
-        symbols.push([this.wordStructureInput.value.charAt(i), isOptional]);
+        wordStructure.push([this.wordStructureInput.value.charAt(i).toUpperCase(), isOptional]);
+        uniqueChars.push(this.wordStructureInput.value.charAt(i).toUpperCase());
       }
     }
-    return symbols;
+
+    uniqueChars = removeDuplicates(uniqueChars);
+    return this.generatePermutations(wordStructure, uniqueChars);
   }
 
-  generatePermutations(array: Array<string>): Array<string> {
+  private generatePermutations(wordStructure: Array<string>, uniqueChars: Array<string>): Array<string> {
     return null;
   }
 
-  public getGlosses(): Array<Gloss> {
-    this.generatePermutations(this.parseWordStructure());
-    return null;
+  public getGlosses(): Array<string> {
+    return this.parseWordStructure();
   }
 
 }
