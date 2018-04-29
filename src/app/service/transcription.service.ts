@@ -38,12 +38,13 @@ export class TranscriptionService {
     }
 
     uniqueChars = removeDuplicates(uniqueChars);
-    return this.generatePermutations(wordStructure, uniqueChars, this.inventoryService.getInventory());
+    return this.prepareComponents(wordStructure, uniqueChars, this.inventoryService.getInventory());
   }
 
-  private generatePermutations(wordStructure: Array<string>, uniqueChars: Array<string>, inventory: Array<Sound>): Array<string> {
+  private prepareComponents(wordStructure: Array<string>, uniqueChars: Array<string>, inventory: Array<Sound>): Array<string> {
+    const wordStructureComponents = new Array();
     const assignSoundsToLetter = function(letter: string, sounds: Array<Sound>) {
-      console.log(letter, sounds);
+      wordStructureComponents.push([letter, sounds]);
     };
 
     uniqueChars.forEach(function(element) {
@@ -67,6 +68,14 @@ export class TranscriptionService {
         }
       }
     });
+    return this.generateWords(wordStructure, wordStructureComponents);
+  }
+
+  private generateWords(structure: Array<string>, components: Array<string>) {
+    const glosses = new Array();
+    const permutate = function(array) {
+
+    };
     return null;
   }
 

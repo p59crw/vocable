@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TranscriptionService } from './../../service/index';
+import { InventoryService, TranscriptionService } from './../../service/index';
 import { Gloss } from './../../class/index';
 
 @Component({
@@ -11,10 +11,12 @@ export class InputComponent {
 
   glosses: Array<string> = [];
 
-  constructor(private transcriptionService: TranscriptionService) { }
+  constructor(private inventoryService: InventoryService, private transcriptionService: TranscriptionService) { }
 
   applyTranscription() {
-    this.glosses = this.transcriptionService.getGlosses();
+    if (this.inventoryService.getInventory().length !== 0) {
+      this.glosses = this.transcriptionService.getGlosses();
+    }
   }
 
 }
