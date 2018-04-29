@@ -98,8 +98,8 @@ export class TranscriptionService {
   */
   private generateWords(structure: Array<string>, components: Array<Sound>) {
     const glosses = new Array();
-    let string = "";
     const permutate = function(elements) {
+      let string = '';
       for (let i = 0; i < elements[1].length; i++) {
         string += elements[1][i].ipa_unicode;
       }
@@ -110,6 +110,31 @@ export class TranscriptionService {
     }
     console.log(glosses);
     return glosses;
+  }
+
+  private permuteHelper(arr, index) {
+    let string = '';
+    if (index >= arr.length - 1) {
+      for (let i = 0; i < arr.length - 1; i++) {
+        string = arr[i];
+      }
+      if (arr.length > 0) {
+        string = arr[arr.length - 1];
+      }
+      return;
+    }
+
+    for (let i = index; i < arr.length; i++) {
+      let t = arr[index];
+      arr[index] = arr[i];
+      arr[i] = t;
+
+      this.permuteHelper(arr, index + 1);
+
+      t = arr[index];
+      arr[index] = arr[i];
+      arr[i] = t;
+    }
   }
 
   /**
