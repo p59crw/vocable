@@ -98,7 +98,7 @@ export class TranscriptionService {
   */
   private generateWords(structure: Array<string>, components: Array<Sound>) {
     const glosses = new Array();
-    let string;
+    let string = "";
     const permutate = function(elements) {
       for (let i = 0; i < elements[1].length; i++) {
         string += elements[1][i].ipa_unicode;
