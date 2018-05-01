@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Classes
-import { Consonant, Gloss, Inventory, Parser, Permuter,
-Sound, Vowel } from './class/index';
+import {
+  Consonant, Gloss, Inventory, Parser, Permuter,
+  Sound, Vowel
+} from './class/index';
 
 // Components
 import { AppComponent } from './app.component';
