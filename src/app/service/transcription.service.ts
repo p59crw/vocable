@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Consonant, Gloss, Parser, Permuter, Sound, Vowel } from './../class/index';
-import { InventoryService } from './inventory.service';
+import { Consonant, Gloss, Inventory, Parser, Permuter, Sound, Vowel } from './../class/index';
 
 @Injectable()
 export class TranscriptionService {
 
   // Constructor
-  constructor(private inventoryService: InventoryService, private parser: Parser,
+  constructor(private inventory: Inventory, private parser: Parser,
     private permuter: Permuter) { }
 
   /**
@@ -16,7 +15,7 @@ export class TranscriptionService {
   */
   public generateGlosses(): Array<string> {
     return this.permuter.generateWords(this.parser.parseWordStructure()[0],
-      this.parser.parseWordStructure()[1], this.inventoryService.getInventory());
+      this.parser.parseWordStructure()[1], this.inventory.getInventory());
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Consonant, Vowel } from './../../class/index';
-import { IpaService, InventoryService } from './../../service/index';
+import { Consonant, Inventory, Vowel } from './../../class/index';
+import { IpaService } from './../../service/index';
 
 @Component({
   selector: 'app-ipa',
@@ -24,7 +24,7 @@ export class IpaComponent implements OnInit {
   lateralApproximants: Consonant[] = [];
   lateralTaps: Consonant[] = [];
 
-  constructor(private ipaService: IpaService, private inventoryService: InventoryService) {
+  constructor(private ipaService: IpaService, private inventory: Inventory) {
 
   }
 
@@ -50,31 +50,31 @@ export class IpaComponent implements OnInit {
   }
 
   updateInventory(item) {
-    this.inventoryService.updateInventory(item);
+    this.inventory.updateInventory(item);
   }
 
   clearInventory() {
-    this.inventoryService.clearInventory();
+    this.inventory.clearInventory();
   }
 
   lockInventory() {
-    this.inventoryService.lockInventory();
+    this.inventory.lockInventory();
   }
 
   saveInventory() {
-    this.inventoryService.saveInventory();
+    this.inventory.saveInventory();
   }
 
   loadInventory() {
-    this.inventoryService.loadInventory();
+    this.inventory.loadInventory();
   }
 
   noneSelected() {
-    return !this.inventoryService.inventory.some(item => item.isSelected);
+    return !this.inventory.inventory.some(item => item.isSelected);
   }
 
   isInventoryLocked() {
-    return this.inventoryService.inventoryLocked;
+    return this.inventory.inventoryLocked;
   }
 
 }

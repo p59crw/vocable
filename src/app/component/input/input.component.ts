@@ -1,6 +1,6 @@
 import { Component, AfterContentInit } from '@angular/core';
-import { InventoryService, TranscriptionService } from './../../service/index';
-import { Gloss } from './../../class/index';
+import { TranscriptionService } from './../../service/index';
+import { Gloss, Inventory } from './../../class/index';
 
 @Component({
   selector: 'app-input',
@@ -13,10 +13,10 @@ export class InputComponent {
   wordStructureInput: HTMLInputElement;
   ruleInput: HTMLInputElement;
 
-  constructor(private inventoryService: InventoryService, private transcriptionService: TranscriptionService) { }
+  constructor(private inventory: Inventory, private transcriptionService: TranscriptionService) { }
 
   applyTranscription() {
-    if (this.inventoryService.getInventory().length > 0) {
+    if (this.inventory.getInventory().length > 0) {
       this.glosses = this.transcriptionService.generateGlosses();
     }
   }
