@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Consonant, Gloss, Sound, Vowel } from './../class/index';
+import { Consonant } from './consonant';
+import { Sound } from './sound';
+import { Vowel } from './vowel';
 
-@Injectable()
-export class PermutatorService {
+export class Permuter {
 
   constructor() { }
 
@@ -41,7 +41,7 @@ export class PermutatorService {
         }
       }
     });
-    return this.permutate(wordStructure, wordStructureComponents);
+    return this.permute(wordStructure, wordStructureComponents);
   }
 
   /**
@@ -51,7 +51,7 @@ export class PermutatorService {
   * @param components   array of sounds assigned to a structural element
   * @returns            array of permutations
   */
-  public permutate(structure: Array<string>, components: Array<Sound>) {
+  public permute(structure: Array<string>, components: Array<Sound>) {
     const glosses = new Array();
     const permutate = function(elements) {
       let string = '';
