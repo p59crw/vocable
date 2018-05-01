@@ -1,8 +1,6 @@
 <div class="container-fluid component-spacing">
     <div class="row">
         <div class="col-md-12">
-            <form class="form-horizontal">
-                <fieldset>
                     <!-- Form Name -->
                     <legend>Phonemic Rules</legend>
                     <!-- Text input-->
@@ -28,12 +26,9 @@
                         <label class="col-md-12 control-label" for="submit"></label>
                         <div class="col-md-12">
                             <button id="submit" name="submit" class="btn btn-primary" (click)="applyTranscription()">Submit</button>
-                            <button id="reset" name="reset" class="btn btn-danger">Reset</button>
+                            <button id="reset" name="reset" class="btn btn-danger" (click)="reset()">Reset</button>
                         </div>
                     </div>
-                </fieldset>
-            </form>
-
         </div>
     </div>
 </div>

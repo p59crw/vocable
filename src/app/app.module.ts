@@ -9,7 +9,10 @@ import { InputComponent, IpaComponent, OutputComponent } from './component/index
 import { ConsonantFilterPipe, VowelFilterPipe } from './pipe/index';
 
 // Services
-import { IpaService, InventoryService, TranscriptionService } from './service/index';
+import {
+  IpaService, InventoryService, ParserService, PermutatorService,
+  TranscriptionService
+} from './service/index';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,8 @@ import { IpaService, InventoryService, TranscriptionService } from './service/in
   providers: [
     IpaService,
     InventoryService,
+    ParserService,
+    PermutatorService,
     TranscriptionService
   ],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterContentInit } from '@angular/core';
 import { InventoryService, TranscriptionService } from './../../service/index';
 import { Gloss } from './../../class/index';
 
@@ -10,13 +10,22 @@ import { Gloss } from './../../class/index';
 export class InputComponent {
 
   glosses: Array<string> = [];
+  wordStructureInput: HTMLInputElement;
+  ruleInput: HTMLInputElement;
 
   constructor(private inventoryService: InventoryService, private transcriptionService: TranscriptionService) { }
 
   applyTranscription() {
-    if (this.inventoryService.getInventory().length !== 0) {
-      this.glosses = this.transcriptionService.getGlosses();
+    if (this.inventoryService.getInventory().length > 0) {
+      this.glosses = this.transcriptionService.generateGlosses();
     }
+  }
+
+  reset() {
+    this.wordStructureInput = <HTMLInputElement>document.getElementById('word_structure');
+    this.ruleInput = <HTMLInputElement>document.getElementById('phoneme_rules');
+    this.wordStructureInput.value = '';
+    this.ruleInput.value = '';
   }
 
 }
