@@ -1,8 +1,8 @@
-import { Sound } from './../class/index';
+import { Consonant, Sound, Vowel } from './../class/index';
 
 export class Inventory {
 
-  inventory: Array<Sound> = new Array();
+  inventory: Array<any> = new Array();
   inventoryLocked = false;
 
   constructor() { }

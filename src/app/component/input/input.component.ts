@@ -12,6 +12,8 @@ export class InputComponent {
   glosses: Array<string> = [];
   wordStructureInput: HTMLInputElement;
   ruleInput: HTMLInputElement;
+  consonants = this.inventory.getInventory();
+  vowels = this.inventory.getInventory();
 
   constructor(private inventory: Inventory, private transcriptionService: TranscriptionService) { }
 
