@@ -1,15 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterContentInit } from '@angular/core';
+import { TranscriptionService } from './../../service/index';
+import { Consonant, Gloss, Inventory } from './../../class/index';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css']
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
 
-  constructor() { }
+  glosses: Array<string> = [];
+  wordStructureInput: HTMLInputElement;
+  ruleInput: HTMLInputElement;
+  soundInventory = this.inventory.getInventory();
 
-  ngOnInit() {
+  constructor(private inventory: Inventory, private transcriptionService: TranscriptionService) { }
+
+  applyTranscription() {
+    if (this.inventory.getInventory().length > 0) {
+      this.glosses = this.transcriptionService.generateGlosses();
+    }
+  }
+
+  reset() {
+    this.wordStructureInput = <HTMLInputElement>document.getElementById('word_structure');
+    this.ruleInput = <HTMLInputElement>document.getElementById('phoneme_rules');
+    this.wordStructureInput.value = '';
+    this.ruleInput.value = '';
   }
 
 }

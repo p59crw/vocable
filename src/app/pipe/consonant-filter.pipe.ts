@@ -1,15 +1,25 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Injectable, Pipe, PipeTransform } from '@angular/core';
 import { Consonant } from './../class/index';
 
 @Pipe({
-  name: 'ConsonantFilter'
+  name: 'ConsonantFilter',
+  pure: false
 })
+
+@Injectable()
 export class ConsonantFilterPipe implements PipeTransform {
 
-  transform(consonants: Consonant[], args: string): any {
-    // filter items array, items which match and return true will be
-    // kept, false will be filtered out
-    return consonants.filter(consonant => consonant.manner.indexOf(args[0]) !== -1);
+  transform(consonants: Consonant[], arg: string): any[] {
+    if (!consonants) {
+      return [];
+    }
+    if (arg) {
+      return consonants.filter(consonant => {
+        return consonant.manner.toLowerCase().indexOf(arg.toLowerCase()) > -1;
+      });
+    } else {
+      return consonants;
+    }
   }
 
 }

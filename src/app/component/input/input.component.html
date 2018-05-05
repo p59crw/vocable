@@ -1,9 +1,45 @@
 <div class="container-fluid component-spacing">
+  <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+    <h5>Components (C)</h5>
+  </div>
+      <div class="card-body">
+        <ul>
+        <p>Nasals (N):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'NASAL'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Stops/Plosives (P):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'STOP'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Sib. Aff. (SA):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'SIBILANT_AFFRICATE'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+    <h5>Vowels (V)</h5>
+  </div>
+      <div class="card-body">
+        <ul>
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'OPEN'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>
     <div class="row">
         <div class="col-md-12">
-            <form class="form-horizontal">
-                <fieldset>
-
                     <!-- Form Name -->
                     <legend>Phonemic Rules</legend>
                     <!-- Text input-->
@@ -28,14 +64,10 @@
                     <div class="form-group">
                         <label class="col-md-12 control-label" for="submit"></label>
                         <div class="col-md-12">
-                            <button id="submit" name="submit" class="btn btn-primary">Submit</button>
-                            <button id="reset" name="reset" class="btn btn-danger">Reset</button>
+                            <button id="submit" name="submit" class="btn btn-primary" (click)="applyTranscription()">Submit</button>
+                            <button id="reset" name="reset" class="btn btn-danger" (click)="reset()">Reset</button>
                         </div>
                     </div>
-
-                </fieldset>
-            </form>
-
         </div>
     </div>
 </div>

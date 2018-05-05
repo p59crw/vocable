@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// Classes
+import { Consonant, Gloss, Inventory, Parser, Permuter, Sound, Vowel } from './class/index';
+
 // Components
 import { AppComponent } from './app.component';
 import { InputComponent, IpaComponent, OutputComponent } from './component/index';
@@ -9,7 +12,7 @@ import { InputComponent, IpaComponent, OutputComponent } from './component/index
 import { ConsonantFilterPipe, VowelFilterPipe } from './pipe/index';
 
 // Services
-import { IpaService, InventoryService, TranscriptionService } from './service/index';
+import { IpaService, TranscriptionService } from './service/index';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { IpaService, InventoryService, TranscriptionService } from './service/in
   ],
   providers: [
     IpaService,
-    InventoryService,
+    Inventory,
+    Parser,
+    Permuter,
     TranscriptionService
   ],
   bootstrap: [AppComponent]
