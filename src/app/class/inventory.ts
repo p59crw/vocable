@@ -1,4 +1,5 @@
 import { Consonant, Sound, Vowel } from './../class/index';
+import * as FileSaver from 'file-saver';
 
 export class Inventory {
 
@@ -52,6 +53,8 @@ export class Inventory {
 
   saveInventory() {
     const JSON_File = '### Your Vocable Inventory ###\n' + JSON.stringify(this.inventory);
+    const file = new File([JSON_File], 'vocable_inventory.json', { type: 'text/plain;charset=utf-8' });
+    FileSaver.saveAs(file);
   }
 
   loadInventory() {
