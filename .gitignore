@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Package-Lock
+package-lock.json
+
 # Runtime data
 pids
 *.pid
@@ -59,4 +62,3 @@ dist/
 
 # dotenv environment variables file
 .env
-
