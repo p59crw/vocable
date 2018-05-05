@@ -1,6 +1,6 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { TranscriptionService } from './../../service/index';
-import { Gloss, Inventory } from './../../class/index';
+import { Consonant, Gloss, Inventory } from './../../class/index';
 
 @Component({
   selector: 'app-input',

@@ -2,7 +2,7 @@ import { Consonant, Sound, Vowel } from './../class/index';
 
 export class Inventory {
 
-  inventory: Array<any> = new Array();
+  inventory: Array<Sound> = new Array();
   inventoryLocked = false;
 
   constructor() { }
@@ -51,7 +51,7 @@ export class Inventory {
   }
 
   saveInventory() {
-
+    const JSON_File = '--Your Vocable Inventory--\n\n' + JSON.stringify(this.inventory);
   }
 
   loadInventory() {

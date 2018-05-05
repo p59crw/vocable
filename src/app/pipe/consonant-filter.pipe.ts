@@ -4,16 +4,21 @@ import { Consonant } from './../class/index';
 @Pipe({
   name: 'ConsonantFilter'
 })
+
 @Injectable()
 export class ConsonantFilterPipe implements PipeTransform {
 
-  transform(consonants: Consonant[], arg: string): any {
-    if (!consonants || !arg) {
+  transform(consonants: Consonant[], arg: string): any[] {
+    if (!consonants) {
+      return [];
+    }
+    if (arg) {
+      return consonants.filter(consonant => {
+        return consonant.manner.toLowerCase().indexOf(arg.toLowerCase()) > -1;
+      });
+    } else {
       return consonants;
     }
-    // filter items array, items which match and return true will be
-    // kept, false will be filtered out
-    return consonants.filter(consonant => consonant.manner.indexOf(arg) !== -1);
   }
 
 }
