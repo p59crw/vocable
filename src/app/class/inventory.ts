@@ -36,7 +36,7 @@ export class Inventory {
     for (i = 0; i < this.inventory.length; i++) {
       this.inventory[i].isSelected = false;
     }
-    this.inventory = [];
+    this.inventory.length = 0;
   }
 
   lockInventory() {
@@ -51,7 +51,7 @@ export class Inventory {
   }
 
   saveInventory() {
-    const JSON_File = '--Your Vocable Inventory--\n\n' + JSON.stringify(this.inventory);
+    const JSON_File = '### Your Vocable Inventory ###\n' + JSON.stringify(this.inventory);
   }
 
   loadInventory() {

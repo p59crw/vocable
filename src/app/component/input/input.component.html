@@ -7,9 +7,18 @@
   </div>
       <div class="card-body">
         <ul>
-        <li *ngFor="let item of consonants" class="card-text">
-          {{item.ipa_unicode}}
-        </li>
+        <p>Nasals (N):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'NASAL'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Stops/Plosives (P):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'STOP'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Sib. Aff. (SA):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'SIBILANT_AFFRICATE'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
       </ul>
       </div>
     </div>
@@ -21,8 +30,8 @@
   </div>
       <div class="card-body">
         <ul>
-        <li *ngFor="let item of vowels" class="card-text">
-          {{item.ipa_unicode}}
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'OPEN'" class="card-text">
+          {{ item.ipa_unicode }}
         </li>
       </ul>
       </div>

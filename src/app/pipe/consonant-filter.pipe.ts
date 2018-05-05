@@ -2,7 +2,8 @@ import { Injectable, Pipe, PipeTransform } from '@angular/core';
 import { Consonant } from './../class/index';
 
 @Pipe({
-  name: 'ConsonantFilter'
+  name: 'ConsonantFilter',
+  pure: false
 })
 
 @Injectable()
