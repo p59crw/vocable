@@ -1,10 +1,10 @@
 export enum Place {
   Bilabial = 'BILABIAL',
-  Labiodental = 'LABIODENTAL',
-  Linguolabial = 'LINGUOLABIAL',
+  Labioden = 'LABIODEN',
+  Linguolab = 'LINGUOLAB',
   Dental = 'DENTAL',
   Alveolar = 'ALVEOLAR',
-  Postalveolar = 'POSTALVEOLAR',
+  Postalv = 'POSTALV',
   Retroflex = 'RETROFLEX',
   Palatal = 'PALATAL',
   Velar = 'VELAR',

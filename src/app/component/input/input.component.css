@@ -6,3 +6,13 @@ ul {
  ul li {
      display: inline;
 }
+
+p {
+  margin: 0.1em;
+  font-size: small;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #FF5500;
+}

@@ -5,7 +5,10 @@
   text-align: center;
 }
 
-.component-spacing {
+.page-spacing {
   margin: 10px 10px 30px 10px;
-  padding: 5px;
+}
+
+.component-spacing {
+  margin-top: 20px;
 }

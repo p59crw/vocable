@@ -1,4 +1,4 @@
-<div class="container-fluid component-spacing">
+<div class="container-fluid page-spacing">
   <div class="row">
   <div class="col-sm-6">
     <div class="card">
@@ -8,15 +8,55 @@
       <div class="card-body">
         <ul>
         <p>Nasals (N):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'NASAL'" class="card-text">
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Nasal'" class="card-text">
           {{ item.ipa_unicode }}
         </li></p>
         <p>Stops/Plosives (P):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'STOP'" class="card-text">
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Stop'" class="card-text">
           {{ item.ipa_unicode }}
         </li></p>
-        <p>Sib. Aff. (SA):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'SIBILANT_AFFRICATE'" class="card-text">
+        <p>Sib. Aff. (+Saf):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Sibilant_Aff'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Non-Sib. Aff. (-Saf):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Non_sib_Aff'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Sib. Fri. (+Sf):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Sibilant_Fri'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Non-Sib. Fri. (-Sf):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Non_sib_Fri'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>App. (A):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Approximant'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Tap (T):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Tap'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Tri. (R):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Trill'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Lat. Aff. (Laf):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_Aff'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Lat. Fri. (Lf):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_Fri'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Lat. App. (Lap):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_App'" class="card-text">
+          {{ item.ipa_unicode }}
+        </li></p>
+        <p>Lat. Tap (Lt):
+        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_T'" class="card-text">
           {{ item.ipa_unicode }}
         </li></p>
       </ul>
@@ -30,16 +70,17 @@
   </div>
       <div class="card-body">
         <ul>
+        <p>Open (O):
         <li *ngFor="let item of soundInventory | ConsonantFilter: 'OPEN'" class="card-text">
           {{ item.ipa_unicode }}
-        </li>
+        </li></p>
       </ul>
       </div>
     </div>
   </div>
 </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 component-spacing">
                     <!-- Form Name -->
                     <legend>Phonemic Rules</legend>
                     <!-- Text input-->
