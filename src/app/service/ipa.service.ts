@@ -10,7 +10,7 @@ export class IpaService {
   constructor() { }
 
   initIPA() {
-    /* Init consonants */
+    /* Init consonant enums */
     const placeTypes = Object.keys(Place);
     const mannerTypes = Object.keys(Manner);
     const unicodeTypes = Object.keys(Unicode);

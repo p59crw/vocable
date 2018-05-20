@@ -41,6 +41,7 @@ export class Permuter {
         }
       }
     });
+    // console.log(this.permutate(wordStructureComponents[0][1]));
     return this.permute(wordStructure, wordStructureComponents);
   }
 
@@ -67,29 +68,24 @@ export class Permuter {
     return glosses;
   }
 
-  private permuteHelper(arr, index) {
-    let string = '';
-    if (index >= arr.length - 1) {
-      for (let i = 0; i < arr.length - 1; i++) {
-        string = arr[i];
+  public permutate(inputArr) {
+    const result = [];
+
+    const permute = (arr, m = []) => {
+      if (arr.length === 0) {
+        result.push(m);
+      } else {
+        for (let i = 0; i < arr.length; i++) {
+          const curr = arr.slice();
+          const next = curr.splice(i, 1);
+          permute(curr.slice(), m.concat(next));
+        }
       }
-      if (arr.length > 0) {
-        string = arr[arr.length - 1];
-      }
-      return;
-    }
+    };
 
-    for (let i = index; i < arr.length; i++) {
-      let t = arr[index];
-      arr[index] = arr[i];
-      arr[i] = t;
+    permute(inputArr);
 
-      this.permuteHelper(arr, index + 1);
-
-      t = arr[index];
-      arr[index] = arr[i];
-      arr[i] = t;
-    }
+    return result;
   }
 
 }
