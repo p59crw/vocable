@@ -41,7 +41,7 @@ export class Permuter {
         }
       }
     });
-    // console.log(this.permutate(wordStructureComponents[0][1]));
+
     return this.permute(wordStructure, wordStructureComponents);
   }
 
@@ -53,37 +53,41 @@ export class Permuter {
   * @returns            array of permutations
   */
   public permute(structure: Array<string>, components: Array<Sound>) {
-    const glosses = new Array();
-    const permutate = function(elements) {
-      let string = '';
-      for (let i = 0; i < elements[1].length; i++) {
-        string += elements[1][i].ipa_unicode;
-      }
-      return string;
-    };
-    for (let i = 0; i < components.length; i++) {
-      glosses[i] = permutate(components[i]);
-    }
-    console.log(glosses);
-    return glosses;
-  }
-
-  public permutate(inputArr) {
     const result = [];
+    let k = 0;
+
+    /**
+    * TODO: The while loop limits results to 5040 permutations, but it is very
+    * inconsistent and difficult to control. Should be replaced with something
+    * that can be more easily edited, or that is consistent.
+    */
 
     const permute = (arr, m = []) => {
       if (arr.length === 0) {
         result.push(m);
       } else {
-        for (let i = 0; i < arr.length; i++) {
-          const curr = arr.slice();
-          const next = curr.splice(i, 1);
-          permute(curr.slice(), m.concat(next));
+        if (arr.length <= 6) {
+          for (let i = 0; i < arr.length; i++) {
+            const curr = arr.slice();
+            const next = curr.splice(i, 1);
+            permute(curr.slice(), m.concat(next));
+          }
+        } else {
+          while (k <= (10 - arr.length)) {
+            for (let i = 0; i < arr.length; i++) {
+              const curr = arr.slice();
+              const next = curr.splice(i, 1);
+              permute(curr.slice(), m.concat(next));
+              k++;
+            }
+          }
         }
       }
     };
 
-    permute(inputArr);
+    permute(components[0][1]);
+
+    console.log(result);
 
     return result;
   }
