@@ -15,7 +15,7 @@ export class WordStructure {
     this.components = new Array<WordStructureComponent>();
   }
 
-  public WordStructureList(list: WordStructureComponent[]) {
+  public WordStructure(list: WordStructureComponent[]) {
     this.components = list;
   }
 
@@ -115,7 +115,8 @@ export class WordStructure {
   /// <returns></returns>
   private getStructureSubsets(): Array<WordStructure> {
     // initialize list of word structures starting with this one.
-    const structures = new Array<WordStructure>(this.components);
+    const structures = new Array<WordStructure>();
+    structures.push(this.components);
 
     // generate the combinations of subsets for this word structure.
     this.getCombinations(this, structures);
@@ -131,12 +132,13 @@ export class WordStructure {
   /// <param name="instr"></param>
   /// <param name="outstr"></param>
   private getCombinations(instr: WordStructure, outstr: Array<WordStructure>): void {
-    const comps = new Array(instr.components);
+    const comps = instr.components;
     for (let i = 0; i < comps.length; i++) {
       const wsc: WordStructureComponent = instr.components[i];
       if (wsc.isOptional) {
         comps.splice(i, 1);
-        const str = new this.WordStructureList(comps);
+        const str = new WordStructure();
+        str.WordStructure(comps);
         outstr.push(str);
         this.getCombinations(str, outstr);
         comps.splice(i, 0, wsc);
@@ -154,7 +156,7 @@ export class WordStructure {
     // if only one component exists, we'll just add it's characters to the word list.
     // otherwise, we'll loop through the components and permutate their characters.
     if (this.components.length === 1) {
-      words.concat(this.components.characters);
+      words.concat(this.components);
     } else {
       let currentComponent: WordStructureComponent = null;
 
