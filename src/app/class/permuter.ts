@@ -2,6 +2,10 @@ import { Consonant } from './consonant';
 import { Sound } from './sound';
 import { Vowel } from './vowel';
 
+/**
+ * TODO: Try replacing functions in this file with equivalent
+ * functions from new classes like word-structure, etc.
+ */
 export class Permuter {
 
   constructor() { }
