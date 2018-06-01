@@ -1,5 +1,5 @@
 import { WordStructureComponent } from './word-structure-component';
-import { ParserSymbols } from './../enum/parser-symbols';
+import { ParserSymbols } from './../enum/parser-symbols.enum';
 import { NullArgumentError } from './error/null-argument-error';
 
 export class WordStructure {
@@ -21,7 +21,7 @@ export class WordStructure {
 
   public parse(str: string): WordStructure {
     if (str === null || '') {
-      throw new NullArgumentError('WordStructure String is Null.');
+      throw new NullArgumentError('WordStructure String "str"');
     }
 
     const structure: WordStructure = new WordStructure();

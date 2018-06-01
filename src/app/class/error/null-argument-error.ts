@@ -8,6 +8,6 @@ export class NullArgumentError extends Error {
   }
 
   toString() {
-    return 'Error: ' + this.message;
+    return 'NullArgumentException: ' + this.message + 'is null.';
   }
 }
