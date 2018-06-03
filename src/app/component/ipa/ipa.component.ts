@@ -18,7 +18,7 @@ export class IpaComponent implements OnInit {
     try {
       this.initChart();
     } catch (e) {
-      if (e instanceof NullArgumentError) {
+      if (e) {
         this.errorService.displayError(e.message.toString());
       }
     }
@@ -28,7 +28,7 @@ export class IpaComponent implements OnInit {
     this.ipaService.initIPA();
     this.consonants = this.ipaService.consonants;
     if (this.consonants === null) {
-      throw new NullArgumentError('Ipa Consonants Array');
+      throw new NullArgumentError('Consonants array');
     }
   }
 
