@@ -18,7 +18,7 @@ export class IpaComponent implements OnInit {
     try {
       this.initChart();
     } catch (e) {
-      if (e instanceof NullArgumentError) {
+      if (e) {
         this.errorService.displayError(e.message.toString());
       }
     }

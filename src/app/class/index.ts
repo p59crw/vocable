@@ -1,5 +1,6 @@
 export { Consonant } from './ipa/consonant';
 export { EmptyInputError } from './error/empty-input-error';
+export { EmptyInventoryError } from './error/empty-inventory-error';
 export { GenericError } from './error/generic-error';
 export { Gloss } from './ipa/gloss';
 export { Inventory } from './ipa/inventory';
