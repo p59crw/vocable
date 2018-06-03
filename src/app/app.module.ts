@@ -12,8 +12,7 @@ import {
 // Components
 import { AppComponent } from './app.component';
 import {
-  ErrorComponent, InputComponent, IpaComponent,
-  OutputComponent
+  InputComponent, IpaComponent, OutputComponent
 } from './component/index';
 
 // Filter Pipes
@@ -25,7 +24,6 @@ import { ErrorService, IpaService, TranscriptionService } from './service/index'
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent,
     IpaComponent,
     InputComponent,
     OutputComponent,
