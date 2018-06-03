@@ -2,21 +2,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Classes
-import { Consonant, Gloss, Inventory, Parser, Permuter, Sound, Vowel } from './class/index';
+import {
+  Consonant, EmptyInputError, GenericError, Gloss, Inventory,
+  NullArgumentError, Parser, Permuter, Sound, Vowel, WordStructure,
+  WordStructureComparer, WordStructureComponent
+} from './class/index';
 
 // Components
 import { AppComponent } from './app.component';
-import { InputComponent, IpaComponent, OutputComponent } from './component/index';
+import {
+  ErrorComponent, InputComponent, IpaComponent,
+  OutputComponent
+} from './component/index';
 
 // Filter Pipes
 import { ConsonantFilterPipe, VowelFilterPipe } from './pipe/index';
 
 // Services
-import { IpaService, TranscriptionService } from './service/index';
+import { ErrorService, IpaService, TranscriptionService } from './service/index';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ErrorComponent,
     IpaComponent,
     InputComponent,
     OutputComponent,
@@ -27,6 +35,7 @@ import { IpaService, TranscriptionService } from './service/index';
     BrowserModule
   ],
   providers: [
+    ErrorService,
     IpaService,
     Inventory,
     Parser,

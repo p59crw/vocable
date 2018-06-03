@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Consonant, Inventory, Vowel } from './../../class/index';
-import { IpaService } from './../../service/index';
+import { Consonant, Inventory, NullArgumentError, Vowel } from './../../class/index';
+import { ErrorService, IpaService } from './../../service/index';
 
 @Component({
   selector: 'app-ipa',
@@ -11,15 +11,25 @@ export class IpaComponent implements OnInit {
   consonants: Consonant[] = [];
   vowels: Vowel[] = [];
 
-  constructor(private ipaService: IpaService, private inventory: Inventory) { }
+  constructor(private errorService: ErrorService, private ipaService: IpaService,
+    private inventory: Inventory) { }
 
   ngOnInit() {
-    this.initChart();
+    try {
+      this.initChart();
+    } catch (e) {
+      if (e instanceof NullArgumentError) {
+        this.errorService.displayError(e.message.toString());
+      }
+    }
   }
 
   initChart() {
     this.ipaService.initIPA();
     this.consonants = this.ipaService.consonants;
+    if (this.consonants === null) {
+      throw new NullArgumentError('Ipa Consonants Array');
+    }
   }
 
   updateInventory(item) {

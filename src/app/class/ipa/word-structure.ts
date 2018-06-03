@@ -1,6 +1,6 @@
 import { WordStructureComponent } from './word-structure-component';
-import { ParserSymbols } from './../enum/parser-symbols.enum';
-import { NullArgumentError } from './error/null-argument-error';
+import { ParserSymbols } from './../../enum/parser-symbols.enum';
+import { NullArgumentError } from './../error/null-argument-error';
 
 export class WordStructure {
 

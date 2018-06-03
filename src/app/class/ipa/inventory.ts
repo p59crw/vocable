@@ -1,4 +1,4 @@
-import { Consonant, Sound, Vowel } from './../class/index';
+import { Consonant, Sound, Vowel } from './../../class/index';
 import * as FileSaver from 'file-saver';
 
 export class Inventory {
