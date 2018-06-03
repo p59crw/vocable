@@ -7,8 +7,4 @@ export class GenericError extends Error {
     Object.setPrototypeOf(this, GenericError.prototype);
   }
 
-  toString() {
-    return this.message + '\nPlease try refreshing the page.'
-      + ' If the problem persists, please contact the administrator.';
-  }
 }

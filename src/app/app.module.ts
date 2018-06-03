@@ -1,3 +1,4 @@
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,10 +11,7 @@ import {
 
 // Components
 import { AppComponent } from './app.component';
-import {
-  ErrorComponent, InputComponent, IpaComponent,
-  OutputComponent
-} from './component/index';
+import { InputComponent, IpaComponent, OutputComponent } from './component/index';
 
 // Filter Pipes
 import { ConsonantFilterPipe, VowelFilterPipe } from './pipe/index';
@@ -24,7 +22,6 @@ import { ErrorService, IpaService, TranscriptionService } from './service/index'
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent,
     IpaComponent,
     InputComponent,
     OutputComponent,
@@ -32,7 +29,7 @@ import { ErrorService, IpaService, TranscriptionService } from './service/index'
     VowelFilterPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
   ],
   providers: [
     ErrorService,

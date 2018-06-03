@@ -28,7 +28,7 @@ export class IpaComponent implements OnInit {
     this.ipaService.initIPA();
     this.consonants = this.ipaService.consonants;
     if (this.consonants === null) {
-      throw new NullArgumentError('Ipa Consonants Array');
+      throw new NullArgumentError('Consonants array');
     }
   }
 
