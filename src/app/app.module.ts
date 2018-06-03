@@ -1,3 +1,4 @@
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -32,7 +33,7 @@ import { ErrorService, IpaService, TranscriptionService } from './service/index'
     VowelFilterPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
   ],
   providers: [
     ErrorService,
