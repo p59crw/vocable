@@ -1,7 +1,7 @@
 table {
   margin: auto;
   border-collapse: collapse;
-  width: 80%;
+  width: 88%;
   font-family: 'Doulos SIL';
 }
 
@@ -9,7 +9,7 @@ th, td {
   border: 1px solid black;
   padding: 4px;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 
 td:not(.ipa_blank):not(.ipa_empty):hover {
@@ -55,5 +55,5 @@ button {
 
 #inventory_buttons {
   margin-top: 20px;
-  width: 80%;
+  width: 88%;
 }
