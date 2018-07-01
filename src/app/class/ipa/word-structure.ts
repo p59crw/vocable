@@ -82,7 +82,7 @@ export class WordStructure {
     const words = new Array<string>();
 
     const structures = this.getStructureSubsets();
-    let permutations = this.permutateAllComponents();
+    const permutations = this.permutateAllComponents();
     structures.forEach(function(structure) {
       // TODO: Trace program from input to here. This line returns a NotAFunction error.
       // Some piece of structure is possibly missing along the way.

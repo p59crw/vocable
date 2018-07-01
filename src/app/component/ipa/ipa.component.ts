@@ -14,9 +14,9 @@ export class IpaComponent implements OnInit {
   arrow1: string;
   arrow2: string;
   arrow3: string;
-  isPulmonicTableOpen: boolean = true;
-  isNonPulmonicTableOpen: boolean = true;
-  isVowelTableOpen: boolean = true;
+  isPulmonicTableOpen = true;
+  isNonPulmonicTableOpen = true;
+  isVowelTableOpen = true;
 
   constructor(private errorService: ErrorService, private ipaService: IpaService,
     private inventory: Inventory) { }
@@ -44,7 +44,7 @@ export class IpaComponent implements OnInit {
   }
 
   toggleTables(className: string) {
-    let rows = <HTMLCollectionOf<HTMLTableRowElement>>document.getElementsByClassName(className);
+    const rows = <HTMLCollectionOf<HTMLTableRowElement>>document.getElementsByClassName(className);
     switch (className) {
       case 'pulmonic_table': {
         if (this.isPulmonicTableOpen) {
@@ -79,7 +79,7 @@ export class IpaComponent implements OnInit {
         break;
       }
       default: {
-        //statements;
+        // statements;
         break;
       }
     }
