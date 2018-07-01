@@ -1,6 +1,7 @@
 import { WordStructureComponent } from './word-structure-component';
 import { ParserSymbols } from './../../enum/parser-symbols.enum';
 import { NullArgumentError } from './../error/null-argument-error';
+import { Sound } from './sound';
 
 export class WordStructure {
 
@@ -57,7 +58,7 @@ export class WordStructure {
   /// </summary>
   /// <param name="symbol"></param>
   /// <param name="characters"></param>
-  public fillComponents(symbol: string, characters: string[]): void {
+  public fillComponents(symbol: string, characters: Sound[]): void {
     if (this.components.length === 0) {
       throw new Error('No components to fill.');
     }
@@ -81,8 +82,12 @@ export class WordStructure {
     const words = new Array<string>();
 
     const structures = this.getStructureSubsets();
+    let permutations = this.permutateAllComponents();
     structures.forEach(function(structure) {
-      words.concat(structure.permutateAllComponents());
+      // TODO: Trace program from input to here. This line returns a NotAFunction error.
+      // Some piece of structure is possibly missing along the way.
+      // let permutations = this.permutateAllComponents();
+      words.concat(permutations);
     });
 
     // Return distinct words
@@ -150,7 +155,7 @@ export class WordStructure {
   /// Creates a permutation of words using all components in this word structure.
   /// </summary>
   /// <returns></returns>
-  private permutateAllComponents(): Array<string> {
+  public permutateAllComponents(): Array<string> {
     const words = new Array<string>();
 
     // if only one component exists, we'll just add it's characters to the word list.

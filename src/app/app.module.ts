@@ -39,7 +39,8 @@ import { ErrorService, IpaService, TranscriptionService } from './service/index'
     Inventory,
     Parser,
     Permuter,
-    TranscriptionService
+    TranscriptionService,
+    WordStructure
   ],
   bootstrap: [AppComponent]
 })

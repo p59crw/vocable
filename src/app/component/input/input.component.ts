@@ -36,7 +36,8 @@ export class InputComponent {
     if (this.soundInventory.length <= 0) {
       throw new EmptyInventoryError();
     }
-    this.glosses = this.transcriptionService.generateGlosses();
+    this.glosses = [];
+    this.transcriptionService.generateGlosses(this.wordStructureInput.value);
   }
 
   reset() {
