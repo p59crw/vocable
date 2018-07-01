@@ -15,6 +15,7 @@ th, td {
 td:not(.ipa_blank):not(.ipa_empty):hover {
   background-color: #50CBFF;
   color: #000000;
+  cursor: pointer;
 }
 
 button {

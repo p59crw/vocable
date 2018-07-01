@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face { font-family: "Doulos SIL"; src: url("./assets/font/DoulosSIL-R.woff"); }
 
+a {
+  cursor: pointer;
+}
+
+.float_right {
+  float: right;
+}
+
 .text-center {
   text-align: center;
 }
