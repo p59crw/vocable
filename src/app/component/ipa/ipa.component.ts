@@ -45,20 +45,23 @@ export class IpaComponent implements OnInit {
 
   toggleTables(className: string) {
     const rows = <HTMLCollectionOf<HTMLTableRowElement>>document.getElementsByClassName(className);
+
+    let rowVisibility = function(style: string) {
+      for (let i = 0; i < rows.length; i++) {
+        rows[i].style.display = style;
+      }
+    }
+
     switch (className) {
       case 'pulmonic_table': {
         if (this.isPulmonicTableOpen) {
           this.isPulmonicTableOpen = false;
           this.arrow1 = SpecialCharacters.downwards_arrow;
-          for (let i = 0; i < rows.length; i++) {
-            rows[i].style.display = 'none';
-          }
+          rowVisibility('none');
         } else {
           this.isPulmonicTableOpen = true;
           this.arrow1 = SpecialCharacters.upwards_arrow;
-          for (let i = 0; i < rows.length; i++) {
-            rows[i].style.display = '';
-          }
+          rowVisibility('');
         }
         break;
       }
@@ -66,20 +69,12 @@ export class IpaComponent implements OnInit {
         if (this.isNonPulmonicTableOpen) {
           this.isNonPulmonicTableOpen = false;
           this.arrow2 = SpecialCharacters.downwards_arrow;
-          for (let i = 0; i < rows.length; i++) {
-            rows[i].style.display = 'none';
-          }
+          rowVisibility('none');
         } else {
           this.isNonPulmonicTableOpen = true;
           this.arrow2 = SpecialCharacters.upwards_arrow;
-          for (let i = 0; i < rows.length; i++) {
-            rows[i].style.display = '';
-          }
+          rowVisibility('');
         }
-        break;
-      }
-      default: {
-        // statements;
         break;
       }
     }
