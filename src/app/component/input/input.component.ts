@@ -28,6 +28,7 @@ export class InputComponent {
   }
 
   applyTranscription() {
+    console.log('Step 1: Take input and generate glosses. (input.component.ts)');
     this.wordStructureInput = <HTMLInputElement>document.getElementById('word_structure');
     this.ruleInput = <HTMLInputElement>document.getElementById('phoneme_rules');
     if (this.wordStructureInput.value === '' || this.ruleInput.value === '') {
@@ -36,8 +37,8 @@ export class InputComponent {
     if (this.soundInventory.length <= 0) {
       throw new EmptyInventoryError();
     }
-    this.glosses = [];
-    this.transcriptionService.generateGlosses(this.wordStructureInput.value);
+    this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
+    console.log('Step 12: Display glosses');
   }
 
   reset() {

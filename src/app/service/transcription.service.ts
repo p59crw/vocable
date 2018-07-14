@@ -17,9 +17,12 @@ export class TranscriptionService {
   * @returns  array of permutations
   */
   public generateGlosses(structure: string): Array<string> {
-    // return this.permuter.generateWords(this.parser.parseWordStructure()[0],
-    //   this.parser.parseWordStructure()[1], this.inventory.getInventory());
 
+    console.log('Step 2: Generate word structure. (transcription.service.ts)');
+    /*
+     * return this.permuter.generateWords(this.parser.parseWordStructure()[0],
+     * this.parser.parseWordStructure()[1], this.inventory.getInventory());
+     */
     this.wordStructure = new WordStructure();
 
     const uniqueChars = this.parser.parseWordStructure(structure);
@@ -30,6 +33,7 @@ export class TranscriptionService {
     }
 
     const words = wordStructure.buildWords();
+    console.log('Step 11: Return filtered words for display. (transcription.service.ts)');
     return words;
   }
 

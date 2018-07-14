@@ -21,6 +21,7 @@ export class WordStructure {
   }
 
   public parse(str: string): WordStructure {
+    console.log('Step 4: Parse word structure. (word-structure.ts)');
     if (str === null || '') {
       throw new NullArgumentError('WordStructure String "str"');
     }
@@ -59,6 +60,7 @@ export class WordStructure {
   /// <param name="symbol"></param>
   /// <param name="characters"></param>
   public fillComponents(symbol: string, characters: Sound[]): void {
+    console.log('Step 5: Fill components with ' + symbol + '. (word-structure.ts)');
     if (this.components.length === 0) {
       throw new Error('No components to fill.');
     }
@@ -75,6 +77,7 @@ export class WordStructure {
   /// </summary>
   /// <returns></returns>
   public buildWords() {
+    console.log('Step 6: Build words and return them. (word-structure.ts)');
     if (this.components.length === 0) {
       throw new Error('At least one component must exist to build words.');
     }
@@ -82,15 +85,19 @@ export class WordStructure {
     const words = new Array<string>();
 
     const structures = this.getStructureSubsets();
+    console.log('Step 7: Generate subsets. Subsets = ' + structures + ' (word-structure.ts)');
     const permutations = this.permutateAllComponents();
+    console.log('Step 8: Permutate components. Permutations = ' + permutations + ' (word-structure.ts)');
     structures.forEach(function(structure) {
       // TODO: Trace program from input to here. This line returns a NotAFunction error.
       // Some piece of structure is possibly missing along the way.
       // let permutations = this.permutateAllComponents();
       words.concat(permutations);
+      console.log('Step 9: Concat permutations to word list. (word-structure.ts)');
     });
 
     // Return distinct words
+    console.log('Step 10: Filter repeated words. Words before filter = ' + words + ' (word-structure.ts)');
     return words.filter((x, i, a) => a.indexOf(x) === i);
   }
 

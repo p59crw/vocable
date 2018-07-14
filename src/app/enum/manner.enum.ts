@@ -11,5 +11,15 @@ export enum Manner {
   Lateral_Aff = 'LATERAL_AFF',
   Lateral_Fri = 'LATERAL_FRI',
   Lateral_App = 'LATERAL_APP',
-  Lateral_T = 'LATERAL_T'
+  Lateral_T = 'LATERAL_T',
+  Ejec_St = 'EJEC_ST',
+  Ejec_Aff = 'EJEC_AFF',
+  Ejec_Fri = 'EJEC_FRI',
+  Ejec_Lat_Aff = 'EJEC_LAT_AFF',
+  Ejec_Lat_Fri = 'EJEC_LAT_FRI',
+  Clic_Tenuis = 'CLIC_TENUIS',
+  Clic_Nas = 'CLIC_NAS',
+  Clic_Lateral = 'CLIC_LATERAL',
+  Clic_Lat_Nas = 'CLIC_LAT_NAS',
+  Implosive = 'IMPLOSIVE'
 }

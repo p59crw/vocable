@@ -46,11 +46,11 @@ export class IpaComponent implements OnInit {
   toggleTables(className: string) {
     const rows = <HTMLCollectionOf<HTMLTableRowElement>>document.getElementsByClassName(className);
 
-    let rowVisibility = function(style: string) {
+    const rowVisibility = function(style: string) {
       for (let i = 0; i < rows.length; i++) {
         rows[i].style.display = style;
       }
-    }
+    };
 
     switch (className) {
       case 'pulmonic_table': {

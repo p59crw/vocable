@@ -11,6 +11,7 @@ export class Parser {
   * @returns                array of permutations
   */
   public parseWordStructure(structure: string): Array<string[]> {
+    console.log('Step 3: Parse word structure. (parser.ts)');
     // const wordStructure = [];
     let uniqueChars = [];
     let isOptional = false;
