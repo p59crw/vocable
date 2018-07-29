@@ -16,12 +16,11 @@ export class WordStructure {
     this.components = new Array<WordStructureComponent>();
   }
 
-  public WordStructure(list: WordStructureComponent[]) {
+  public WordStructure(list: Array<WordStructureComponent>) {
     this.components = list;
   }
 
   public parse(str: string): WordStructure {
-    console.log('Step 4: Parse word structure. (word-structure.ts)');
     if (str === null || '') {
       throw new NullArgumentError('WordStructure String "str"');
     }
@@ -59,7 +58,7 @@ export class WordStructure {
   /// </summary>
   /// <param name="symbol"></param>
   /// <param name="characters"></param>
-  public fillComponents(symbol: string, characters: Sound[]): void {
+  public fillComponents(symbol: string, characters: Array<any>): void {
     console.log('Step 5: Fill components with ' + symbol + '. (word-structure.ts)');
     if (this.components.length === 0) {
       throw new Error('No components to fill.');
@@ -70,6 +69,8 @@ export class WordStructure {
         component.characters = characters;
       }
     });
+
+    console.log("Components after filling each component = " + this.components);
   }
 
   /// <summary>
@@ -128,6 +129,7 @@ export class WordStructure {
   private getStructureSubsets(): Array<WordStructure> {
     // initialize list of word structures starting with this one.
     const structures = new Array<WordStructure>();
+    console.log("Components before getting subsets = " + this.components);
     structures.push(this.components);
 
     // generate the combinations of subsets for this word structure.
@@ -146,14 +148,18 @@ export class WordStructure {
   private getCombinations(instr: WordStructure, outstr: Array<WordStructure>): void {
     const comps = instr.components;
     for (let i = 0; i < comps.length; i++) {
+      console.log("Combination " + i);
       const wsc: WordStructureComponent = instr.components[i];
       if (wsc.isOptional) {
+        console.log("Splicing " + wsc.characters);
         comps.splice(i, 1);
         const str = new WordStructure();
         str.WordStructure(comps);
         outstr.push(str);
+        console.log("Output string = " + str);
         this.getCombinations(str, outstr);
         comps.splice(i, 0, wsc);
+        console.log("Components at end of subset round = " + comps);
       }
     }
   }

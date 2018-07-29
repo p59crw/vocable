@@ -4,6 +4,7 @@ export { EmptyInventoryError } from './error/empty-inventory-error';
 export { GenericError } from './error/generic-error';
 export { Gloss } from './ipa/gloss';
 export { Inventory } from './ipa/inventory';
+export { NotYetImplementedError } from './error/not-yet-implemented-error';
 export { NullArgumentError } from './error/null-argument-error';
 export { Parser } from './ipa/parser';
 export { Permuter } from './ipa/permuter';

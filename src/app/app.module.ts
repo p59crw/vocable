@@ -5,8 +5,9 @@ import { NgModule } from '@angular/core';
 // Classes
 import {
   Consonant, EmptyInputError, GenericError, Gloss, Inventory,
-  NullArgumentError, Parser, Permuter, Sound, Vowel, WordStructure,
-  WordStructureComparer, WordStructureComponent
+  NotYetImplementedError, NullArgumentError, Parser, Permuter,
+  Sound, Vowel, WordStructure, WordStructureComparer,
+  WordStructureComponent
 } from './class/index';
 
 // Components

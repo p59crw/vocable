@@ -10,10 +10,9 @@ export class Parser {
   * @param uniqueChars      array of wordStructure characters with duplicates removed
   * @returns                array of permutations
   */
-  public parseWordStructure(structure: string): Array<string[]> {
-    console.log('Step 3: Parse word structure. (parser.ts)');
+  public getUniqueChars(structure: string): Array<string> {
     // const wordStructure = [];
-    let uniqueChars = [];
+    let uniqueChars: Array<string> = [];
     let isOptional = false;
 
     const removeDuplicates = function(array: Array<string>) {

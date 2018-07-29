@@ -7,9 +7,10 @@ import { Consonant, EmptyInputError, EmptyInventoryError, Gloss, Inventory } fro
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css']
 })
-export class InputComponent {
+export class InputComponent implements AfterContentInit {
 
   glosses: Array<string> = [];
+  phonemes: Array<string> = [];
   wordStructureInput: HTMLInputElement;
   ruleInput: HTMLInputElement;
   soundInventory = this.inventory.getInventory();
@@ -28,9 +29,6 @@ export class InputComponent {
   }
 
   applyTranscription() {
-    console.log('Step 1: Take input and generate glosses. (input.component.ts)');
-    this.wordStructureInput = <HTMLInputElement>document.getElementById('word_structure');
-    this.ruleInput = <HTMLInputElement>document.getElementById('phoneme_rules');
     if (this.wordStructureInput.value === '' || this.ruleInput.value === '') {
       throw new EmptyInputError('At least one input field');
     }
@@ -39,13 +37,19 @@ export class InputComponent {
     }
     this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
     console.log('Step 12: Display glosses');
+
+    console.log('Step 13: Generate Phonetic forms');
+    this.phonemes = this.transcriptionService.generatePhonetics(this.glosses, this.ruleInput.value);
   }
 
   reset() {
-    this.wordStructureInput = <HTMLInputElement>document.getElementById('word_structure');
-    this.ruleInput = <HTMLInputElement>document.getElementById('phoneme_rules');
     this.wordStructureInput.value = '';
     this.ruleInput.value = '';
+  }
+
+  ngAfterContentInit() {
+    this.wordStructureInput = <HTMLInputElement>document.getElementById('word_structure');
+    this.ruleInput = <HTMLInputElement>document.getElementById('phoneme_rules');
   }
 
 }
