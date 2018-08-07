@@ -11,5 +11,4 @@ export { Permuter } from './ipa/permuter';
 export { Sound } from './ipa/sound';
 export { Vowel } from './ipa/vowel';
 export { WordStructure } from './ipa/word-structure';
-export { WordStructureComparer } from './ipa/word-structure-comparer';
 export { WordStructureComponent } from './ipa/word-structure-component';

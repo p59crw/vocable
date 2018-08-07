@@ -6,8 +6,7 @@ import { NgModule } from '@angular/core';
 import {
   Consonant, EmptyInputError, GenericError, Gloss, Inventory,
   NotYetImplementedError, NullArgumentError, Parser, Permuter,
-  Sound, Vowel, WordStructure, WordStructureComparer,
-  WordStructureComponent
+  Sound, Vowel, WordStructure, WordStructureComponent
 } from './class/index';
 
 // Components

@@ -1,15 +1,17 @@
+import { Sound } from './sound';
+
 export class WordStructureComponent {
   isOptional: boolean;
-  characters: Array<string>;
+  characters: Array<Sound>;
   symbol: string;
 
   // Default Constructor
   public constructor() {
-    this.characters = new Array<string>();
+    this.characters = new Array<Sound>();
   }
 
   // Constructor with input
-  public WordStructureComponent(characters: Array<string>) {
+  public WordStructureComponent(characters: Array<Sound>) {
     this.characters = characters;
   }
 
@@ -18,7 +20,8 @@ export class WordStructureComponent {
 
     this.characters.forEach(function(character) {
       for (let i = 0; i < component.characters.length; i++) {
-        permCharacters.push(character + component.characters[i]);
+        permCharacters.push(character.ipa_unicode
+          + component.characters[i].ipa_unicode);
       }
     });
 

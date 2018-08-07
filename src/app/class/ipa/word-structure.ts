@@ -2,10 +2,12 @@ import { WordStructureComponent } from './word-structure-component';
 import { ParserSymbols } from './../../enum/parser-symbols.enum';
 import { NullArgumentError } from './../error/null-argument-error';
 import { Sound } from './sound';
+import { Consonant } from './consonant';
+import { Vowel } from './vowel';
 
 export class WordStructure {
 
-  components;
+  components: Array<WordStructureComponent>;
 
   public getComponents() {
     return this.components;
@@ -58,19 +60,25 @@ export class WordStructure {
   /// </summary>
   /// <param name="symbol"></param>
   /// <param name="characters"></param>
-  public fillComponents(symbol: string, characters: Array<any>): void {
-    console.log('Step 5: Fill components with ' + symbol + '. (word-structure.ts)');
+  public fillComponents(symbol: string, characters: Array<Sound>): void {
     if (this.components.length === 0) {
       throw new Error('No components to fill.');
     }
 
     this.components.forEach(function(component) {
       if (component.symbol === symbol) {
-        component.characters = characters;
+        if (symbol === 'C') {
+          component.characters = characters.filter(function(item, index, array) {
+            return item instanceof Consonant;
+          });
+        }
+        if (symbol === 'V') {
+          component.characters = characters.filter(function(item, index, array) {
+            return item instanceof Vowel;
+          });
+        }
       }
     });
-
-    console.log("Components after filling each component = " + this.components);
   }
 
   /// <summary>
@@ -126,11 +134,13 @@ export class WordStructure {
   /// Subsets exist when optional components exist in the word structure.
   /// </summary>
   /// <returns></returns>
-  private getStructureSubsets(): Array<WordStructure> {
+  private getStructureSubsets(): Array<WordStructureComponent> {
     // initialize list of word structures starting with this one.
-    const structures = new Array<WordStructure>();
+    const structures = new Array<WordStructureComponent>();
     console.log("Components before getting subsets = " + this.components);
-    structures.push(this.components);
+    this.components.forEach(function (component) {
+  structures.push(component);
+});
 
     // generate the combinations of subsets for this word structure.
     this.getCombinations(this, structures);
@@ -145,7 +155,7 @@ export class WordStructure {
   /// </summary>
   /// <param name="instr"></param>
   /// <param name="outstr"></param>
-  private getCombinations(instr: WordStructure, outstr: Array<WordStructure>): void {
+  private getCombinations(instr: WordStructure, outstr: Array<WordStructureComponent>): void {
     const comps = instr.components;
     for (let i = 0; i < comps.length; i++) {
       console.log("Combination " + i);
@@ -155,7 +165,8 @@ export class WordStructure {
         comps.splice(i, 1);
         const str = new WordStructure();
         str.WordStructure(comps);
-        outstr.push(str);
+        // TODO Fix below statement
+        // outstr.push(str);
         console.log("Output string = " + str);
         this.getCombinations(str, outstr);
         comps.splice(i, 0, wsc);
@@ -174,7 +185,8 @@ export class WordStructure {
     // if only one component exists, we'll just add it's characters to the word list.
     // otherwise, we'll loop through the components and permutate their characters.
     if (this.components.length === 1) {
-      words.concat(this.components);
+    // TODO Fix below statement
+      // words.concat(this.components);
     } else {
       let currentComponent: WordStructureComponent = null;
 
@@ -184,7 +196,7 @@ export class WordStructure {
         } else {
           const list = currentComponent.permutate(nextComponent);
           currentComponent = new WordStructureComponent();
-          currentComponent.WordStructureComponent(list);
+          // currentComponent.WordStructureComponent(list);
           words.concat(list);
         }
       });
