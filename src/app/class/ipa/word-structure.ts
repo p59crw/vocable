@@ -86,7 +86,6 @@ export class WordStructure {
   /// </summary>
   /// <returns></returns>
   public buildWords() {
-    console.log('Step 6: Build words and return them. (word-structure.ts)');
     if (this.components.length === 0) {
       throw new Error('At least one component must exist to build words.');
     }
@@ -94,9 +93,9 @@ export class WordStructure {
     const words = new Array<string>();
 
     const structures = this.getStructureSubsets();
-    console.log('Step 7: Generate subsets. Subsets = ' + structures + ' (word-structure.ts)');
+    console.log('Step 7: Generate subsets. Subsets = ' + JSON.stringify(structures) + ' (word-structure.ts)');
     const permutations = this.permutateAllComponents();
-    console.log('Step 8: Permutate components. Permutations = ' + permutations + ' (word-structure.ts)');
+    console.log('Step 8: Permutate components. Permutations = ' + JSON.stringify(permutations) + ' (word-structure.ts)');
     structures.forEach(function(structure) {
       // TODO: Trace program from input to here. This line returns a NotAFunction error.
       // Some piece of structure is possibly missing along the way.
@@ -137,7 +136,6 @@ export class WordStructure {
   private getStructureSubsets(): Array<WordStructureComponent> {
     // initialize list of word structures starting with this one.
     const structures = new Array<WordStructureComponent>();
-    console.log("Components before getting subsets = " + this.components);
     this.components.forEach(function (component) {
   structures.push(component);
 });
@@ -156,6 +154,7 @@ export class WordStructure {
   /// <param name="instr"></param>
   /// <param name="outstr"></param>
   private getCombinations(instr: WordStructure, outstr: Array<WordStructureComponent>): void {
+  console.log('instr = ' + instr);
     const comps = instr.components;
     for (let i = 0; i < comps.length; i++) {
       console.log("Combination " + i);
@@ -170,7 +169,7 @@ export class WordStructure {
         console.log("Output string = " + str);
         this.getCombinations(str, outstr);
         comps.splice(i, 0, wsc);
-        console.log("Components at end of subset round = " + comps);
+        console.log("Components at end of subset round = " + JSON.stringify(comps));
       }
     }
   }
