@@ -1,6 +1,6 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { ErrorService, TranscriptionService } from './../../service/index';
-import { Consonant, EmptyInputError, EmptyInventoryError, Gloss, Inventory } from './../../class/index';
+import { Consonant, EmptyInputError, EmptyInventoryError, Gloss, Inventory, Word } from './../../class/index';
 
 @Component({
   selector: 'app-input',
@@ -9,7 +9,7 @@ import { Consonant, EmptyInputError, EmptyInventoryError, Gloss, Inventory } fro
 })
 export class InputComponent implements AfterContentInit {
 
-  glosses: Array<string> = [];
+  glosses: Array<Word> = [];
   phonemes: Array<string> = [];
   wordStructureInput: HTMLInputElement;
   ruleInput: HTMLInputElement;
@@ -22,9 +22,7 @@ export class InputComponent implements AfterContentInit {
     try {
       this.applyTranscription();
     } catch (e) {
-      if (e) {
-        this.errorService.displayError(e.message.toString());
-      }
+        this.errorService.displayError(e);
     }
   }
 
@@ -35,6 +33,7 @@ export class InputComponent implements AfterContentInit {
     if (this.soundInventory.length <= 0) {
       throw new EmptyInventoryError();
     }
+    
     this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
     console.log('Step 12: Display glosses');
 

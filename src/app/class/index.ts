@@ -10,5 +10,6 @@ export { Parser } from './ipa/parser';
 export { Permuter } from './ipa/permuter';
 export { Sound } from './ipa/sound';
 export { Vowel } from './ipa/vowel';
+export { Word } from './ipa/word';
 export { WordStructure } from './ipa/word-structure';
 export { WordStructureComponent } from './ipa/word-structure-component';

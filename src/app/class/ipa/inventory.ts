@@ -3,12 +3,12 @@ import * as FileSaver from 'file-saver';
 
 export class Inventory {
 
-  inventory: Array<Sound> = new Array();
+  inventory: Array<Sound> = new Array<Sound>();
   inventoryLocked = false;
 
   constructor() { }
 
-  updateInventory(item) {
+  updateInventory(item: Sound) {
     if (!this.inventoryLocked) {
       if (this.inventory.indexOf(item) > -1) {
         this.removeItem(item);
@@ -22,12 +22,12 @@ export class Inventory {
     return this.inventory;
   }
 
-  addItem(item) {
+  addItem(item: Sound) {
     this.inventory.push(item);
     item.isSelected = true;
   }
 
-  removeItem(item) {
+  removeItem(item: Sound) {
     item.isSelected = false;
     this.inventory.splice(this.inventory.indexOf(item), 1);
   }

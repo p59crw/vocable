@@ -1,31 +1,34 @@
 import { Sound } from './sound';
+import { Word } from './word';
 
 export class WordStructureComponent {
   isOptional: boolean;
-  characters: Array<Sound>;
+  words: Array<Word>;
   symbol: string;
 
   // Default Constructor
   public constructor() {
-    this.characters = new Array<Sound>();
+    this.words = new Array<Word>();
   }
 
   // Constructor with input
-  public WordStructureComponent(characters: Array<Sound>) {
-    this.characters = characters;
+  public WordStructureComponent(characters: Array<Word>) {
+    this.words = characters;
   }
 
-  public permutate(component: WordStructureComponent) {
-    const permCharacters = new Array<string>();
+  public permutate(component: WordStructureComponent): Array<Word> {
+    const permWords = new Array<Word>();
 
-    this.characters.forEach(function(character) {
-      for (let i = 0; i < component.characters.length; i++) {
-        permCharacters.push(character.ipa_unicode
-          + component.characters[i].ipa_unicode);
+    this.words.forEach(function(word) {
+      for (let i = 0; i < component.words.length; i++) {
+        let newWord = new Word();
+        newWord.sounds = newWord.sounds.concat(word.sounds);
+        newWord.sounds = newWord.sounds.concat(component.words[i].sounds);
+        permWords.push(newWord);
       }
     });
 
-    return permCharacters;
+    return permWords;
   }
 
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   Consonant, Gloss, Inventory, NotYetImplementedError,
-  Parser, WordStructure
+  Parser, WordStructure, Word
 } from './../class/index';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class TranscriptionService {
   * returns permutations to be shown on page.
   * @returns  array of permutations
   */
-  public generateGlosses(structure: string): Array<string> {
+  public generateGlosses(structure: string): Array<Word> {
 
     let wordStructure = new WordStructure();
     let parser = new Parser();
@@ -28,12 +28,11 @@ export class TranscriptionService {
     }
 
     const words = parsedWordStructure.buildWords();
-    console.log('Step 11: Return filtered words for display. (transcription.service.ts)');
-    console.log("Words = " + words);
+    console.log("Words = " + JSON.stringify(words));
     return words;
   }
 
-  public generatePhonetics(glosses: Array<string>, structure: string): Array<string> {
+  public generatePhonetics(glosses: Array<Word>, structure: string): Array<string> {
     throw new NotYetImplementedError("generatePhonetics()");
   }
 

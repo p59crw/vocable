@@ -4,6 +4,7 @@ import { NullArgumentError } from './../error/null-argument-error';
 import { Sound } from './sound';
 import { Consonant } from './consonant';
 import { Vowel } from './vowel';
+import { Word } from './word';
 
 export class WordStructure {
 
@@ -37,11 +38,10 @@ export class WordStructure {
       switch (character) {
         case ParserSymbols.OPTIONAL_START:
           isOptional = true;
-          break;
-
+          continue;
         case ParserSymbols.OPTIONAL_END:
           isOptional = false;
-          break;
+          continue;
       }
 
       // build the component.
@@ -60,7 +60,7 @@ export class WordStructure {
   /// </summary>
   /// <param name="symbol"></param>
   /// <param name="characters"></param>
-  public fillComponents(symbol: string, characters: Array<Sound>): void {
+  public fillComponents(symbol: string, sounds: Array<Sound>): void {
     if (this.components.length === 0) {
       throw new Error('No components to fill.');
     }
@@ -68,13 +68,23 @@ export class WordStructure {
     this.components.forEach(function(component) {
       if (component.symbol === symbol) {
         if (symbol === 'C') {
-          component.characters = characters.filter(function(item, index, array) {
+          let filteredConsonants = sounds.filter(function(item, index, array) {
             return item instanceof Consonant;
+          });
+          filteredConsonants.forEach(function(consonant) {
+            let newWord = new Word();
+            newWord.sounds.push(consonant);
+            component.words.push(newWord);
           });
         }
         if (symbol === 'V') {
-          component.characters = characters.filter(function(item, index, array) {
+          let filteredVowels = sounds.filter(function(item, index, array) {
             return item instanceof Vowel;
+          });
+          filteredVowels.forEach(function(vowel) {
+            let newWord = new Word();
+            newWord.sounds.push(vowel);
+            component.words.push(newWord);
           });
         }
       }
@@ -90,22 +100,16 @@ export class WordStructure {
       throw new Error('At least one component must exist to build words.');
     }
 
-    const words = new Array<string>();
+    let words = new Array<Word>();
 
     const structures = this.getStructureSubsets();
-    console.log('Step 7: Generate subsets. Subsets = ' + JSON.stringify(structures) + ' (word-structure.ts)');
-    const permutations = this.permutateAllComponents();
-    console.log('Step 8: Permutate components. Permutations = ' + JSON.stringify(permutations) + ' (word-structure.ts)');
     structures.forEach(function(structure) {
       // TODO: Trace program from input to here. This line returns a NotAFunction error.
       // Some piece of structure is possibly missing along the way.
-      // let permutations = this.permutateAllComponents();
-      words.concat(permutations);
-      console.log('Step 9: Concat permutations to word list. (word-structure.ts)');
+      words = words.concat(structure.permutateAllComponents());
     });
 
     // Return distinct words
-    console.log('Step 10: Filter repeated words. Words before filter = ' + words + ' (word-structure.ts)');
     return words.filter((x, i, a) => a.indexOf(x) === i);
   }
 
@@ -133,12 +137,14 @@ export class WordStructure {
   /// Subsets exist when optional components exist in the word structure.
   /// </summary>
   /// <returns></returns>
-  private getStructureSubsets(): Array<WordStructureComponent> {
+  private getStructureSubsets(): Array<WordStructure> {
     // initialize list of word structures starting with this one.
-    const structures = new Array<WordStructureComponent>();
+    const structures = new Array<WordStructure>();
+    const rootStructure = new WordStructure();
     this.components.forEach(function (component) {
-  structures.push(component);
-});
+      rootStructure.components.push(component);
+    });
+    structures.push(rootStructure);
 
     // generate the combinations of subsets for this word structure.
     this.getCombinations(this, structures);
@@ -153,23 +159,17 @@ export class WordStructure {
   /// </summary>
   /// <param name="instr"></param>
   /// <param name="outstr"></param>
-  private getCombinations(instr: WordStructure, outstr: Array<WordStructureComponent>): void {
-  console.log('instr = ' + instr);
+  private async getCombinations(instr: WordStructure, outstr: Array<WordStructure>) {
     const comps = instr.components;
     for (let i = 0; i < comps.length; i++) {
-      console.log("Combination " + i);
       const wsc: WordStructureComponent = instr.components[i];
       if (wsc.isOptional) {
-        console.log("Splicing " + wsc.characters);
         comps.splice(i, 1);
         const str = new WordStructure();
         str.WordStructure(comps);
-        // TODO Fix below statement
-        // outstr.push(str);
-        console.log("Output string = " + str);
-        this.getCombinations(str, outstr);
+        outstr.push(str);
+        await this.getCombinations(str, outstr);
         comps.splice(i, 0, wsc);
-        console.log("Components at end of subset round = " + JSON.stringify(comps));
       }
     }
   }
@@ -178,30 +178,35 @@ export class WordStructure {
   /// Creates a permutation of words using all components in this word structure.
   /// </summary>
   /// <returns></returns>
-  public permutateAllComponents(): Array<string> {
-    const words = new Array<string>();
+  public permutateAllComponents(): Array<Word> {
+    let words = new Array<Word>();
 
     // if only one component exists, we'll just add it's characters to the word list.
     // otherwise, we'll loop through the components and permutate their characters.
     if (this.components.length === 1) {
-    // TODO Fix below statement
-      // words.concat(this.components);
+      this.components[0].words.forEach(function(word) {
+        words.push(word);
+      });
     } else {
       let currentComponent: WordStructureComponent = null;
 
-      this.components.forEach(function(nextComponent) {
-        if (currentComponent == null) {
+      for (let i = 0; i < this.components.length; i++) {
+        const nextComponent = this.components[i];
+        if (currentComponent === null) {
           currentComponent = nextComponent;
+          continue;
         } else {
           const list = currentComponent.permutate(nextComponent);
           currentComponent = new WordStructureComponent();
-          // currentComponent.WordStructureComponent(list);
-          words.concat(list);
+          currentComponent.WordStructureComponent(list);
+          words = words.concat(list);
         }
-      });
+      }
 
-      const tooFewChars = function(element, index, array) {
-        return (element.length > this.components.length);
+      let tempComponents = this.getComponents()
+
+      const tooFewChars = function(element: Word, index, array) {
+        return (element.sounds.length >= tempComponents.length);
       };
 
       // remove words that have less characters than the number of components.
