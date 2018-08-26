@@ -33,11 +33,10 @@ export class InputComponent implements AfterContentInit {
     if (this.soundInventory.length <= 0) {
       throw new EmptyInventoryError();
     }
-    
-    this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
-    console.log('Step 12: Display glosses');
 
-    console.log('Step 13: Generate Phonetic forms');
+    this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
+    this.transcriptionService.setGlosses(this.glosses);
+    
     this.phonemes = this.transcriptionService.generatePhonetics(this.glosses, this.ruleInput.value);
   }
 

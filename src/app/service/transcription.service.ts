@@ -7,6 +7,8 @@ import {
 @Injectable()
 export class TranscriptionService {
 
+  glosses;
+
   // Constructor
   constructor(private inventory: Inventory) { }
 
@@ -34,6 +36,14 @@ export class TranscriptionService {
 
   public generatePhonetics(glosses: Array<Word>, structure: string): Array<string> {
     throw new NotYetImplementedError("generatePhonetics()");
+  }
+
+  public setGlosses(glosses) {
+    this.glosses = glosses;
+  }
+
+  public getGlosses() {
+    return this.glosses;
   }
 
 }

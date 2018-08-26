@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ErrorService, TranscriptionService } from './../../service/index';
 
 @Component({
   selector: 'app-output',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OutputComponent implements OnInit {
 
-  constructor() { }
+  glosses = this.transcriptionService.getGlosses();
+
+  constructor(private transcriptionService: TranscriptionService) { }
 
   ngOnInit() {
+
   }
 
 }
