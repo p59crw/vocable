@@ -1,6 +1,6 @@
 export class GenericError extends Error {
 
-  constructor(message: string) {
+  constructor(title: string, message: string) {
     super(message);
 
     // Set the prototype explicitly.

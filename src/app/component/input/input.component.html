@@ -1,114 +1,136 @@
 <div class="container-fluid page-spacing">
-  <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-header">
-    <h5>Components (C)</h5>
-  </div>
-      <div class="card-body">
-        <ul>
-        <p>Nasals (N):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Nasal'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Stops/Plosives (P):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Stop'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Sib. Aff. (+Saf):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Sibilant_Aff'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Non-Sib. Aff. (-Saf):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Non_sib_Aff'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Sib. Fri. (+Sf):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Sibilant_Fri'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Non-Sib. Fri. (-Sf):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Non_sib_Fri'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>App. (A):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Approximant'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Tap (T):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Tap'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Tri. (R):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Trill'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Lat. Aff. (Laf):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_Aff'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Lat. Fri. (Lf):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_Fri'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Lat. App. (Lap):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_App'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-        <p>Lat. Tap (Lt):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_T'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-      </ul>
-      </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Components (C)</h5>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <p>Nasals (N):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Nasal'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Stops/Plosives (P):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Stop'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Sib. Aff. (+Saf):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Sibilant_Aff'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Non-Sib. Aff. (-Saf):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Non_sib_Aff'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Sib. Fri. (+Sf):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Sibilant_Fri'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Non-Sib. Fri. (-Sf):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Non_sib_Fri'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>App. (A):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Approximant'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Tap (T):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Tap'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Tri. (R):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Trill'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Lat. Aff. (Laf):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_Aff'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Lat. Fri. (Lf):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_Fri'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Lat. App. (Lap):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_App'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Lat. Tap (Lt):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_T'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Vowels (V)</h5>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <p>Open (O):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'OPEN'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-header">
-    <h5>Vowels (V)</h5>
-  </div>
-      <div class="card-body">
-        <ul>
-        <p>Open (O):
-        <li *ngFor="let item of soundInventory | ConsonantFilter: 'OPEN'" class="card-text">
-          {{ item.ipa_unicode }}
-        </li></p>
-      </ul>
-      </div>
-    </div>
-  </div>
-</div>
     <div class="row">
         <div class="col-md-12 component-spacing">
-                    <!-- Form Name -->
-                    <legend>Phonemic Rules</legend>
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-12 control-label" for="word_structure">Word Structure</label>
-                        <div class="col-md-12">
-                            <input id="word_structure" name="word_structure" type="text" placeholder="i.e. (C)VC(V)(C)" class="form-control input-md" required="">
-                            <span class="help-block"><a href="">Click here for help.</a></span>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-12 control-label" for="phoneme_rules">Phonemic Transformation Rules</label>
-                        <div class="col-md-12">
-                            <input id="phoneme_rules" name="phoneme_rules" type="text" placeholder="i.e. (V)Unvoiced => Voiced" class="form-control input-md" required="">
-                            <span class="help-block"><a href="">Click here for help.</a></span>
-                        </div>
-                    </div>
-
-                    <!-- Button (Double) -->
-                    <div class="form-group">
-                        <label class="col-md-12 control-label" for="submit"></label>
-                        <div class="col-md-12">
-                            <button id="submit" name="submit" class="btn btn-primary" (click)="checkInput()">Submit</button>
-                            <button id="reset" name="reset" class="btn btn-danger" (click)="reset()">Reset</button>
-                        </div>
-                    </div>
+            <!-- Form Name -->
+            <legend>Phonemic Rules</legend>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-12 control-label" for="word_structure">Word Structure</label>
+                <div class="col-md-12">
+                    <input id="word_structure" name="word_structure" type="text" placeholder="i.e. (C)VC(V)(C)" class="form-control input-md" required="">
+                    <span class="help-block"><a href="">Click here for help.</a></span>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-12 control-label" for="phoneme_rules">Phonemic Transformation Rules</label>
+                <div class="col-md-12">
+                    <input id="phoneme_rules" name="phoneme_rules" type="text" placeholder="i.e. (V)Unvoiced => Voiced" class="form-control input-md" required="">
+                    <span class="help-block"><a href="">Click here for help.</a></span>
+                </div>
+            </div>
+            <!-- Button (Double) -->
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button id="submit" name="submit" class="btn btn-primary" (click)="checkInput()">Submit</button>
+                    <button id="reset" name="reset" class="btn btn-danger" (click)="reset()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <legend>Output</legend>
+            <div *ngIf="glossesAsString.length === 0">No Glosses</div>
+            <ul *ngFor="let item of glossesAsString; let i = index">
+                <li>
+                    {{ i + 1 }}. {{ item }}
+                </li>
+            </ul>
         </div>
     </div>
 </div>

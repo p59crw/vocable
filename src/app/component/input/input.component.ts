@@ -10,6 +10,7 @@ import { Consonant, EmptyInputError, EmptyInventoryError, Gloss, Inventory, Word
 export class InputComponent implements AfterContentInit {
 
   glosses: Array<Word> = [];
+  glossesAsString: Array<string> = [];
   phonemes: Array<string> = [];
   wordStructureInput: HTMLInputElement;
   ruleInput: HTMLInputElement;
@@ -22,7 +23,7 @@ export class InputComponent implements AfterContentInit {
     try {
       this.applyTranscription();
     } catch (e) {
-        this.errorService.displayError(e);
+      this.errorService.displayError(e.name, e.message);
     }
   }
 
@@ -34,10 +35,19 @@ export class InputComponent implements AfterContentInit {
       throw new EmptyInventoryError();
     }
 
-    this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
-    this.transcriptionService.setGlosses(this.glosses);
-    
+    const glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
+    this.glossesAsString = this.displayGlosses(glosses);
+
     this.phonemes = this.transcriptionService.generatePhonetics(this.glosses, this.ruleInput.value);
+  }
+
+  displayGlosses(glosses: Array<Word>): Array<string> {
+    const glossesToReturn = new Array<string>();
+    glosses.forEach(function(gloss) {
+      glossesToReturn.push(gloss.toString());
+    });
+
+    return glossesToReturn;
   }
 
   reset() {

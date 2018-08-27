@@ -1,5 +1,6 @@
 import { WordStructureComponent } from './word-structure-component';
 import { ParserSymbols } from './../../enum/parser-symbols.enum';
+import { GenericError } from './../error/generic-error';
 import { NullArgumentError } from './../error/null-argument-error';
 import { Sound } from './sound';
 import { Consonant } from './consonant';
@@ -68,24 +69,38 @@ export class WordStructure {
     this.components.forEach(function(component) {
       if (component.symbol === symbol) {
         if (symbol === 'C') {
-          let filteredConsonants = sounds.filter(function(item, index, array) {
+          const filteredConsonants = sounds.filter(function(item, index, array) {
             return item instanceof Consonant;
           });
           filteredConsonants.forEach(function(consonant) {
-            let newWord = new Word();
+            const newWord = new Word();
             newWord.sounds.push(consonant);
             component.words.push(newWord);
           });
         }
         if (symbol === 'V') {
-          let filteredVowels = sounds.filter(function(item, index, array) {
+          const filteredVowels = sounds.filter(function(item, index, array) {
             return item instanceof Vowel;
           });
           filteredVowels.forEach(function(vowel) {
-            let newWord = new Word();
+            const newWord = new Word();
             newWord.sounds.push(vowel);
             component.words.push(newWord);
           });
+        }
+        if (symbol === symbol.toLowerCase()) {
+          const filteredSounds = sounds.filter(function(item, index, array) {
+            return item.ipa_unicode === symbol;
+          });
+          if (filteredSounds.length === 0) {
+            throw new GenericError('Invalid Input', 'You have entered a character that has not been added to your inventory.');
+          } else {
+            filteredSounds.forEach(function(sound) {
+              const newWord = new Word();
+              newWord.sounds.push(sound);
+              component.words.push(newWord);
+            });
+          }
         }
       }
     });
@@ -141,7 +156,7 @@ export class WordStructure {
     // initialize list of word structures starting with this one.
     const structures = new Array<WordStructure>();
     const rootStructure = new WordStructure();
-    this.components.forEach(function (component) {
+    this.components.forEach(function(component) {
       rootStructure.components.push(component);
     });
     structures.push(rootStructure);
@@ -203,7 +218,7 @@ export class WordStructure {
         }
       }
 
-      let tempComponents = this.getComponents()
+      const tempComponents = this.getComponents();
 
       const tooFewChars = function(element: Word, index, array) {
         return (element.sounds.length >= tempComponents.length);

@@ -21,7 +21,7 @@ export class WordStructureComponent {
 
     this.words.forEach(function(word) {
       for (let i = 0; i < component.words.length; i++) {
-        let newWord = new Word();
+        const newWord = new Word();
         newWord.sounds = newWord.sounds.concat(word.sounds);
         newWord.sounds = newWord.sounds.concat(component.words[i].sounds);
         permWords.push(newWord);

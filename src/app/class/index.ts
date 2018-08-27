@@ -7,7 +7,6 @@ export { Inventory } from './ipa/inventory';
 export { NotYetImplementedError } from './error/not-yet-implemented-error';
 export { NullArgumentError } from './error/null-argument-error';
 export { Parser } from './ipa/parser';
-export { Permuter } from './ipa/permuter';
 export { Sound } from './ipa/sound';
 export { Vowel } from './ipa/vowel';
 export { Word } from './ipa/word';

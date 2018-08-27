@@ -29,9 +29,7 @@ export class IpaComponent implements OnInit {
       this.initChart();
 
     } catch (e) {
-      if (e) {
-        this.errorService.displayError(e.message.toString());
-      }
+      this.errorService.displayError(e.name, e.message);
     }
   }
 

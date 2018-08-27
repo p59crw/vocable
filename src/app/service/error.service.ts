@@ -6,10 +6,10 @@ export class ErrorService {
 
   constructor() { }
 
-  public displayError(message: string) {
+  public displayError(title: string, message: string) {
     Swal({
       type: 'error',
-      title: 'Error',
+      title: title,
       text: message,
       footer: 'If the error persists, please contact the adminstrator.'
     });

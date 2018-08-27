@@ -5,14 +5,14 @@ import { NgModule } from '@angular/core';
 // Classes
 import {
   Consonant, EmptyInputError, GenericError, Gloss, Inventory,
-  NotYetImplementedError, NullArgumentError, Parser, Permuter,
+  NotYetImplementedError, NullArgumentError, Parser,
   Sound, Vowel, WordStructure, WordStructureComponent
 } from './class/index';
 
 // Components
 import { AppComponent } from './app.component';
 import {
-  InputComponent, IpaComponent, OutputComponent
+  InputComponent, IpaComponent
 } from './component/index';
 
 // Filter Pipes
@@ -26,7 +26,6 @@ import { ErrorService, IpaService, TranscriptionService } from './service/index'
     AppComponent,
     IpaComponent,
     InputComponent,
-    OutputComponent,
     ConsonantFilterPipe,
     VowelFilterPipe
   ],
@@ -38,7 +37,6 @@ import { ErrorService, IpaService, TranscriptionService } from './service/index'
     IpaService,
     Inventory,
     Parser,
-    Permuter,
     TranscriptionService,
     WordStructure
   ],

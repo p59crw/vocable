@@ -27,13 +27,10 @@ export class Parser {
     for (let i = 0; i < structure.length; i++) {
       if (structure.charAt(i) === '(') {
         isOptional = true;
-        // wordStructure.push(structure.charAt(i));
       } else if (structure.charAt(i) === ')') {
         isOptional = false;
-        // wordStructure.push(structure.charAt(i));
       } else {
-        // wordStructure.push([structure.charAt(i).toUpperCase(), isOptional]);
-        uniqueChars.push(structure.charAt(i).toUpperCase());
+        uniqueChars.push(structure.charAt(i));
       }
     }
 

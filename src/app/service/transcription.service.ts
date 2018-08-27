@@ -7,8 +7,6 @@ import {
 @Injectable()
 export class TranscriptionService {
 
-  glosses;
-
   // Constructor
   constructor(private inventory: Inventory) { }
 
@@ -19,8 +17,8 @@ export class TranscriptionService {
   */
   public generateGlosses(structure: string): Array<Word> {
 
-    let wordStructure = new WordStructure();
-    let parser = new Parser();
+    const wordStructure = new WordStructure();
+    const parser = new Parser();
 
     const uniqueChars = parser.getUniqueChars(structure);
     const parsedWordStructure = wordStructure.parse(structure);
@@ -30,20 +28,11 @@ export class TranscriptionService {
     }
 
     const words = parsedWordStructure.buildWords();
-    console.log("Words = " + JSON.stringify(words));
     return words;
   }
 
   public generatePhonetics(glosses: Array<Word>, structure: string): Array<string> {
-    throw new NotYetImplementedError("generatePhonetics()");
-  }
-
-  public setGlosses(glosses) {
-    this.glosses = glosses;
-  }
-
-  public getGlosses() {
-    return this.glosses;
+    throw new NotYetImplementedError('generatePhonetics()');
   }
 
 }
