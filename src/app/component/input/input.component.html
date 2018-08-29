@@ -83,8 +83,38 @@
                 </div>
                 <div class="card-body">
                     <ul>
-                        <p>Open (O):
-                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'OPEN'" class="card-text">
+                      <p>Close (V0):
+                          <li *ngFor="let item of soundInventory | VowelFilter: 'Close'" class="card-text">
+                              {{ item.ipa_unicode }}
+                          </li>
+                      </p>
+                      <p>Near-Close (V1):
+                          <li *ngFor="let item of soundInventory | VowelFilter: 'NC'" class="card-text">
+                              {{ item.ipa_unicode }}
+                          </li>
+                      </p>
+                      <p>Close-Mid (V2):
+                          <li *ngFor="let item of soundInventory | VowelFilter: 'CM'" class="card-text">
+                              {{ item.ipa_unicode }}
+                          </li>
+                      </p>
+                      <p>Mid (V3):
+                          <li *ngFor="let item of soundInventory | VowelFilter: 'Mid'" class="card-text">
+                              {{ item.ipa_unicode }}
+                          </li>
+                      </p>
+                      <p>Open-Mid (V4):
+                          <li *ngFor="let item of soundInventory | VowelFilter: 'OM'" class="card-text">
+                              {{ item.ipa_unicode }}
+                          </li>
+                      </p>
+                      <p>Near-Open (V5):
+                          <li *ngFor="let item of soundInventory | VowelFilter: 'NO'" class="card-text">
+                              {{ item.ipa_unicode }}
+                          </li>
+                      </p>
+                        <p>Open (V6):
+                            <li *ngFor="let item of soundInventory | VowelFilter: 'Open'" class="card-text">
                                 {{ item.ipa_unicode }}
                             </li>
                         </p>
@@ -126,11 +156,32 @@
         <div class="col-md-12">
             <legend>Output</legend>
             <div *ngIf="glossesAsString.length === 0">No Glosses</div>
+            <div class="columns">
             <ul *ngFor="let item of glossesAsString; let i = index">
-                <li>
-                    {{ i + 1 }}. {{ item }}
+              <table>
+                <tr>
+                  <td>
+                <li class="glossItem">
+                    {{ i + 1 }}. {{ item.gloss }}
                 </li>
+              </td>
+              <td>
+                <select class="posSelect" (change)="changePartOfSpeech($event.target.value)">
+                  <option *ngFor="let x of partsOfSpeech" value={{item.partOfSpeech}}>
+                    {{x}}
+                  </option>
+                </select>
+              </td>
+              <td>
+                <input [value]="item.definition" placeholder="Definition" spellcheck="true" class="definitionInput" (input)="item.definition=$event.target.value">
+              </td>
+              <td>
+                <a class="delete_button" (click)="deleteGloss(item)"><img src="assets/img/cancel_24px.png"></a>
+                </td>
+              </tr>
+              </table>
             </ul>
+          </div>
         </div>
     </div>
 </div>

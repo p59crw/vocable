@@ -1,4 +1,7 @@
 export enum SoundSymbols {
   VOWEL = 'V',
-  CONSONANT = 'C'
+  CONSONANT = 'C',
+  NASAL = 'N',
+  STOP = 'P',
+  APPROXIMANT = 'A'
 }

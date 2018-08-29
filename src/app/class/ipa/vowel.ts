@@ -1,16 +1,15 @@
-import { Height, Backness, Unicode } from './../../enum/index';
+import { Height, Backness, VowelUnicode } from './../../enum/index';
 import { Sound } from './sound';
 
 export class Vowel extends Sound {
-  height: Height;
-  backness: Backness;
+  height: string;
+  backness: string;
   rounded: boolean;
   nasalized: boolean;
   rhotic: boolean;
   isLong: boolean;
 
-  constructor(height: Height, backness: Backness, rounded: boolean,
-    ipa_unicode: string) {
+  constructor(height: string, backness: string, rounded: boolean, ipa_unicode: string) {
     super(ipa_unicode);
     this.height = height;
     this.backness = backness;

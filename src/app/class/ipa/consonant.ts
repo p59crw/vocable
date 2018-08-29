@@ -1,4 +1,4 @@
-import { Manner, Onset, Place, Unicode } from './../../enum/index';
+import { Manner, Onset, Place, ConsonantUnicode } from './../../enum/index';
 import { Sound } from './sound';
 
 export class Consonant extends Sound {

@@ -4,4 +4,5 @@ export { Manner } from './manner.enum';
 export { Onset } from './onset.enum';
 export { Place } from './place.enum';
 export { SpecialCharacters } from './special-characters.enum';
-export { Unicode } from './unicode.enum';
+export { ConsonantUnicode } from './consonant-unicode.enum';
+export { VowelUnicode } from './vowel-unicode.enum';

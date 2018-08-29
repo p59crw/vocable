@@ -66,32 +66,62 @@ export class WordStructure {
       throw new Error('No components to fill.');
     }
 
+    const filteredConsonants = sounds.filter(function(item, index, array) {
+      return (<Consonant>item instanceof Consonant);
+    });
+
+    const filteredVowels = sounds.filter(function(item, index, array) {
+      return (<Vowel>item instanceof Vowel);
+    });
+
+    const filteredSounds = sounds.filter(function(item, index, array) {
+      return item.ipa_unicode === symbol;
+    });
+
     this.components.forEach(function(component) {
       if (component.symbol === symbol) {
         if (symbol === 'C') {
-          const filteredConsonants = sounds.filter(function(item, index, array) {
-            return item instanceof Consonant;
-          });
           filteredConsonants.forEach(function(consonant) {
             const newWord = new Word();
-            newWord.sounds.push(consonant);
+            newWord.sounds.push(<Sound>consonant);
             component.words.push(newWord);
           });
         }
         if (symbol === 'V') {
-          const filteredVowels = sounds.filter(function(item, index, array) {
-            return item instanceof Vowel;
-          });
-          filteredVowels.forEach(function(vowel) {
+          (<Array<Vowel>>filteredVowels).forEach(function(vowel) {
             const newWord = new Word();
-            newWord.sounds.push(vowel);
+            newWord.sounds.push(<Sound>vowel);
             component.words.push(newWord);
           });
         }
-        if (symbol === symbol.toLowerCase()) {
-          const filteredSounds = sounds.filter(function(item, index, array) {
-            return item.ipa_unicode === symbol;
+        if (symbol === 'N') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Nasal') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
           });
+        }
+        if (symbol === 'P') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Stop') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'A') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Approximant') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === symbol.toLowerCase()) {
           if (filteredSounds.length === 0) {
             throw new GenericError('Invalid Input', 'You have entered a character that has not been added to your inventory.');
           } else {

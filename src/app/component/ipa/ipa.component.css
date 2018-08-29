@@ -58,3 +58,9 @@ button {
   margin-top: 20px;
   width: 88%;
 }
+
+#ipa_vowel_chart {
+  width: 12%;
+  text-align: center;
+  margin-top: 20px;
+}

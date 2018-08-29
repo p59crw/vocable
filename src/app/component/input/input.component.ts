@@ -1,6 +1,7 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { ErrorService, TranscriptionService } from './../../service/index';
 import { Consonant, EmptyInputError, EmptyInventoryError, Gloss, Inventory, Word } from './../../class/index';
+import { PartOfSpeech } from './../../enum/part-of-speech.enum';
 
 @Component({
   selector: 'app-input',
@@ -10,11 +11,12 @@ import { Consonant, EmptyInputError, EmptyInventoryError, Gloss, Inventory, Word
 export class InputComponent implements AfterContentInit {
 
   glosses: Array<Word> = [];
-  glossesAsString: Array<string> = [];
+  glossesAsString: Array<any> = [];
   phonemes: Array<string> = [];
   wordStructureInput: HTMLInputElement;
   ruleInput: HTMLInputElement;
   soundInventory = this.inventory.getInventory();
+  partsOfSpeech: Array<PartOfSpeech> = [];
 
   constructor(private inventory: Inventory, private errorService: ErrorService,
     private transcriptionService: TranscriptionService) { }
@@ -41,13 +43,24 @@ export class InputComponent implements AfterContentInit {
     this.phonemes = this.transcriptionService.generatePhonetics(this.glosses, this.ruleInput.value);
   }
 
-  displayGlosses(glosses: Array<Word>): Array<string> {
-    const glossesToReturn = new Array<string>();
+  displayGlosses(glosses: Array<Word>): Array<any> {
+    const glossesToReturn = new Array<any>();
     glosses.forEach(function(gloss) {
       glossesToReturn.push(gloss.toString());
     });
 
     return glossesToReturn;
+  }
+
+  changePartOfSpeech(event) {
+
+  }
+
+  deleteGloss(item) {
+    const glossIndex = this.glosses.indexOf(item);
+    this.glosses.splice(glossIndex, 1);
+    const displayIndex = this.glossesAsString.indexOf(item);
+    this.glossesAsString.splice(displayIndex, 1);
   }
 
   reset() {
@@ -56,6 +69,10 @@ export class InputComponent implements AfterContentInit {
   }
 
   ngAfterContentInit() {
+    const partsOfSpeech = Object.keys(PartOfSpeech);
+    for (let i = 0; i < partsOfSpeech.length; i++) {
+      this.partsOfSpeech.push(Object.getOwnPropertyDescriptor(PartOfSpeech, partsOfSpeech[i]).value);
+    }
     this.wordStructureInput = <HTMLInputElement>document.getElementById('word_structure');
     this.ruleInput = <HTMLInputElement>document.getElementById('phoneme_rules');
   }

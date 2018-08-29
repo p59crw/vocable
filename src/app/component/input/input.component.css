@@ -5,6 +5,27 @@ ul {
 }
  ul li {
      display: inline;
+     padding: 5px;
+}
+
+table {
+  border: 0;
+  align-content: stretch;
+}
+
+td {
+  text-align: left;
+  display: inline-table;
+  padding-right: 5px;
+}
+
+.delete_button {
+  background-color: inherit;
+  border: 0;
+}
+
+.columns {
+  columns: 3;
 }
 
 p {
@@ -15,4 +36,18 @@ p {
 
 .card-text {
   color: #FF5500;
+}
+
+.card-body {
+  height: inherit;
+}
+
+.posSelect {
+  padding: 5px;
+  margin: 5px;
+}
+
+.definitionInput {
+  padding: 5px;
+  margin: 5px;
 }

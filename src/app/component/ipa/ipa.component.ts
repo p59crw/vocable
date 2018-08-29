@@ -14,6 +14,7 @@ export class IpaComponent implements OnInit {
   arrow1: string;
   arrow2: string;
   arrow3: string;
+  arrow4: string;
   isPulmonicTableOpen = true;
   isNonPulmonicTableOpen = true;
   isVowelTableOpen = true;
@@ -26,6 +27,7 @@ export class IpaComponent implements OnInit {
       this.arrow1 = SpecialCharacters.upwards_arrow;
       this.arrow2 = SpecialCharacters.upwards_arrow;
       this.arrow3 = SpecialCharacters.upwards_arrow;
+      this.arrow4 = SpecialCharacters.upwards_arrow;
       this.initChart();
 
     } catch (e) {
@@ -33,11 +35,15 @@ export class IpaComponent implements OnInit {
     }
   }
 
-  initChart() {
-    this.ipaService.initIPA();
+  async initChart() {
+    await this.ipaService.initIPA();
     this.consonants = this.ipaService.consonants;
+    this.vowels = this.ipaService.vowels;
     if (this.consonants === null) {
       throw new NullArgumentError('Consonants array');
+    }
+    if (this.vowels === null) {
+      throw new NullArgumentError('Vowels array');
     }
   }
 
@@ -71,6 +77,18 @@ export class IpaComponent implements OnInit {
         } else {
           this.isNonPulmonicTableOpen = true;
           this.arrow2 = SpecialCharacters.upwards_arrow;
+          rowVisibility('');
+        }
+        break;
+      }
+      case 'vowel_table': {
+        if (this.isVowelTableOpen) {
+          this.isVowelTableOpen = false;
+          this.arrow4 = SpecialCharacters.downwards_arrow;
+          rowVisibility('none');
+        } else {
+          this.isVowelTableOpen = true;
+          this.arrow4 = SpecialCharacters.upwards_arrow;
           rowVisibility('');
         }
         break;

@@ -9,17 +9,13 @@ import { Consonant } from './../class/index';
 @Injectable()
 export class ConsonantFilterPipe implements PipeTransform {
 
-  transform(consonants: Consonant[], arg: string): any[] {
-    if (!consonants) {
-      return [];
-    }
-    if (arg) {
-      return consonants.filter(consonant => {
-        return consonant.manner.toLowerCase().indexOf(arg.toLowerCase()) > -1;
-      });
-    } else {
+  transform(consonants: Consonant[], filter: string): Array<any> {
+    if (!consonants || !filter) {
       return consonants;
     }
+    // filter items array, items which match and return true will be
+    // kept, false will be filtered out
+    return consonants.filter(item => item.manner === filter);
   }
 
 }
