@@ -1,5 +1,5 @@
 export enum PartOfSpeech {
-  ABVERB = 'ADVERB',
+  ADVERB = 'ADVERB',
   ADJECTIVE = 'ADJECTIVE',
   ADPOSITION = 'ADPOSITION',
   AFFIX = 'AFFIX',

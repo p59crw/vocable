@@ -2,6 +2,7 @@ import { Component, AfterContentInit } from '@angular/core';
 import { ErrorService, TranscriptionService } from './../../service/index';
 import { Consonant, EmptyInputError, EmptyInventoryError, Gloss, Inventory, Word } from './../../class/index';
 import { PartOfSpeech } from './../../enum/part-of-speech.enum';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-input',
@@ -17,6 +18,7 @@ export class InputComponent implements AfterContentInit {
   ruleInput: HTMLInputElement;
   soundInventory = this.inventory.getInventory();
   partsOfSpeech: Array<PartOfSpeech> = [];
+  languageName = '';
 
   constructor(private inventory: Inventory, private errorService: ErrorService,
     private transcriptionService: TranscriptionService) { }
@@ -37,8 +39,8 @@ export class InputComponent implements AfterContentInit {
       throw new EmptyInventoryError();
     }
 
-    const glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
-    this.glossesAsString = this.displayGlosses(glosses);
+    this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
+    this.glossesAsString = this.displayGlosses(this.glosses);
 
     this.phonemes = this.transcriptionService.generatePhonetics(this.glosses, this.ruleInput.value);
   }
@@ -52,8 +54,20 @@ export class InputComponent implements AfterContentInit {
     return glossesToReturn;
   }
 
-  changePartOfSpeech(event) {
+  changePartOfSpeech(item, value) {
+    const index = this.glossesAsString.indexOf(item);
+    this.glossesAsString[index].partOfSpeech = value;
+    this.glosses[index].partOfSpeech = value;
+  }
 
+  changeDefinition(item, value) {
+    const index = this.glossesAsString.indexOf(item);
+    this.glossesAsString[index].definition = value;
+    this.glosses[index].definition = value;
+  }
+
+  setLanguageName(value) {
+    this.languageName = value;
   }
 
   deleteGloss(item) {
@@ -66,6 +80,25 @@ export class InputComponent implements AfterContentInit {
   reset() {
     this.wordStructureInput.value = '';
     this.ruleInput.value = '';
+  }
+
+  saveOutput() {
+    let JSON_File = '';
+    this.glossesAsString.forEach(function(word) {
+      JSON_File = JSON_File.concat(word.gloss + '\n' + word.partOfSpeech + '\n' + word.definition + '\n\n');
+    });
+
+    const filename = 'dictionary.csv';
+
+    const pdf = new jsPDF();
+    pdf.addFont('Doulos SIL', 'normal');
+    pdf.setPage(1);
+    pdf.setFontSize(48);
+    pdf.text('Dictionary of\n' + this.languageName, 50, 50);
+    pdf.addPage();
+    pdf.setFontSize(10);
+    pdf.text(20, 20, JSON_File);
+    pdf.save(filename.replace('.csv', '.pdf'));
   }
 
   ngAfterContentInit() {

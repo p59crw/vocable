@@ -166,21 +166,25 @@
                 </li>
               </td>
               <td>
-                <select class="posSelect" (change)="changePartOfSpeech($event.target.value)">
-                  <option *ngFor="let x of partsOfSpeech" value={{item.partOfSpeech}}>
+                <select class="posSelect" (change)="changePartOfSpeech(item, $event.target.value)">
+                  <option *ngFor="let x of partsOfSpeech">
                     {{x}}
                   </option>
                 </select>
               </td>
               <td>
-                <input [value]="item.definition" placeholder="Definition" spellcheck="true" class="definitionInput" (input)="item.definition=$event.target.value">
+                <input [value]="item.definition" placeholder="Definition" spellcheck="true" class="definitionInput" (input)="changeDefinition(item, $event.target.value)">
               </td>
               <td>
-                <a class="delete_button" (click)="deleteGloss(item)"><img src="assets/img/cancel_24px.png"></a>
+                <a class="delete_button" (click)="deleteGloss(item)"><img src="assets/img/trash_24px.png"></a>
                 </td>
               </tr>
               </table>
             </ul>
+          </div>
+          <div id="inventory_buttons" class="center_div">
+            <input (change)="setLanguageName($event.target.value)" placeholder="Language Name">
+            <button type="button" class="btn btn-success" (click)="saveOutput()" [disabled]="glossesAsString.length === 0">Save Dictionary</button>
           </div>
         </div>
     </div>

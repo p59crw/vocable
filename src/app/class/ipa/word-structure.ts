@@ -149,8 +149,6 @@ export class WordStructure {
 
     const structures = this.getStructureSubsets();
     structures.forEach(function(structure) {
-      // TODO: Trace program from input to here. This line returns a NotAFunction error.
-      // Some piece of structure is possibly missing along the way.
       words = words.concat(structure.permutateAllComponents());
     });
 
@@ -184,7 +182,7 @@ export class WordStructure {
   /// <returns></returns>
   private getStructureSubsets(): Array<WordStructure> {
     // initialize list of word structures starting with this one.
-    const structures = new Array<WordStructure>();
+    let structures = new Array<WordStructure>();
     const rootStructure = new WordStructure();
     this.components.forEach(function(component) {
       rootStructure.components.push(component);
@@ -194,9 +192,18 @@ export class WordStructure {
     // generate the combinations of subsets for this word structure.
     this.getCombinations(this, structures);
 
+    function uniqBy(a, key) {
+      const seen = {};
+      return a.filter(function(item) {
+        const k = key(item);
+        return seen.hasOwnProperty(k) ? false : (seen[k] = true);
+      });
+    }
+
     // since the GetCombinations method returns duplicate word structures,
     // we want to return a distinct list.
-    return structures.filter((x, i, a) => a.indexOf(x) === i);
+    structures = uniqBy(structures, JSON.stringify);
+    return structures;
   }
 
   /// <summary>
@@ -248,14 +255,10 @@ export class WordStructure {
         }
       }
 
-      const tempComponents = this.getComponents();
+      const tempComponents: Array<WordStructureComponent> = this.getComponents();
 
-      const tooFewChars = function(element: Word, index, array) {
-        return (element.sounds.length >= tempComponents.length);
-      };
-
-      // remove words that have less characters than the number of components.
-      words.filter(tooFewChars);
+      // Remove words that have fewer characters than the number of components.
+      words = words.filter(element => element.sounds.length >= tempComponents.length);
     }
 
     return words;

@@ -6,10 +6,12 @@ export class Word {
   public sounds: Array<Sound>;
   public partOfSpeech: PartOfSpeech;
   public definition: string;
+  public isSelected: boolean;
 
   public constructor() {
     this.sounds = new Array<Sound>();
-    this.partOfSpeech = PartOfSpeech.NOUN;
+    this.partOfSpeech = PartOfSpeech.ADVERB;
+    this.isSelected = false;
   }
 
   public toString() {
@@ -18,6 +20,6 @@ export class Word {
       word = word.concat(sound.ipa_unicode);
     });
 
-    return { 'gloss': '/' + word + '/', 'partOfSpeech': this.partOfSpeech, 'definition': '' };
+    return { 'gloss': '/' + word + '/', 'partOfSpeech': this.partOfSpeech, 'definition': '', 'isSelected': this.isSelected };
   }
 }
