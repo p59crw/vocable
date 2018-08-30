@@ -91,10 +91,9 @@ export class InputComponent implements AfterContentInit {
     const filename = 'dictionary.csv';
 
     const pdf = new jsPDF();
-    pdf.addFont('Doulos SIL', 'normal');
     pdf.setPage(1);
     pdf.setFontSize(48);
-    pdf.text('Dictionary of\n' + this.languageName, 50, 50);
+    pdf.text('Dictionary of\n' + this.languageName, 30, 50);
     pdf.addPage();
     pdf.setFontSize(10);
     pdf.text(20, 20, JSON_File);
