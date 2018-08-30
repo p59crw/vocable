@@ -165,10 +165,10 @@ export class WordStructure {
     this.components.forEach(function(component) {
       if (component.isOptional) {
         output += ParserSymbols.OPTIONAL_START
-          + component.symbol.toString()
-          + ParserSymbols.OPTIONAL_END.toString();
+          + component.symbol
+          + ParserSymbols.OPTIONAL_END;
       } else {
-        output += component.symbol.toString();
+        output += component.symbol;
       }
     });
 
@@ -212,6 +212,7 @@ export class WordStructure {
   /// <param name="instr"></param>
   /// <param name="outstr"></param>
   private async getCombinations(instr: WordStructure, outstr: Array<WordStructure>) {
+  debugger;
     const comps = instr.components;
     for (let i = 0; i < comps.length; i++) {
       const wsc: WordStructureComponent = instr.components[i];
