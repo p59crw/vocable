@@ -212,11 +212,7 @@ export class WordStructure {
   /// <param name="instr"></param>
   /// <param name="outstr"></param>
   private async getCombinations(instr: WordStructure, outstr: Array<WordStructure>) {
-<<<<<<< HEAD
-    const comps = instr.components;
-=======
     const comps = Object.assign([], instr.components);
->>>>>>> f49c81d53e6a0d58585b63667fcc5cf24ad02b04
     for (let i = 0; i < comps.length; i++) {
       const wsc: WordStructureComponent = instr.components[i];
       if (wsc.isOptional) {
