@@ -6,6 +6,7 @@ import { Sound } from './sound';
 import { Consonant } from './consonant';
 import { Vowel } from './vowel';
 import { Word } from './word';
+import './../../extensions/array.extensions';
 
 export class WordStructure {
 
@@ -21,7 +22,7 @@ export class WordStructure {
   }
 
   public WordStructure(list: Array<WordStructureComponent>) {
-    this.components = list;
+    this.components = list.shallowCopy();
   }
 
   public parse(str: string): WordStructure {
@@ -212,7 +213,7 @@ export class WordStructure {
   /// <param name="instr"></param>
   /// <param name="outstr"></param>
   private async getCombinations(instr: WordStructure, outstr: Array<WordStructure>) {
-    const comps = Object.assign([], instr.components);
+    let comps = instr.components.shallowCopy();
     for (let i = 0; i < comps.length; i++) {
       const wsc: WordStructureComponent = instr.components[i];
       if (wsc.isOptional) {
@@ -220,7 +221,7 @@ export class WordStructure {
         const str = new WordStructure();
         str.WordStructure(comps);
         outstr.push(str);
-        await this.getCombinations(str, outstr);
+        this.getCombinations(str, outstr);
         comps.splice(i, 0, wsc);
       }
     }
