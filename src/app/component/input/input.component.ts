@@ -40,7 +40,7 @@ export class InputComponent implements AfterContentInit {
     }
 
     this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
-    let filteredGlosses = this.glosses.filter((x, i, a) => x && a.indexOf(x) === i);
+    const filteredGlosses = this.glosses.filter((x, i, a) => x && a.indexOf(x) === i);
     this.glossesAsString = this.displayGlosses(filteredGlosses);
 
     this.phonemes = this.transcriptionService.generatePhonetics(filteredGlosses, this.ruleInput.value);

@@ -214,7 +214,7 @@ export class WordStructure {
   /// <param name="instr"></param>
   /// <param name="outstr"></param>
   private async getCombinations(instr: WordStructure, outstr: Array<WordStructure>) {
-    let comps = instr.components.shallowCopy();
+    const comps = instr.components.shallowCopy();
     for (let i = 0; i < comps.length; i++) {
       const wsc: WordStructureComponent = instr.components[i];
       if (wsc.isOptional) {
