@@ -67,15 +67,15 @@ export class WordStructure {
       throw new Error('No components to fill.');
     }
 
-    const filteredConsonants = sounds.filter(function(item, index, array) {
+    const filteredConsonants = sounds.filter(function(item) {
       return (<Consonant>item instanceof Consonant);
     });
 
-    const filteredVowels = sounds.filter(function(item, index, array) {
+    const filteredVowels = sounds.filter(function(item) {
       return (<Vowel>item instanceof Vowel);
     });
 
-    const filteredSounds = sounds.filter(function(item, index, array) {
+    const filteredSounds = sounds.filter(function(item) {
       return item.ipa_unicode === symbol;
     });
 
