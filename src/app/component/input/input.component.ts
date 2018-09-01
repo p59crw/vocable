@@ -1,6 +1,6 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { ErrorService, TranscriptionService } from './../../service/index';
-import { Consonant, EmptyInputError, EmptyInventoryError, Gloss, Inventory, Word } from './../../class/index';
+import { EmptyInputError, EmptyInventoryError, Inventory, Word } from './../../class/index';
 import { PartOfSpeech } from './../../enum/part-of-speech.enum';
 import * as jsPDF from 'jspdf';
 
