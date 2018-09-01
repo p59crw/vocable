@@ -7,6 +7,7 @@ export class Word {
   public partOfSpeech: PartOfSpeech;
   public definition: string;
   public isSelected: boolean;
+  public displayForm: string;
 
   public constructor() {
     this.sounds = new Array<Sound>();
@@ -15,11 +16,13 @@ export class Word {
   }
 
   public toString() {
-    let word = '';
+    let displayForm = '';
     this.sounds.forEach(function(sound) {
-      word = word.concat(sound.ipa_unicode);
+      displayForm = displayForm.concat(sound.ipa_unicode);
     });
 
-    return { 'gloss': '/' + word + '/', 'partOfSpeech': this.partOfSpeech, 'definition': '', 'isSelected': this.isSelected };
+    this.displayForm = displayForm;
+
+    return { 'gloss': '/' + this.displayForm + '/', 'partOfSpeech': this.partOfSpeech, 'definition': '', 'isSelected': this.isSelected };
   }
 }

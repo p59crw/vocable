@@ -27,7 +27,8 @@ export class TranscriptionService {
       parsedWordStructure.fillComponents(uniqueChars[i].toString(), this.inventory.getInventory());
     }
 
-    const words = parsedWordStructure.buildWords();
+    let words: Array<Word> = new Array<Word>();
+    words = parsedWordStructure.buildWords();
     return words;
   }
 

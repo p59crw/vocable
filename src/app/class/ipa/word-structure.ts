@@ -141,14 +141,15 @@ export class WordStructure {
   /// Builds the structure's comprehensive list of words.
   /// </summary>
   /// <returns></returns>
-  public buildWords() {
+  public buildWords(): Array<Word> {
     if (this.components.length === 0) {
       throw new Error('At least one component must exist to build words.');
     }
 
-    let words = new Array<Word>();
+    let words: Array<Word> = new Array<Word>();
 
     const structures = this.getStructureSubsets();
+    structures.sort();
     structures.forEach(function(structure) {
       words = words.concat(structure.permutateAllComponents());
     });
