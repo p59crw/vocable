@@ -1,31 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" routerLink="">
-        <img src="assets/img/vocable-icon2.png" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<div id="wrapper">
+  <div id="sidenav-wrapper">
+    <ul class="sidebar-nav">
+      <li class="nav-item">
+          <p class="display-4">Vocable</p>
+    </li>
+      <li class="nav-item">
+          <a class="nav-link" [routerLink]="['']" [routerLinkActive]="'is-active'">Home</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/wordgenerator']" [routerLinkActive]="'is-active'">Vocabulary Tools</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link disabled">Grammar Tools</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link disabled">How To Use</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link disabled">About</a>
+      </li>
+    </ul>
+  </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['']" [routerLinkActive]="'is-active'">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/wordgenerator']" [routerLinkActive]="'is-active'">Vocabulary Tools</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled">Grammar Tools</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled">How To Use</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled">About</a>
-            </li>
-        </ul>
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
     </div>
-</nav>
-<div class="container-fluid">
-  <router-outlet></router-outlet>
+  </div>
 </div>
