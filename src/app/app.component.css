@@ -2,3 +2,11 @@
   background-color: #AA00FF;
   margin-bottom: 20px;
 }
+
+a:hover {
+  color: #FFFFFF;
+}
+
+.is-active {
+  color: #EEEEEE;
+}

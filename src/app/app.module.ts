@@ -1,6 +1,7 @@
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
 
 // Classes
 import {
@@ -12,7 +13,8 @@ import {
 // Components
 import { AppComponent } from './app.component';
 import {
-  InputComponent, IpaComponent
+  HomeComponent, InputComponent, IpaComponent, PageNotFoundComponent,
+  WordGeneratorComponent
 } from './component/index';
 
 // Filter Pipes
@@ -24,12 +26,16 @@ import { ErrorService, IpaService, TranscriptionService } from './service/index'
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     IpaComponent,
     InputComponent,
     ConsonantFilterPipe,
-    VowelFilterPipe
+    VowelFilterPipe,
+    WordGeneratorComponent,
+    PageNotFoundComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
   ],
   providers: [

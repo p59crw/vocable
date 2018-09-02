@@ -1,0 +1,22 @@
+.error404 {
+  font-size: 16em;
+  font-weight: bold;
+  font-family: monospace;
+  text-align: center;
+}
+
+.errormessage {
+  font-size: 2em;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+}
+
+.block {
+  width: 67%;
+  margin: 0 auto;
+}

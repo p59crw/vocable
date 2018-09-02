@@ -24,21 +24,23 @@ export class IpaComponent implements OnInit {
 
   ngOnInit() {
     try {
+      this.initChart();
       this.arrow1 = SpecialCharacters.upwards_arrow;
       this.arrow2 = SpecialCharacters.upwards_arrow;
       this.arrow3 = SpecialCharacters.upwards_arrow;
       this.arrow4 = SpecialCharacters.upwards_arrow;
-      this.initChart();
-
     } catch (e) {
       this.errorService.displayError(e.name, e.message);
     }
   }
 
   async initChart() {
-    await this.ipaService.initIPA();
+    if (this.ipaService.consonants.length === 0 || this.ipaService.vowels.length === 0) {
+      await this.ipaService.initIPA();
+    }
     this.consonants = this.ipaService.consonants;
     this.vowels = this.ipaService.vowels;
+
     if (this.consonants === null) {
       throw new NullArgumentError('Consonants array');
     }
