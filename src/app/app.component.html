@@ -4,11 +4,11 @@
       <li class="nav-item">
           <p class="display-4">Vocable</p>
     </li>
-      <li class="nav-item">
-          <a class="nav-link" [routerLink]="['']" [routerLinkActive]="'is-active'">Home</a>
+      <li class="nav-item" [routerLink]="['home']" [routerLinkActive]="'is-active'" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link">Home</a>
       </li>
-      <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/wordgenerator']" [routerLinkActive]="'is-active'">Vocabulary Tools</a>
+      <li class="nav-item" [routerLink]="['wordgenerator']" [routerLinkActive]="'is-active'">
+          <a class="nav-link">Vocabulary Tools</a>
       </li>
       <li class="nav-item">
           <a class="nav-link disabled">Grammar Tools</a>

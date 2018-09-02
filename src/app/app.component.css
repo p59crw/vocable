@@ -32,7 +32,7 @@
 }
 
 .sidebar-nav li a:hover {
-  background: #A820FD;
+  background: #CF30FF;
   color: #FFFFFF;
 }
 
@@ -44,10 +44,7 @@
 }
 
 /* General */
-a:hover {
-  color: #FFFFFF;
-}
-
 .is-active {
   color: #EEEEEE;
+  background: #BF25FF;
 }
