@@ -41,7 +41,6 @@ export class InputComponent implements AfterContentInit {
     this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
     const filteredGlosses = this.glosses.filter((x, i, a) => x && a.indexOf(x) === i);
     this.glossesAsString = this.displayGlosses(filteredGlosses);
-    this.outputService.glossesAsString = this.glossesAsString;
 
     this.phonemes = this.transcriptionService.generatePhonetics(filteredGlosses, this.ruleInput.value);
   }
@@ -59,14 +58,12 @@ export class InputComponent implements AfterContentInit {
     const index = this.glossesAsString.indexOf(item);
     this.glossesAsString[index].partOfSpeech = value;
     this.glosses[index].partOfSpeech = value;
-    this.outputService.glossesAsString = this.glossesAsString;
   }
 
   changeDefinition(item, value) {
     const index = this.glossesAsString.indexOf(item);
     this.glossesAsString[index].definition = value;
     this.glosses[index].definition = value;
-    this.outputService.glossesAsString = this.glossesAsString;
   }
 
   deleteGloss(item) {
@@ -74,12 +71,15 @@ export class InputComponent implements AfterContentInit {
     this.glosses.splice(glossIndex, 1);
     const displayIndex = this.glossesAsString.indexOf(item);
     this.glossesAsString.splice(displayIndex, 1);
-    this.outputService.glossesAsString = this.glossesAsString;
   }
 
   reset() {
     this.wordStructureInput.value = '';
     this.ruleInput.value = '';
+  }
+
+  addToDictionary(items: Array<any>) {
+    items.forEach((word) => this.inventory.dictionary.push(word));
   }
 
   ngAfterContentInit() {

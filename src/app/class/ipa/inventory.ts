@@ -5,6 +5,7 @@ export class Inventory {
 
   inventory: Array<Sound> = new Array<Sound>();
   inventoryLocked = false;
+  dictionary: Array<any> = new Array<any>();
 
   constructor() { }
 

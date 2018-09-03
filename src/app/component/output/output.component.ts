@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OutputService } from './../../service/output.service';
+import { Inventory } from './../../class/ipa/inventory';
 
 @Component({
   selector: 'app-output',
@@ -8,12 +9,16 @@ import { OutputService } from './../../service/output.service';
 })
 export class OutputComponent implements OnInit {
 
-  constructor(private outputService: OutputService) { }
+  constructor(private inventory: Inventory, private outputService: OutputService) { }
 
   languageFinalized: boolean;
 
-  saveOutput() {
-    this.outputService.save();
+  saveToPDF() {
+    this.outputService.saveToPDF();
+  }
+
+  saveToDoc() {
+    this.outputService.saveToDoc();
   }
 
   setLanguageName(value) {
@@ -21,7 +26,7 @@ export class OutputComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.outputService.glossesAsString.length === 0) {
+    if (this.inventory.dictionary.length === 0) {
       this.languageFinalized = false;
     } else {
       this.languageFinalized = true;

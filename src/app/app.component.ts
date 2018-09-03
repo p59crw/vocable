@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { OutputService } from './service/output.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +7,10 @@ import { OutputService } from './service/output.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private outputService: OutputService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.outputService.glossesAsString = new Array<any>();
+
   }
 
 }

@@ -1,4 +1,5 @@
 <div class="container-fluid">
   <input (change)="setLanguageName($event.target.value)" placeholder="Language Name">
-  <button type="button" class="btn btn-success" (click)="saveOutput()" [disabled]="!languageFinalized">Output to PDF</button>
+  <button type="button" class="btn btn-success" (click)="saveToPDF()" [disabled]="!languageFinalized">Output to PDF</button>
+  <button type="button" class="btn btn-success" (click)="saveToDoc()" [disabled]="!languageFinalized">Output to Doc</button>
 </div>
