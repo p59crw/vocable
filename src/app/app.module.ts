@@ -21,7 +21,7 @@ import {
 import { ConsonantFilterPipe, VowelFilterPipe } from './pipe/index';
 
 // Services
-import { ErrorService, IpaService, OutputService, TranscriptionService } from './service/index';
+import { ErrorService, IpaService, LoaderService, OutputService, TranscriptionService } from './service/index';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { ErrorService, IpaService, OutputService, TranscriptionService } from '.
     ErrorService,
     IpaService,
     Inventory,
+    LoaderService,
     Parser,
     OutputService,
     TranscriptionService,

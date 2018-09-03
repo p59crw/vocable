@@ -33,7 +33,9 @@
 
   <div id="page-content-wrapper">
     <div class="container-fluid">
-      <router-outlet></router-outlet>
+      <router-outlet>
+        <span *ngIf="showLoader" class="loading"></span>
+      </router-outlet>
     </div>
   </div>
 </div>

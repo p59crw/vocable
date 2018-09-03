@@ -49,6 +49,5 @@ export class IpaService {
     for (let k = 0; k < vowelUnicodeTypes.length; k++) {
       this.vowels[k].ipa_unicode = Object.getOwnPropertyDescriptor(VowelUnicode, vowelUnicodeTypes[k]).value;
     }
-
   }
 }
