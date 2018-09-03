@@ -1,8 +1,7 @@
 import { Component, AfterContentInit } from '@angular/core';
-import { ErrorService, TranscriptionService } from './../../service/index';
+import { ErrorService, OutputService, TranscriptionService } from './../../service/index';
 import { EmptyInputError, EmptyInventoryError, Inventory, Word } from './../../class/index';
 import { PartOfSpeech } from './../../enum/part-of-speech.enum';
-import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-input',
@@ -21,7 +20,7 @@ export class InputComponent implements AfterContentInit {
   languageName = '';
 
   constructor(private inventory: Inventory, private errorService: ErrorService,
-    private transcriptionService: TranscriptionService) { }
+    private outputService: OutputService, private transcriptionService: TranscriptionService) { }
 
   checkInput() {
     try {
@@ -42,6 +41,7 @@ export class InputComponent implements AfterContentInit {
     this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
     const filteredGlosses = this.glosses.filter((x, i, a) => x && a.indexOf(x) === i);
     this.glossesAsString = this.displayGlosses(filteredGlosses);
+    this.outputService.glossesAsString = this.glossesAsString;
 
     this.phonemes = this.transcriptionService.generatePhonetics(filteredGlosses, this.ruleInput.value);
   }
@@ -59,16 +59,14 @@ export class InputComponent implements AfterContentInit {
     const index = this.glossesAsString.indexOf(item);
     this.glossesAsString[index].partOfSpeech = value;
     this.glosses[index].partOfSpeech = value;
+    this.outputService.glossesAsString = this.glossesAsString;
   }
 
   changeDefinition(item, value) {
     const index = this.glossesAsString.indexOf(item);
     this.glossesAsString[index].definition = value;
     this.glosses[index].definition = value;
-  }
-
-  setLanguageName(value) {
-    this.languageName = value;
+    this.outputService.glossesAsString = this.glossesAsString;
   }
 
   deleteGloss(item) {
@@ -76,29 +74,12 @@ export class InputComponent implements AfterContentInit {
     this.glosses.splice(glossIndex, 1);
     const displayIndex = this.glossesAsString.indexOf(item);
     this.glossesAsString.splice(displayIndex, 1);
+    this.outputService.glossesAsString = this.glossesAsString;
   }
 
   reset() {
     this.wordStructureInput.value = '';
     this.ruleInput.value = '';
-  }
-
-  saveOutput() {
-    let JSON_File = '';
-    this.glossesAsString.forEach(function(word) {
-      JSON_File = JSON_File.concat(word.gloss + '\n' + word.partOfSpeech + '\n' + word.definition + '\n\n');
-    });
-
-    const filename = 'dictionary.csv';
-
-    const pdf = new jsPDF();
-    pdf.setPage(1);
-    pdf.setFontSize(48);
-    pdf.text('Dictionary of\n' + this.languageName, 30, 50);
-    pdf.addPage();
-    pdf.setFontSize(10);
-    pdf.text(20, 20, JSON_File);
-    pdf.save(filename.replace('.csv', '.pdf'));
   }
 
   ngAfterContentInit() {

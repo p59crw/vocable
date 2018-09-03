@@ -8,10 +8,16 @@
           <a class="nav-link">Home</a>
       </li>
       <li class="nav-item" [routerLink]="['wordgenerator']" [routerLinkActive]="'is-active'">
-          <a class="nav-link">Vocabulary Tools</a>
+          <a class="nav-link">Word Tools</a>
       </li>
       <li class="nav-item">
           <a class="nav-link disabled">Grammar Tools</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link disabled">Stats</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link disabled" [routerLink]="['output']" [routerLinkActive]="'is-active'">Output Your Language</a>
       </li>
       <li class="nav-item">
           <a class="nav-link disabled">How To Use</a>

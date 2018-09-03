@@ -13,7 +13,7 @@ import {
 // Components
 import { AppComponent } from './app.component';
 import {
-  HomeComponent, InputComponent, IpaComponent, PageNotFoundComponent,
+  HomeComponent, InputComponent, IpaComponent, OutputComponent, PageNotFoundComponent,
   WordGeneratorComponent
 } from './component/index';
 
@@ -21,7 +21,7 @@ import {
 import { ConsonantFilterPipe, VowelFilterPipe } from './pipe/index';
 
 // Services
-import { ErrorService, IpaService, TranscriptionService } from './service/index';
+import { ErrorService, IpaService, OutputService, TranscriptionService } from './service/index';
 
 @NgModule({
   declarations: [
@@ -29,10 +29,11 @@ import { ErrorService, IpaService, TranscriptionService } from './service/index'
     HomeComponent,
     IpaComponent,
     InputComponent,
-    ConsonantFilterPipe,
-    VowelFilterPipe,
+    OutputComponent,
+    PageNotFoundComponent,
     WordGeneratorComponent,
-    PageNotFoundComponent
+    ConsonantFilterPipe,
+    VowelFilterPipe
   ],
   imports: [
     AppRoutingModule,
@@ -43,6 +44,7 @@ import { ErrorService, IpaService, TranscriptionService } from './service/index'
     IpaService,
     Inventory,
     Parser,
+    OutputService,
     TranscriptionService,
     WordStructure
   ],
