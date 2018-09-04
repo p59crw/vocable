@@ -1,6 +1,6 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { ErrorService, OutputService, TranscriptionService } from './../../service/index';
-import { EmptyInputError, EmptyInventoryError, Inventory, Word } from './../../class/index';
+import { EmptyInputError, EmptyInventoryError, Inventory, TranscriptionRule, Word } from './../../class/index';
 import { PartOfSpeech } from './../../enum/part-of-speech.enum';
 
 @Component({
@@ -12,7 +12,7 @@ export class InputComponent implements AfterContentInit {
 
   glosses: Array<Word> = [];
   glossesAsString: Array<any> = [];
-  phonemes: Array<string> = [];
+  phonemes: Array<Word> = [];
   wordStructureInput: HTMLInputElement;
   ruleInput: HTMLInputElement;
   soundInventory = this.inventory.getInventory();
@@ -38,11 +38,18 @@ export class InputComponent implements AfterContentInit {
       throw new EmptyInventoryError();
     }
 
+    const rules = this.ruleInput.value.replace(' ', '').split(';');
+    const transcriptionRuleArray = new Array<TranscriptionRule>();
+
+    rules.forEach((rule) => {
+      transcriptionRuleArray.push(new TranscriptionRule(rule));
+    });
+
     this.glosses = this.transcriptionService.generateGlosses(this.wordStructureInput.value);
     const filteredGlosses = this.glosses.filter((x, i, a) => x && a.indexOf(x) === i);
     this.glossesAsString = this.displayGlosses(filteredGlosses);
 
-    this.phonemes = this.transcriptionService.generatePhonetics(filteredGlosses, this.ruleInput.value);
+    this.phonemes = this.transcriptionService.generatePhonetics(filteredGlosses, transcriptionRuleArray);
   }
 
   displayGlosses(glosses: Array<Word>): Array<any> {

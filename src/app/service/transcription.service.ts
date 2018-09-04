@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   Consonant, Gloss, Inventory, NotYetImplementedError,
-  Parser, WordStructure, Word
+  Parser, TranscriptionRule, WordStructure, Word
 } from './../class/index';
 
 @Injectable()
@@ -32,7 +32,7 @@ export class TranscriptionService {
     return words;
   }
 
-  public generatePhonetics(glosses: Array<Word>, structure: string): Array<string> {
+  public generatePhonetics(glosses: Array<Word>, rules: Array<TranscriptionRule>): Array<Word> {
     throw new NotYetImplementedError('generatePhonetics()');
   }
 

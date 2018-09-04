@@ -1,4 +1,6 @@
 export enum ParserSymbols {
   OPTIONAL_START = '(',
-  OPTIONAL_END = ')'
+  OPTIONAL_END = ')',
+  CHANGE_START = '<',
+  CHANGE_END = '>'
 }
