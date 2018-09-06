@@ -15,6 +15,8 @@ export class InputComponent implements AfterContentInit {
   phonemes: Array<Word> = [];
   wordStructureInput: HTMLInputElement;
   ruleInput: HTMLInputElement;
+  rules: Array<string>;
+  transcriptionRuleArray: Array<TranscriptionRule>;
   soundInventory = this.inventory.getInventory();
   partsOfSpeech: Array<PartOfSpeech> = [];
   languageName = '';
@@ -22,26 +24,45 @@ export class InputComponent implements AfterContentInit {
   constructor(private inventory: Inventory, private errorService: ErrorService,
     private outputService: OutputService, private transcriptionService: TranscriptionService) { }
 
-  checkInput() {
+  runGenerator() {
     try {
+      this.checkInput();
       this.applyTranscription();
     } catch (e) {
       this.errorService.displayError(e.name, e.message);
     }
   }
 
-  applyTranscription() {
+  checkInput() {
+    this.rules = new Array<string>();
+    this.rules = this.ruleInput.value.replace(' ', '').split(';');
+    this.rules.pop();
+
+    function containsSemiColon(rule: string) {
+      return rule.includes(':');
+    }
+
+    function containsBrackets(rule: string) {
+      return rule.includes('<') && rule.includes('>');
+    }
+
     if (this.wordStructureInput.value === '' || this.ruleInput.value === '') {
       throw new EmptyInputError('At least one input field');
     }
     if (this.soundInventory.length <= 0) {
       throw new EmptyInventoryError();
     }
+    if (!this.ruleInput.value.endsWith(';')) {
+      throw new SyntaxError('Please end each rule with a semicolon (;).');
+    }
+    if (!this.rules.every(containsSemiColon) || !this.rules.every(containsBrackets)) {
+      throw new SyntaxError('Incorrect rule syntax. Please correct and try again.');
+    }
+  }
 
-    const rules = this.ruleInput.value.replace(' ', '').split(';');
+  applyTranscription() {
     const transcriptionRuleArray = new Array<TranscriptionRule>();
-
-    rules.forEach((rule) => {
+    this.rules.forEach((rule) => {
       transcriptionRuleArray.push(new TranscriptionRule(rule));
     });
 
