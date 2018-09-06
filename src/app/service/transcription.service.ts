@@ -33,6 +33,9 @@ export class TranscriptionService {
   }
 
   public generatePhonetics(glosses: Array<Word>, rules: Array<TranscriptionRule>): Array<Word> {
+    rules.forEach((rule) => {
+      console.log(rule);
+    });
     throw new NotYetImplementedError('generatePhonetics()');
   }
 
