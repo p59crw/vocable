@@ -1,5 +1,5 @@
 import { Sound } from './../../class/index';
-import { ParserSymbols, SoundPosition } from './../../enum/index';
+import { ParserSymbols, Regex, SoundPosition } from './../../enum/index';
 
 export class TranscriptionRule {
 
@@ -35,6 +35,10 @@ export class TranscriptionRule {
         this.changePosition = SoundPosition.MEDIAL;
       }
     }
+  }
+
+  public swapSound() {
+
   }
 
 }
