@@ -1,4 +1,4 @@
 export enum Regex {
-  WORD_STRUCTURE_RULE = '([(][A-z|a-z][)]|[A-z|a-z])',
-  TRANSCRIPTION_RULE = '([_?<?A-Za-z>?]){1,}:([A-Z{1}|a-z?]){1,2}'
+  WORD_STRUCTURE_RULE = '([(][A-z|a-z|0-9]{1,}[)]|[A-z|a-z|0-9]{1,})',
+  TRANSCRIPTION_RULE = '(\/?\w?<\w{1,2}>\w?\/?:(\w{1,2}|\*){1});'
 }

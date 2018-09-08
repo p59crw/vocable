@@ -16,7 +16,6 @@ export class InputComponent implements AfterContentInit {
   phonemes: Array<Word> = [];
   wordStructureInput: HTMLInputElement;
   ruleInput: HTMLInputElement;
-  rules: Array<string>;
   transcriptionRuleArray: Array<TranscriptionRule>;
   soundInventory = this.inventory.getInventory();
   partsOfSpeech: Array<PartOfSpeech> = [];
@@ -37,42 +36,30 @@ export class InputComponent implements AfterContentInit {
   checkInput() {
     const validator = new StringValidator();
 
-    this.rules = new Array<string>();
-    this.rules = this.ruleInput.value.replace(' ', '').split(';');
-    this.rules.pop();
-
-    function containsSemiColon(rule: string) {
-      return rule.includes(':');
-    }
-
-    function containsBrackets(rule: string) {
-      return rule.includes('<') && rule.includes('>');
-    }
-
     if (this.soundInventory.length <= 0) {
       throw new EmptyInventoryError();
     }
     if (this.wordStructureInput.value === '') {
       throw new EmptyInputError('Word structure input field');
     }
-    if (!validator.validate(Regex.WORD_STRUCTURE_RULE, this.wordStructureInput.value)) {
-      throw new SyntaxError('Incorrect word structure syntax. Include only parentheses () and letters. Please correct and try again.');
-    }
-    // TODO: Replace the if statements below with a regex validation like the one directly above.
     if (this.ruleInput.value === '') {
       throw new EmptyInputError('Transcription rule input field');
     }
-    if (!this.ruleInput.value.endsWith(';')) {
-      throw new SyntaxError('Please end each rule with a semicolon (;).');
+    if (!validator.validate(Regex.WORD_STRUCTURE_RULE, this.wordStructureInput.value)) {
+      throw new SyntaxError('Incorrect word structure syntax. Please include only parentheses () and letters/numbers, then try again.');
     }
-    if (!this.rules.every(containsSemiColon) || !this.rules.every(containsBrackets)) {
-      throw new SyntaxError('Incorrect rule syntax. Please correct and try again.');
+    if (!validator.validate(Regex.TRANSCRIPTION_RULE, this.wordStructureInput.value)) {
+      throw new SyntaxError('Incorrect transcription rule syntax. Please follow the how-to guide and try again.');
     }
   }
 
   applyTranscription() {
     const transcriptionRuleArray = new Array<TranscriptionRule>();
-    this.rules.forEach((rule) => {
+    let rules = new Array<string>();
+
+    rules = this.ruleInput.value.replace(' ', '').split(';');
+    rules.pop();
+    rules.forEach((rule) => {
       transcriptionRuleArray.push(new TranscriptionRule(rule));
     });
 
