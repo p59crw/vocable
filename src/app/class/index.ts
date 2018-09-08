@@ -8,6 +8,7 @@ export { NotYetImplementedError } from './error/not-yet-implemented-error';
 export { NullArgumentError } from './error/null-argument-error';
 export { Parser } from './ipa/parser';
 export { Sound } from './ipa/sound';
+export { StringValidator } from './input/string-validator';
 export { TranscriptionRule } from './ipa/transcription-rule';
 export { Vowel } from './ipa/vowel';
 export { Word } from './ipa/word';

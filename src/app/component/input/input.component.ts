@@ -1,7 +1,8 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { ErrorService, OutputService, TranscriptionService } from './../../service/index';
-import { EmptyInputError, EmptyInventoryError, Inventory, TranscriptionRule, Word } from './../../class/index';
+import { EmptyInputError, EmptyInventoryError, Inventory, StringValidator, TranscriptionRule, Word } from './../../class/index';
 import { PartOfSpeech } from './../../enum/part-of-speech.enum';
+import { Regex } from './../../enum/regex.enum';
 
 @Component({
   selector: 'app-input',
@@ -34,6 +35,8 @@ export class InputComponent implements AfterContentInit {
   }
 
   checkInput() {
+    const validator = new StringValidator();
+
     this.rules = new Array<string>();
     this.rules = this.ruleInput.value.replace(' ', '').split(';');
     this.rules.pop();
@@ -46,11 +49,18 @@ export class InputComponent implements AfterContentInit {
       return rule.includes('<') && rule.includes('>');
     }
 
-    if (this.wordStructureInput.value === '' || this.ruleInput.value === '') {
-      throw new EmptyInputError('At least one input field');
-    }
     if (this.soundInventory.length <= 0) {
       throw new EmptyInventoryError();
+    }
+    if (this.wordStructureInput.value === '') {
+      throw new EmptyInputError('Word structure input field');
+    }
+    if (!validator.validate(Regex.WORD_STRUCTURE_RULE, this.wordStructureInput.value)) {
+      throw new SyntaxError('Incorrect word structure syntax. Include only parentheses () and letters. Please correct and try again.');
+    }
+    // TODO: Replace the if statements below with a regex validation like the one directly above.
+    if (this.ruleInput.value === '') {
+      throw new EmptyInputError('Transcription rule input field');
     }
     if (!this.ruleInput.value.endsWith(';')) {
       throw new SyntaxError('Please end each rule with a semicolon (;).');
