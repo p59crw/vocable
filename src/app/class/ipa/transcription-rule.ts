@@ -8,6 +8,7 @@ export class TranscriptionRule {
   soundToBeChanged: string;
   changePosition: string;
   changeToMake: string;
+  wordBoundary: string;
 
   constructor(str: string) {
     this.soundToBeChanged = null;
