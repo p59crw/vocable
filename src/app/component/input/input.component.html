@@ -1,13 +1,13 @@
 <div class="container-fluid page-spacing">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             <div class="card">
                 <div class="card-header">
                     <h5>Components (C)</h5>
                 </div>
                 <div class="card-body">
                   <div class="row">
-                  <div class="col-sm-6">
+                  <div class="col-sm-4">
                     <ul>
                         <p>Nasals (N):
                             <li *ngFor="let item of soundInventory | ConsonantFilter: 'Nasal'" class="card-text">
@@ -54,6 +54,10 @@
                                 {{ item.ipa_unicode }}
                             </li>
                         </p>
+                      </ul>
+                      </div>
+                        <div class="col-sm-4">
+                          <ul>
                         <p>Lat. Aff. (U):
                             <li *ngFor="let item of soundInventory | ConsonantFilter: 'Lateral_Aff'" class="card-text">
                                 {{ item.ipa_unicode }}
@@ -79,10 +83,6 @@
                                 {{ item.ipa_unicode }}
                             </li>
                         </p>
-                      </ul>
-                    </div>
-                      <div class="col-sm-6">
-                    <ul>
                         <p>Ejec. Aff. (F):
                             <li *ngFor="let item of soundInventory | ConsonantFilter: 'Ejec_Aff'" class="card-text">
                                 {{ item.ipa_unicode }}
@@ -103,6 +103,10 @@
                                 {{ item.ipa_unicode }}
                             </li>
                         </p>
+                        </ul>
+                      </div>
+                      <div class="col-sm-4">
+                        <ul>
                         <p>Click Tenius (K):
                             <li *ngFor="let item of soundInventory | ConsonantFilter: 'Clic_Tenuis'" class="card-text">
                                 {{ item.ipa_unicode }}
@@ -150,11 +154,11 @@
                         </p>
                     </ul>
                   </div>
+                  </div>
                 </div>
               </div>
             </div>
-        </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="card">
                 <div class="card-header">
                     <h5>Vowels (V)</h5>
@@ -200,11 +204,14 @@
                 </div>
             </div>
         </div>
-    </div>
+      </div>
     <div class="row">
-        <div class="col-md-12 component-spacing">
-            <!-- Form Name -->
-            <legend>Phonemic Rules</legend>
+        <div class="col-md-4 component-spacing">
+          <div class="card">
+              <div class="card-header">
+                  <h5>Phonemic Rules</h5>
+              </div>
+              <div class="card-body">
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-12 control-label" for="word_structure">Word Structure</label>
@@ -222,15 +229,21 @@
             <!-- Button (Double) -->
             <div class="form-group">
                 <div class="col-md-12">
+                  <div class="float_right">
                     <button id="submit" name="submit" class="btn btn-primary" (click)="runGenerator()">Submit</button>
                     <button id="reset" name="reset" class="btn btn-danger" (click)="reset()">Reset</button>
+                  </div>
                 </div>
             </div>
+          </div>
+          </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <legend>Output</legend>
+        <div class="col-md-8 component-spacing">
+          <div class="card">
+              <div class="card-header">
+                  <h5>Output</h5>
+              </div>
+              <div class="card-body">
             <div *ngIf="glossesAsString.length === 0">No Glosses</div>
             <div class="columns">
             <ul *ngFor="let item of glossesAsString; let i = index">
@@ -258,7 +271,9 @@
               </table>
             </ul>
           </div>
-          <button type="button" class="btn btn-success" (click)="addToDictionary(glossesAsString)" [disabled]="glossesAsString.length === 0">Add Words to Dictionary</button>
+          <button type="button" class="btn btn-success float_right" (click)="addToDictionary(glossesAsString)" [disabled]="glossesAsString.length === 0">Add Words to Dictionary</button>
         </div>
-    </div>
+      </div>
+        </div>
+</div>
 </div>

@@ -25,7 +25,7 @@ td {
 }
 
 .columns {
-  columns: 3;
+  columns: 2;
 }
 
 p {
@@ -50,4 +50,8 @@ p {
 .definitionInput {
   padding: 5px;
   margin: 5px;
+}
+
+button {
+  margin-top: 20px;
 }
