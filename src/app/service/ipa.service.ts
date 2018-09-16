@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Consonant, Vowel } from './../class/index';
-import { Height, Backness, Place, Manner, CoarticulatedPlace, CoarticulatedManner,
-  CoarticulatedUnicode, ConsonantUnicode, VowelUnicode } from './../enum/index';
+import {
+  Height, Backness, Place, Manner, CoarticulatedPlace, CoarticulatedManner,
+  CoarticulatedUnicode, ConsonantUnicode, VowelUnicode
+} from './../enum/index';
 
 @Injectable()
 export class IpaService {
