@@ -582,13 +582,5 @@ export enum ConsonantUnicode {
   c_pha_implos_u = '',
   c_pha_implos_v = 'null',
   c_glo_implos_u = 'null',
-  c_glo_implos_v = 'null',
-  // Co-articulated
-  c_lab_alv_nas_v = '',
-  c_lab_vel_nas_v = '',
-  c_lab_alv_st_u = '',
-  c_lab_alv_st_v = '',
-  c_lab_vel_st_u = '',
-  c_lab_vel_st_v = '',
-  c_uvu_pha_st_u = '',
+  c_glo_implos_v = 'null'
 }

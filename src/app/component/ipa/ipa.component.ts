@@ -9,6 +9,7 @@ import { ErrorService, IpaService } from './../../service/index';
   styleUrls: ['./ipa.component.css']
 })
 export class IpaComponent implements OnInit {
+  coarticulated_consonants: Consonant[] = [];
   consonants: Consonant[] = [];
   vowels: Vowel[] = [];
   arrow1: string;
@@ -18,6 +19,7 @@ export class IpaComponent implements OnInit {
   isPulmonicTableOpen = true;
   isNonPulmonicTableOpen = true;
   isVowelTableOpen = true;
+  isCoarticulatedTableOpen = true;
 
   constructor(private errorService: ErrorService, private ipaService: IpaService,
     private inventory: Inventory) { }
@@ -38,9 +40,13 @@ export class IpaComponent implements OnInit {
     if (this.ipaService.consonants.length === 0 || this.ipaService.vowels.length === 0) {
       await this.ipaService.initIPA();
     }
+    this.coarticulated_consonants = this.ipaService.coarticulated_consonants;
     this.consonants = this.ipaService.consonants;
     this.vowels = this.ipaService.vowels;
 
+    if (this.coarticulated_consonants === null) {
+      throw new NullArgumentError('Consonants array');
+    }
     if (this.consonants === null) {
       throw new NullArgumentError('Consonants array');
     }
@@ -86,10 +92,22 @@ export class IpaComponent implements OnInit {
       case 'vowel_table': {
         if (this.isVowelTableOpen) {
           this.isVowelTableOpen = false;
-          this.arrow4 = SpecialCharacters.downwards_arrow;
+          this.arrow3 = SpecialCharacters.downwards_arrow;
           rowVisibility('none');
         } else {
           this.isVowelTableOpen = true;
+          this.arrow3 = SpecialCharacters.upwards_arrow;
+          rowVisibility('');
+        }
+        break;
+      }
+      case 'co_articulated_table': {
+        if (this.isCoarticulatedTableOpen) {
+          this.isCoarticulatedTableOpen = false;
+          this.arrow4 = SpecialCharacters.downwards_arrow;
+          rowVisibility('none');
+        } else {
+          this.isCoarticulatedTableOpen = true;
           this.arrow4 = SpecialCharacters.upwards_arrow;
           rowVisibility('');
         }
