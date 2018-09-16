@@ -1,14 +1,15 @@
 /* Sidebar */
 #sidenav-wrapper {
   height: 100%;
-  width: 250px;
+  width: 0px;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 60px;
   background-color: #A000F0;
+  transition: 0.5s;
 }
 
 .sidebar-nav {
@@ -31,22 +32,40 @@
   color: #EEEEEE;
 }
 
-.sidebar-nav li a:hover {
+.sidebar-nav li a:hover:not(.closebtn) {
   background: #CF30FF;
   color: #FFFFFF;
 }
 
+/* Position and style the close button (top right corner) */
+.sidebar-nav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
 /* Page Content*/
 #page-content-wrapper {
-  width: 100%;
-  position: absolute;
-  padding: 10px 10px 10px 250px;
+  width: auto;
+  padding: 10px 10px 10px 20px;
+  transition: margin-left 0.5s;
 }
 
 /* General */
 .is-active {
   color: #EEEEEE;
   background: #BF25FF;
+}
+
+button {
+  background-color: inherit;
+  border: 0;
+}
+
+#menu_button {
+  margin: 10px;
 }
 
 /* Loading Spinner */

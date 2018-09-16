@@ -1,9 +1,11 @@
-<div id="wrapper">
   <div id="sidenav-wrapper">
     <ul class="sidebar-nav">
+      <li>
+          <a class="closebtn" (click)="closeNav()">&times;</a>
+      </li>
       <li class="nav-item">
           <p class="display-4">Vocable</p>
-    </li>
+      </li>
       <li class="nav-item" [routerLink]="['home']" [routerLinkActive]="'is-active'" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link">Home</a>
       </li>
@@ -31,6 +33,9 @@
     </ul>
   </div>
 
+  <!-- Use any element to open the sidenav -->
+  <button id="menu_button" class="button" (click)="openNav()"><img src="assets/img/menu_48px.png" alt="Menu"></button>
+
   <div id="page-content-wrapper">
     <div class="container-fluid">
       <router-outlet>
@@ -38,4 +43,3 @@
       </router-outlet>
     </div>
   </div>
-</div>
