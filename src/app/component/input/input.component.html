@@ -6,6 +6,8 @@
                     <h5>Components (C)</h5>
                 </div>
                 <div class="card-body">
+                  <div class="row">
+                  <div class="col-sm-6">
                     <ul>
                         <p>Nasals (N):
                             <li *ngFor="let item of soundInventory | ConsonantFilter: 'Nasal'" class="card-text">
@@ -77,6 +79,10 @@
                                 {{ item.ipa_unicode }}
                             </li>
                         </p>
+                      </ul>
+                    </div>
+                      <div class="col-sm-6">
+                    <ul>
                         <p>Ejec. Aff. (F):
                             <li *ngFor="let item of soundInventory | ConsonantFilter: 'Ejec_Aff'" class="card-text">
                                 {{ item.ipa_unicode }}
@@ -122,8 +128,30 @@
                                 {{ item.ipa_unicode }}
                             </li>
                         </p>
+                        <p>Co-art. Nasal (X):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Coart_Nasal'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Co-art. Stop (X):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Coart_Stop'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Co-art. Fricative (X):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Coart_Fricative'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
+                        <p>Co-art. Approximant (X):
+                            <li *ngFor="let item of soundInventory | ConsonantFilter: 'Coart_Approximant'" class="card-text">
+                                {{ item.ipa_unicode }}
+                            </li>
+                        </p>
                     </ul>
+                  </div>
                 </div>
+              </div>
             </div>
         </div>
         <div class="col-sm-6">

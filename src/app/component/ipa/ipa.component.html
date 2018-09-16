@@ -1,397 +1,624 @@
-<div class="container-fluid component-spacing">
-  <p class="text-center">Select the phonemes you wish to use in your Conlang and they will be highlighted.</p>
-  <p class="text-center">Then you can apply word structure and phonemic rules below. Go to the How To Use page for an explanation of how to format your rule sets.</p>
-    <div class="row">
-        <div class="col-md-12">
-     <table id="ipa_consonant_chart" class="component-spacing">
-         <thead>
-             <tr>
-                 <th colspan="25" class="ipa_category">Pulmonic Consonants <a class="float_right" (click)="toggleTables('pulmonic_table')">{{arrow1}}</a></th>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1"></th>
-                 <th colspan="5">Labial</th>
-                 <th colspan="9">Coronal</th>
-                 <th colspan="6">Dorsal</th>
-                 <th colspan="4">Laryngeal</th>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1"></th>
-                 <th colspan="2">Bilabial</th>
-                 <th colspan="2">LabioDental</th>
-                 <th colspan="2">Linguolabial</th>
-                 <th colspan="2">Dental</th>
-                 <th colspan="2">Alveolar</th>
-                 <th colspan="2">Postalveolar</th>
-                 <th colspan="2">Retroflex</th>
-                 <th colspan="2">Palatal</th>
-                 <th colspan="2">Velar</th>
-                 <th colspan="2">Uvular</th>
-                 <th colspan="2">Pharyngeal</th>
-                 <th colspan="2">Glottal</th>
-             </tr>
-         </thead>
-         <tbody>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Nasal</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Nasal'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Plosive/Stop</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Stop'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Sibilant Affricate</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Sibilant_Aff'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Non-sibilant Affricate</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Non_sib_Aff'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Sibilant Fricative</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Sibilant_Fri'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Non-sibilant Fricative</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Non_sib_Fri'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Approximant</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Approximant'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Flap/Tap</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Tap'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Trill</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Trill'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Lateral Affricate</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Lateral_Aff'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Lateral Fricative</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Lateral_Fri'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Lateral Approximant</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Lateral_App'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="pulmonic_table">
-                 <th colspan="1">Lateral Flap/Tap</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Lateral_T'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr>
-                 <th colspan="25" class="ipa_category">Non-pulmonic Consonants <a class="float_right" (click)="toggleTables('nonpulmonic_table')">{{arrow2}}</a></th>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1"></th>
-                 <th colspan="2">Bilabial</th>
-                 <th colspan="2">Labiodental</th>
-                 <th colspan="2">Linguolabial</th>
-                 <th colspan="2">Dental</th>
-                 <th colspan="2">Alveolar</th>
-                 <th colspan="2">Postalveolar</th>
-                 <th colspan="2">Retroflex</th>
-                 <th colspan="2">Palatal</th>
-                 <th colspan="2">Velar</th>
-                 <th colspan="2">Uvular</th>
-                 <th colspan="2">Pharyngeal</th>
-                 <th colspan="2">Glottal</th>
-             </tr>
-             <tr>
-                 <th colspan="25" class="nonpulmonic_table">Ejectives</th>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1">Stop</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Ejec_St'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1">Affricate</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Ejec_Aff'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1">Fricative</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Ejec_Fri'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1">Lateral Affricate</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Ejec_Lat_Aff'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1">Lateral Fricative</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Ejec_Lat_Fri'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="25">Clicks</th>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1">Tenuis/Voiced</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Clic_Tenuis'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1">Nasal</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Clic_Nas'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1">Lateral</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Clic_Lateral'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1">Lateral Nasal</th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Clic_Lat_Nas'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="25">Implosives</th>
-             </tr>
-             <tr class="nonpulmonic_table">
-                 <th colspan="1"></th>
-                 <td *ngFor="let item of consonants | ConsonantFilter: 'Implosive'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
-     {{item.ipa_unicode == null ? 'ipa_blank': ''}}
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr>
-                 <th colspan="25" class="ipa_category"></th>
-             </tr>
-         </tbody>
-     </table>
-     <table id="ipa_vowel_chart" class="component-spacing">
-         <thead>
-             <tr>
-                 <th colspan="11" class="ipa_category">Vowels <a class="float_right" (click)="toggleTables('vowel_table')">{{arrow3}}</a></th>
-             </tr>
-             <tr class="vowel_table">
-                 <th colspan="1"></th>
-                 <th colspan="2">Front</th>
-                 <th colspan="2">Near-Front</th>
-                 <th colspan="2">Central</th>
-                 <th colspan="2">Near-Back</th>
-                 <th colspan="2">Back</th>
-             </tr>
-             <tr class="vowel_table">
-                 <th colspan="1"></th>
-                 <th colspan="1">Unrounded</th>
-                 <th colspan="1">Rounded</th>
-                 <th colspan="1">Unrounded</th>
-                 <th colspan="1">Rounded</th>
-                 <th colspan="1">Unrounded</th>
-                 <th colspan="1">Rounded</th>
-                 <th colspan="1">Unrounded</th>
-                 <th colspan="1">Rounded</th>
-                 <th colspan="1">Unrounded</th>
-                 <th colspan="1">Rounded</th>
-             </tr>
-         </thead>
-         <tbody>
-             <tr class="vowel_table">
-                 <th colspan="1">Close</th>
-                 <td *ngFor="let item of vowels | VowelFilter: 'Close'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="vowel_table">
-                 <th colspan="1">Near-Close</th>
-                 <td *ngFor="let item of vowels | VowelFilter: 'NC'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="vowel_table">
-                 <th colspan="1">Close-Mid</th>
-                 <td *ngFor="let item of vowels | VowelFilter: 'CM'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="vowel_table">
-                 <th colspan="1">Mid</th>
-                 <td *ngFor="let item of vowels | VowelFilter: 'Mid'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="vowel_table">
-                 <th colspan="1">Open-Mid</th>
-                 <td *ngFor="let item of vowels | VowelFilter: 'OM'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="vowel_table">
-                 <th colspan="1">Near-Open</th>
-                 <td *ngFor="let item of vowels | VowelFilter: 'NO'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="vowel_table">
-                 <th colspan="1">Open</th>
-                 <td *ngFor="let item of vowels | VowelFilter: 'Open'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-         </tbody>
-     </table>
-     <table id="ipa_coarticulated_chart" class="component-spacing">
-         <thead>
-             <tr>
-                 <th colspan="11" class="ipa_category">Co-articulated Consonants <a class="float_right" (click)="toggleTables('co_articulated_table')">{{arrow4}}</a></th>
-             </tr>
-             <tr class="co_articulated_table">
-                 <th colspan="1"></th>
-                 <th colspan="2">Labial Alveolar</th>
-                 <th colspan="2">Labial Velar</th>
-                 <th colspan="2">Labial Palatal</th>
-                 <th colspan="2">Uvular-Epiglottal</th>
-                 <th colspan="2">Velar Alveolar</th>
-             </tr>
-             <tr class="co_articulated_table">
-                 <th colspan="1"></th>
-                 <th colspan="1">Unvoiced</th>
-                 <th colspan="1">Voiced</th>
-                 <th colspan="1">Unvoiced</th>
-                 <th colspan="1">Voiced</th>
-                 <th colspan="1">Unvoiced</th>
-                 <th colspan="1">Voiced</th>
-                 <th colspan="1">Unvoiced</th>
-                 <th colspan="1">Voiced</th>
-                 <th colspan="1">Unvoiced</th>
-                 <th colspan="1">Voiced</th>
-             </tr>
-         </thead>
-         <tbody>
-             <tr class="co_articulated_table">
-                 <th colspan="1">Nasal</th>
-                 <td *ngFor="let item of coarticulated_consonants | ConsonantFilter: 'Coart_Nasal'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="co_articulated_table">
-                 <th colspan="1">Stop</th>
-                 <td *ngFor="let item of coarticulated_consonants | ConsonantFilter: 'Coart_Stop'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="co_articulated_table">
-                 <th colspan="1">Fricative</th>
-                 <td *ngFor="let item of coarticulated_consonants | ConsonantFilter: 'Coart_Fricative'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-             <tr class="co_articulated_table">
-                 <th colspan="1">Approximant</th>
-                 <td *ngFor="let item of coarticulated_consonants | ConsonantFilter: 'Coart_Approximant'" class="
-     {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
-     {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
-                     {{item.ipa_unicode}}</td>
-             </tr>
-         </tbody>
-     </table>
+<div class="container-fluid">
+  <p class="text-center">Toggle tables to view and select phonemes, then apply word structure
+    and phonemic rules and submit. Go to the How To Use page for an explanation of rule sets.
+  </p>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Select Pulmonic Consonants
+          </h5>
+          <p class="card-text">Choose pulmonic consonants for your language.
+          </p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table1" aria-expanded="false" aria-controls="table1">
+            Toggle
+          </button>
         </div>
-        <div id="inventory_buttons" class="center_div">
-          <h5>Inventory Options</h5>
-          <button type="button" class="btn btn-primary" (click)="clearInventory()" [disabled]="isInventoryLocked()">Clear</button>
-          <button type="button" class="btn btn-primary" id="lockInventoryButton" (click)="lockInventory()" [disabled]="noneSelected()">Lock</button>
-          <button type="button" class="btn btn-success" (click)="saveInventory()" [disabled]="noneSelected()">Save</button>
-          <button type="button" class="btn btn-secondary" (click)="loadInventory()" [disabled]="isInventoryLocked()">Load</button>
-        </div>
+      </div>
     </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Select Non-pulmonic Consonants
+          </h5>
+          <p class="card-text">Choose non-pulmonic consonants for your language.
+          </p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table2" aria-expanded="false" aria-controls="table2">
+            Toggle
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Select Vowels
+          </h5>
+          <p class="card-text">Choose vowels for your language.
+          </p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table3" aria-expanded="false" aria-controls="table3">
+            Toggle
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Select Other Sounds
+          </h5>
+          <p class="card-text">Choose co-articulated consonants for your language.
+          </p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table4" aria-expanded="false" aria-controls="table4">
+            Toggle
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="collapse" id="table1">
+        <table id="ipa_pulmonic_consonant_chart" class="component-spacing">
+          <thead>
+            <tr>
+              <th colspan="25" class="ipa_category">Pulmonic Consonants
+              </th>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">
+              </th>
+              <th colspan="5">Labial
+              </th>
+              <th colspan="9">Coronal
+              </th>
+              <th colspan="6">Dorsal
+              </th>
+              <th colspan="4">Laryngeal
+              </th>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">
+              </th>
+              <th colspan="2">Bilabial
+              </th>
+              <th colspan="2">LabioDental
+              </th>
+              <th colspan="2">Linguolabial
+              </th>
+              <th colspan="2">Dental
+              </th>
+              <th colspan="2">Alveolar
+              </th>
+              <th colspan="2">Postalveolar
+              </th>
+              <th colspan="2">Retroflex
+              </th>
+              <th colspan="2">Palatal
+              </th>
+              <th colspan="2">Velar
+              </th>
+              <th colspan="2">Uvular
+              </th>
+              <th colspan="2">Pharyngeal
+              </th>
+              <th colspan="2">Glottal
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pulmonic_table">
+              <th colspan="1">Nasal
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Nasal'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                    {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                    {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                    {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Plosive/Stop
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Stop'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                   {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                   {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                   {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Sibilant Affricate
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Sibilant_Aff'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                           {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                           {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                           {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Non-sibilant Affricate
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Non_sib_Aff'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                          {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                          {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                          {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Sibilant Fricative
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Sibilant_Fri'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                           {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                           {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                           {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Non-sibilant Fricative
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Non_sib_Fri'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                          {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                          {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                          {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Approximant
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Approximant'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                          {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                          {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                          {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Flap/Tap
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Tap'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                  {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                  {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                  {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Trill
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Trill'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                    {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                    {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                    {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Lateral Affricate
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Lateral_Aff'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                          {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                          {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                          {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Lateral Fricative
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Lateral_Fri'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                          {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                          {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                          {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Lateral Approximant
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Lateral_App'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                          {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                          {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                          {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="pulmonic_table">
+              <th colspan="1">Lateral Flap/Tap
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Lateral_T'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                        {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                        {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                        {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="collapse" id="table2">
+        <table id="ipa_nonpulmonic_consonant_chart" class="component-spacing">
+          <thead>
+            <tr>
+              <th colspan="25" class="ipa_category">Non-pulmonic Consonants
+              </th>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">
+              </th>
+              <th colspan="5">Labial
+              </th>
+              <th colspan="9">Coronal
+              </th>
+              <th colspan="6">Dorsal
+              </th>
+              <th colspan="4">Laryngeal
+              </th>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">
+              </th>
+              <th colspan="2">Bilabial
+              </th>
+              <th colspan="2">Labiodental
+              </th>
+              <th colspan="2">Linguolabial
+              </th>
+              <th colspan="2">Dental
+              </th>
+              <th colspan="2">Alveolar
+              </th>
+              <th colspan="2">Postalveolar
+              </th>
+              <th colspan="2">Retroflex
+              </th>
+              <th colspan="2">Palatal
+              </th>
+              <th colspan="2">Velar
+              </th>
+              <th colspan="2">Uvular
+              </th>
+              <th colspan="2">Pharyngeal
+              </th>
+              <th colspan="2">Glottal
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th colspan="25" class="nonpulmonic_table">Ejectives
+              </th>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">Stop
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Ejec_St'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                      {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                      {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                      {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">Affricate
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Ejec_Aff'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                       {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                       {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                       {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">Fricative
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Ejec_Fri'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                       {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                       {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                       {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">Lateral Affricate
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Ejec_Lat_Aff'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                           {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                           {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                           {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">Lateral Fricative
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Ejec_Lat_Fri'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                           {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                           {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                           {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="25">Clicks
+              </th>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">Tenuis/Voiced
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Clic_Tenuis'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                          {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                          {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                          {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">Nasal
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Clic_Nas'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                       {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                       {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                       {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">Lateral
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Clic_Lateral'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                           {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                           {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                           {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">Lateral Nasal
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Clic_Lat_Nas'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                           {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                           {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                           {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="25">Implosives
+              </th>
+            </tr>
+            <tr class="nonpulmonic_table">
+              <th colspan="1">
+              </th>
+              <td *ngFor="let item of consonants | ConsonantFilter: 'Implosive'" class="{{item.place == 'Alveolar' || item.place == 'Dental' || item.place == 'Postalv' ? 'no_borders': ''}}
+                                                                                        {{item.ipa_unicode == null ? 'ipa_blank': ''}}
+                                                                                        {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                        {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="collapse" id="table3">
+        <table id="ipa_vowel_chart" class="component-spacing">
+          <thead>
+            <tr>
+              <th colspan="11" class="ipa_category">Vowels
+              </th>
+            </tr>
+            <tr class="vowel_table">
+              <th colspan="1">
+              </th>
+              <th colspan="2">Front
+              </th>
+              <th colspan="2">Near-Front
+              </th>
+              <th colspan="2">Central
+              </th>
+              <th colspan="2">Near-Back
+              </th>
+              <th colspan="2">Back
+              </th>
+            </tr>
+            <tr class="vowel_table">
+              <th colspan="1">
+              </th>
+              <th colspan="1">Unrounded
+              </th>
+              <th colspan="1">Rounded
+              </th>
+              <th colspan="1">Unrounded
+              </th>
+              <th colspan="1">Rounded
+              </th>
+              <th colspan="1">Unrounded
+              </th>
+              <th colspan="1">Rounded
+              </th>
+              <th colspan="1">Unrounded
+              </th>
+              <th colspan="1">Rounded
+              </th>
+              <th colspan="1">Unrounded
+              </th>
+              <th colspan="1">Rounded
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="vowel_table">
+              <th colspan="1">Close
+              </th>
+              <td *ngFor="let item of vowels | VowelFilter: 'Close'" class="
+                                                                            {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                            {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="vowel_table">
+              <th colspan="1">Near-Close
+              </th>
+              <td *ngFor="let item of vowels | VowelFilter: 'NC'" class="
+                                                                         {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                         {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="vowel_table">
+              <th colspan="1">Close-Mid
+              </th>
+              <td *ngFor="let item of vowels | VowelFilter: 'CM'" class="
+                                                                         {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                         {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="vowel_table">
+              <th colspan="1">Mid
+              </th>
+              <td *ngFor="let item of vowels | VowelFilter: 'Mid'" class="
+                                                                          {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                          {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="vowel_table">
+              <th colspan="1">Open-Mid
+              </th>
+              <td *ngFor="let item of vowels | VowelFilter: 'OM'" class="
+                                                                         {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                         {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="vowel_table">
+              <th colspan="1">Near-Open
+              </th>
+              <td *ngFor="let item of vowels | VowelFilter: 'NO'" class="
+                                                                         {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                         {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="vowel_table">
+              <th colspan="1">Open
+              </th>
+              <td *ngFor="let item of vowels | VowelFilter: 'Open'" class="
+                                                                           {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                           {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="collapse" id="table4">
+        <table id="ipa_coarticulated_chart" class="component-spacing">
+          <thead>
+            <tr>
+              <th colspan="11" class="ipa_category">Co-articulated Consonants
+              </th>
+            </tr>
+            <tr class="co_articulated_table">
+              <th colspan="1">
+              </th>
+              <th colspan="2">Labial Alveolar
+              </th>
+              <th colspan="2">Labial Velar
+              </th>
+              <th colspan="2">Labial Palatal
+              </th>
+              <th colspan="2">Uvular-Epiglottal
+              </th>
+              <th colspan="2">Velar Alveolar
+              </th>
+            </tr>
+            <tr class="co_articulated_table">
+              <th colspan="1">
+              </th>
+              <th colspan="1">Unvoiced
+              </th>
+              <th colspan="1">Voiced
+              </th>
+              <th colspan="1">Unvoiced
+              </th>
+              <th colspan="1">Voiced
+              </th>
+              <th colspan="1">Unvoiced
+              </th>
+              <th colspan="1">Voiced
+              </th>
+              <th colspan="1">Unvoiced
+              </th>
+              <th colspan="1">Voiced
+              </th>
+              <th colspan="1">Unvoiced
+              </th>
+              <th colspan="1">Voiced
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="co_articulated_table">
+              <th colspan="1">Nasal
+              </th>
+              <td *ngFor="let item of coarticulated_consonants | ConsonantFilter: 'Coart_Nasal'" class="
+                                                                                                        {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                                        {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="co_articulated_table">
+              <th colspan="1">Stop
+              </th>
+              <td *ngFor="let item of coarticulated_consonants | ConsonantFilter: 'Coart_Stop'" class="
+                                                                                                       {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                                       {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="co_articulated_table">
+              <th colspan="1">Fricative
+              </th>
+              <td *ngFor="let item of coarticulated_consonants | ConsonantFilter: 'Coart_Fricative'" class="
+                                                                                                            {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                                            {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+            <tr class="co_articulated_table">
+              <th colspan="1">Approximant
+              </th>
+              <td *ngFor="let item of coarticulated_consonants | ConsonantFilter: 'Coart_Approximant'" class="
+                                                                                                              {{item.ipa_unicode == '' ? 'ipa_empty': ''}}
+                                                                                                              {{item.isSelected == true ? 'ipa_selected': ''}}" (click)="updateInventory(item)">
+                {{item.ipa_unicode}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="inventory_buttons" class="center_div">
+        <h5>Inventory Options
+        </h5>
+        <button type="button" class="btn btn-primary" (click)="clearInventory()" [disabled]="isInventoryLocked()">Clear
+        </button>
+        <button type="button" class="btn btn-primary" id="lockInventoryButton" (click)="lockInventory()" [disabled]="noneSelected()">Lock
+        </button>
+        <button type="button" class="btn btn-success" (click)="saveInventory()" [disabled]="noneSelected()">Save
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="loadInventory()" [disabled]="isInventoryLocked()">Load
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -12,14 +12,6 @@ export class IpaComponent implements OnInit {
   coarticulated_consonants: Consonant[] = [];
   consonants: Consonant[] = [];
   vowels: Vowel[] = [];
-  arrow1: string;
-  arrow2: string;
-  arrow3: string;
-  arrow4: string;
-  isPulmonicTableOpen = true;
-  isNonPulmonicTableOpen = true;
-  isVowelTableOpen = true;
-  isCoarticulatedTableOpen = true;
 
   constructor(private errorService: ErrorService, private ipaService: IpaService,
     private inventory: Inventory) { }
@@ -27,10 +19,6 @@ export class IpaComponent implements OnInit {
   ngOnInit() {
     try {
       this.initChart();
-      this.arrow1 = SpecialCharacters.upwards_arrow;
-      this.arrow2 = SpecialCharacters.upwards_arrow;
-      this.arrow3 = SpecialCharacters.upwards_arrow;
-      this.arrow4 = SpecialCharacters.upwards_arrow;
     } catch (e) {
       this.errorService.displayError(e.name, e.message);
     }
@@ -52,67 +40,6 @@ export class IpaComponent implements OnInit {
     }
     if (this.vowels === null) {
       throw new NullArgumentError('Vowels array');
-    }
-  }
-
-  toggleTables(className: string) {
-    const rows = <HTMLCollectionOf<HTMLTableRowElement>>document.getElementsByClassName(className);
-
-    const rowVisibility = function(style: string) {
-      for (let i = 0; i < rows.length; i++) {
-        rows[i].style.display = style;
-      }
-    };
-
-    switch (className) {
-      case 'pulmonic_table': {
-        if (this.isPulmonicTableOpen) {
-          this.isPulmonicTableOpen = false;
-          this.arrow1 = SpecialCharacters.downwards_arrow;
-          rowVisibility('none');
-        } else {
-          this.isPulmonicTableOpen = true;
-          this.arrow1 = SpecialCharacters.upwards_arrow;
-          rowVisibility('');
-        }
-        break;
-      }
-      case 'nonpulmonic_table': {
-        if (this.isNonPulmonicTableOpen) {
-          this.isNonPulmonicTableOpen = false;
-          this.arrow2 = SpecialCharacters.downwards_arrow;
-          rowVisibility('none');
-        } else {
-          this.isNonPulmonicTableOpen = true;
-          this.arrow2 = SpecialCharacters.upwards_arrow;
-          rowVisibility('');
-        }
-        break;
-      }
-      case 'vowel_table': {
-        if (this.isVowelTableOpen) {
-          this.isVowelTableOpen = false;
-          this.arrow3 = SpecialCharacters.downwards_arrow;
-          rowVisibility('none');
-        } else {
-          this.isVowelTableOpen = true;
-          this.arrow3 = SpecialCharacters.upwards_arrow;
-          rowVisibility('');
-        }
-        break;
-      }
-      case 'co_articulated_table': {
-        if (this.isCoarticulatedTableOpen) {
-          this.isCoarticulatedTableOpen = false;
-          this.arrow4 = SpecialCharacters.downwards_arrow;
-          rowVisibility('none');
-        } else {
-          this.isCoarticulatedTableOpen = true;
-          this.arrow4 = SpecialCharacters.upwards_arrow;
-          rowVisibility('');
-        }
-        break;
-      }
     }
   }
 
