@@ -48,7 +48,7 @@ export class InputComponent implements AfterContentInit {
     if (!validator.validate(Regex.WORD_STRUCTURE_RULE, this.wordStructureInput.value)) {
       throw new SyntaxError('Incorrect word structure syntax. Please include only parentheses () and letters/numbers, then try again.');
     }
-    if (!validator.validate(Regex.TRANSCRIPTION_RULE, this.wordStructureInput.value)) {
+    if (!validator.validate(Regex.TRANSCRIPTION_RULE, this.ruleInput.value)) {
       throw new SyntaxError('Incorrect transcription rule syntax. Please follow the how-to guide and try again.');
     }
   }

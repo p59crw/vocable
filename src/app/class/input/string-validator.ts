@@ -5,7 +5,7 @@ export class StringValidator {
   constructor() { }
 
   validate(regex: Regex, str: string): boolean {
-    const exp = new RegExp(regex);
+    const exp = new RegExp(regex, 'g');
     return exp.test(str);
   }
 
