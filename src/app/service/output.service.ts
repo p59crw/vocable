@@ -21,9 +21,9 @@ export class OutputService {
     const pdf = new jsPDF();
     pdf.setPage(1);
     pdf.setFontSize(48);
-    pdf.text('Dictionary of\n' + this.languageName, 30, 50);
+    pdf.text(this.languageName, 50, 50);
     pdf.addPage();
-    pdf.setFontSize(10);
+    pdf.setFontSize(12);
     pdf.text(20, 20, JSON_File);
     pdf.save(filename.replace('.csv', '.pdf'));
   }
