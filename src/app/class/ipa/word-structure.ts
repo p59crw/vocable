@@ -122,6 +122,141 @@ export class WordStructure {
             }
           });
         }
+        if (symbol === 'Q') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Sibilant_Aff') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'W') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Non_sib_Aff') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'E') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Sibilant_Fri') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'Y') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Non_sib_Fri') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'T') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Tap') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'R') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Trill') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'U') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Lateral_Aff') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'M') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Lateral_Fri') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'O') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Lateral_App') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'S') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Lateral_T') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'D') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Ejec_St') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'F') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Ejec_Aff') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'G') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Ejec_Fri') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'H') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Ejec_Lat_Aff') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'J') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Ejec_Lat_Fri') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
         if (symbol === symbol.toLowerCase()) {
           if (filteredSounds.length === 0) {
             throw new GenericError('Invalid Input', 'You have entered a character that has not been added to your inventory.');
