@@ -1,5 +1,6 @@
 import { Sound } from './../../class/index';
 import { ParserSymbols, Regex, SoundPosition } from './../../enum/index';
+import { Word } from './../../class/index';
 
 export class TranscriptionRule {
 
@@ -8,7 +9,9 @@ export class TranscriptionRule {
   soundToBeChanged: string;
   changePosition: string;
   changeToMake: string;
-  wordBoundary: string;
+  wordBoundary_start: boolean;
+  wordBoundary_end: boolean;
+  numberOfChars: number;
 
   constructor(str: string) {
     this.soundToBeChanged = null;
@@ -38,7 +41,15 @@ export class TranscriptionRule {
     }
   }
 
-  public swapSound() {
+  public analyzeWord(word: Word) {
+    if (this.wordBoundary_start && this.wordBoundary_end) {
+      for (let i = 0; i < word.displayForm.length; i++) {
+        this.numberOfChars++;
+      }
+    }
+  }
+
+  public swapSound(sounds: Array<Word>) {
 
   }
 
