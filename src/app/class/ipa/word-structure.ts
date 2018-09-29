@@ -95,6 +95,69 @@ export class WordStructure {
             component.words.push(newWord);
           });
         }
+        if (symbol === '0') {
+          (<Array<Vowel>>filteredVowels).forEach(function(vowel) {
+            if (vowel.height === 'Close') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>vowel);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === '1') {
+          (<Array<Vowel>>filteredVowels).forEach(function(vowel) {
+            if (vowel.height === 'NC') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>vowel);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === '2') {
+          (<Array<Vowel>>filteredVowels).forEach(function(vowel) {
+            if (vowel.height === 'CM') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>vowel);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === '3') {
+          (<Array<Vowel>>filteredVowels).forEach(function(vowel) {
+            if (vowel.height === 'Mid') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>vowel);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === '4') {
+          (<Array<Vowel>>filteredVowels).forEach(function(vowel) {
+            if (vowel.height === 'OM') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>vowel);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === '5') {
+          (<Array<Vowel>>filteredVowels).forEach(function(vowel) {
+            if (vowel.height === 'NO') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>vowel);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === '6') {
+          (<Array<Vowel>>filteredVowels).forEach(function(vowel) {
+            if (vowel.height === 'Open') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>vowel);
+              component.words.push(newWord);
+            }
+          });
+        }
         if (symbol === 'N') {
           (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
             if (consonant.manner === 'Nasal') {
@@ -257,7 +320,88 @@ export class WordStructure {
             }
           });
         }
-        if (symbol === symbol.toLowerCase()) {
+        if (symbol === 'K') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Clic_Tenuis') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'L') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Clic_Nas') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'Z') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Clic_Lateral') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'X') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Clic_Lat_Nas') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === 'I') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Implosive') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === '@') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Coart_Nasal') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === '!') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Coart_Stop') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === '$') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Coart_Fricative') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol === '&') {
+          (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
+            if (consonant.manner === 'Coart_Approximant') {
+              const newWord = new Word();
+              newWord.sounds.push(<Sound>consonant);
+              component.words.push(newWord);
+            }
+          });
+        }
+        if (symbol !== ('@' || '!' || '$' || '&') && symbol === symbol.toLowerCase()) {
           if (filteredSounds.length === 0) {
             throw new GenericError('Invalid Input', 'You have entered a character that has not been added to your inventory.');
           } else {
