@@ -1,5 +1,6 @@
 import { WordStructureComponent } from './word-structure-component';
 import { ParserSymbols } from './../../enum/parser-symbols.enum';
+import { Regex } from './../../enum/regex.enum';
 import { GenericError } from './../error/generic-error';
 import { NullArgumentError } from './../error/null-argument-error';
 import { Sound } from './sound';
@@ -382,6 +383,7 @@ export class WordStructure {
               component.words.push(newWord);
             }
           });
+
         }
         if (symbol === '$') {
           (<Array<Consonant>>filteredConsonants).forEach(function(consonant) {
@@ -401,7 +403,10 @@ export class WordStructure {
             }
           });
         }
-        if (symbol !== ('@' || '!' || '$' || '&') && symbol === symbol.toLowerCase()) {
+        if ((!symbol.includes('@') && !symbol.includes('!')
+          && !symbol.includes('$') && !symbol.includes('&')
+          && !symbol.match(Regex.NUMERIC))
+          && symbol === symbol.toLowerCase()) {
           if (filteredSounds.length === 0) {
             throw new GenericError('Invalid Input', 'You have entered a character that has not been added to your inventory.');
           } else {
