@@ -7,7 +7,8 @@ export class Word {
   public partOfSpeech: PartOfSpeech;
   public definition: string;
   public isSelected: boolean;
-  public displayForm: string;
+  public glossOutput: string;
+  public transcriptionOutput: string;
 
   public constructor() {
     this.sounds = new Array<Sound>();
@@ -16,13 +17,14 @@ export class Word {
   }
 
   public toString() {
-    let displayForm = '';
+    let glossOutput = '';
     this.sounds.forEach(function(sound) {
-      displayForm = displayForm.concat(sound.ipa_unicode);
+      glossOutput = glossOutput.concat(sound.ipa_unicode);
     });
 
-    this.displayForm = displayForm;
+    this.glossOutput = glossOutput;
 
-    return { 'gloss': '/' + this.displayForm + '/', 'partOfSpeech': this.partOfSpeech, 'definition': '', 'isSelected': this.isSelected };
+    return { 'gloss': '/' + this.glossOutput + '/',
+    'partOfSpeech': this.partOfSpeech, 'definition': '', 'isSelected': this.isSelected };
   }
 }

@@ -3,6 +3,7 @@ export class Gloss {
   secondary_stress: number;
   phonemes: string[];
   syllables: string[];
+  transcription: string;
 
   constructor(primary_stress: number, secondary_stress: number,
     phonemes: string[], syllables: string[]) {

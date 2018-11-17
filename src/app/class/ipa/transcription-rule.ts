@@ -15,13 +15,13 @@ export class TranscriptionRule {
 
   constructor(str: string) {
     this.soundToBeChanged = null;
-    this.inputRule = str.substring(0, str.indexOf(':'));
-    this.outputRule = str.substring(str.indexOf(':') + 1);
+    this.inputRule = str.substring(0, str.indexOf(ParserSymbols.RULE_BOUNDARY));
+    this.outputRule = str.substring(str.indexOf(ParserSymbols.RULE_BOUNDARY) + 1);
   }
 
   public parse() {
-    const start = this.inputRule.indexOf('<') + 1;
-    const end = this.inputRule.indexOf('>');
+    const start = this.inputRule.indexOf(ParserSymbols.CHANGE_START) + 1;
+    const end = this.inputRule.indexOf(ParserSymbols.CHANGE_END);
     this.soundToBeChanged = this.inputRule.substring(start, end);
 
     const soundContext = this.inputRule
@@ -43,7 +43,7 @@ export class TranscriptionRule {
 
   public analyzeWord(word: Word) {
     if (this.wordBoundary_start && this.wordBoundary_end) {
-      for (let i = 0; i < word.displayForm.length; i++) {
+      for (let i = 0; i < word.glossOutput.length; i++) {
         this.numberOfChars++;
       }
     }
