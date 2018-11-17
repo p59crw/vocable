@@ -1,11 +1,15 @@
 import { Sound } from './sound';
 import { PartOfSpeech } from './../../enum/part-of-speech.enum';
+import { WordStructure } from './word-structure';
 
 export class Word {
 
   public sounds: Array<Sound>;
   public partOfSpeech: PartOfSpeech;
   public definition: string;
+  public primary_stress: number;
+  public secondary_stress: number;
+  public syllables: Array<WordStructure>;
   public isSelected: boolean;
   public glossOutput: string;
   public transcriptionOutput: string;
