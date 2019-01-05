@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoaderService } from './service/loader.service';
+import { AuthenticationService, LoaderService } from './service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { LoaderService } from './service/loader.service';
 export class AppComponent implements OnInit {
   showLoader: boolean;
 
-  constructor(private loaderService: LoaderService) { }
+  constructor(private auth: AuthenticationService, private loaderService: LoaderService) { }
 
   /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
   openNav() {
@@ -21,6 +21,15 @@ export class AppComponent implements OnInit {
   closeNav() {
     document.getElementById('sidenav-wrapper').style.width = '0';
     document.getElementById('page-content-wrapper').style.marginLeft = '0';
+  }
+
+  /* Check whether user is currently logged in */
+  isAuthenticated() {
+    if (localStorage.key(0)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   ngOnInit() {
