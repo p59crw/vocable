@@ -1,7 +1,7 @@
 export class User {
 
-    public email: string;
-    public password: string;
+  public email: string;
+  public password: string;
 
   public constructor(password: string, email: string) {
     this.password = password;
@@ -9,6 +9,6 @@ export class User {
   }
 
   getEmail(): string {
-      return this.email;
+    return this.email;
   }
 }

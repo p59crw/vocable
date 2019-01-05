@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from './../../service/authentication.service';
 
 @Component({
@@ -10,19 +11,19 @@ export class RegisterComponent implements OnInit {
 
   registerUserData = {}
 
-  constructor(private auth: AuthenticationService) { }
+  constructor(private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
   }
 
   registerUser() {
     this.auth.registerUser(this.registerUserData)
-    .subscribe(res => {
-      console.log(res);
-    },
-    err => {
-      console.log(err);
-    });
+      .subscribe(res => {
+        this.router.navigate(['/login']);
+      },
+        err => {
+          console.log(err);
+        });
   }
 
 }
