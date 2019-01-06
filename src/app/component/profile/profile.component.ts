@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from './../../service/profile.service';
-import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-word-generator',
-  templateUrl: './word-generator.component.html',
-  styleUrls: ['./word-generator.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class WordGeneratorComponent implements OnInit {
+export class ProfileComponent implements OnInit {
+
+  profile = {};
 
   constructor(private profileService: ProfileService, private router: Router) { }
 
   ngOnInit() {
     this.profileService.getProfile().subscribe(
-      res => { },
+      res => this.profile = res,
       err => {
         if (err instanceof HttpErrorResponse) {
-          if (err.status === 401 || err.status === 500) {
-            localStorage.removeItem('token');
+          if (err.status === 401) {
             this.router.navigate(['/home']);
           }
         }

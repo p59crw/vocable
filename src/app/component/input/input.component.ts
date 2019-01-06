@@ -1,15 +1,17 @@
-import { Component, AfterContentInit } from '@angular/core';
-import { ErrorService, OutputService, TranscriptionService } from './../../service/index';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { ErrorService, OutputService, TranscriptionService, ProfileService } from './../../service/index';
 import { EmptyInputError, EmptyInventoryError, Inventory, StringValidator, TranscriptionRule, Word } from './../../class/index';
 import { PartOfSpeech } from './../../enum/part-of-speech.enum';
 import { Regex } from './../../enum/regex.enum';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css']
 })
-export class InputComponent implements AfterContentInit {
+export class InputComponent implements OnInit, AfterContentInit {
 
   glosses: Array<Word> = [];
   glossesAsString: Array<any> = [];
@@ -22,6 +24,7 @@ export class InputComponent implements AfterContentInit {
   languageName = '';
 
   constructor(private inventory: Inventory, private errorService: ErrorService,
+    private profileService: ProfileService, private router: Router,
     private outputService: OutputService, private transcriptionService: TranscriptionService) { }
 
   runGenerator() {
@@ -105,6 +108,21 @@ export class InputComponent implements AfterContentInit {
 
   addToDictionary(items: Array<any>) {
     items.forEach((word) => this.inventory.dictionary.push(word));
+  }
+
+  ngOnInit() {
+    this.profileService.getProfile().subscribe(
+      res => { },
+      err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401 || err.status === 500) {
+            // TODO: Provide error handling and messages for err codes other than just redirecting
+            localStorage.removeItem('token');
+            this.router.navigate(['/home']);
+          }
+        }
+      }
+    );
   }
 
   ngAfterContentInit() {

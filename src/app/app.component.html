@@ -15,8 +15,11 @@
       <li class="nav-item" [routerLink]="['register']" [routerLinkActive]="'is-active'" *ngIf="!isAuthenticated()">
         <a class="nav-link">Sign Up</a>
       </li>
+      <li class="nav-item" [routerLink]="['profile']" [routerLinkActive]="'is-active'" *ngIf="isAuthenticated()">
+        <a class="nav-link">Your Profile</a>
+      </li>
       <li class="nav-item" [routerLink]="['wordgenerator']" [routerLinkActive]="'is-active'">
-          <a class="nav-link">Word Tools</a>
+          <a class="nav-link" *ngIf="isAuthenticated()">Word Tools</a>
       </li>
       <li class="nav-item">
           <a class="nav-link disabled" *ngIf="isAuthenticated()">Grammar Tools</a>
@@ -35,6 +38,9 @@
       </li>
       <li class="nav-item">
           <a class="nav-link disabled">About</a>
+      </li>
+      <li class="nav-item" *ngIf="isAuthenticated()" (click)="auth.logoutUser()">
+        <a class="nav-link" style="cursor: pointer;">Logout</a>
       </li>
     </ul>
   </div>
