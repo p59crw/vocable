@@ -9,7 +9,7 @@ import { AuthenticationService } from './../../service/authentication.service';
 })
 export class RegisterComponent implements OnInit {
 
-  registerUserData = {};
+  registerUserData = (<any>{});
 
   constructor(private auth: AuthenticationService, private router: Router) { }
 

@@ -58,9 +58,9 @@ export class AppConfig {
 
         if (request) {
           request.pipe(map(res => res)).subscribe((responseData) => {
-              this.config = responseData;
-              resolve(true);
-            });
+            this.config = responseData;
+            resolve(true);
+          });
         } else {
           console.error('Env config file "env.json" is not valid.');
           reject();
