@@ -17,14 +17,17 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    this.auth.loginUser(this.loginUserData)
-      .subscribe(res => {
-        localStorage.setItem('token', res.token);
-        this.router.navigate(['/wordgenerator']);
-      },
-        err => {
-          console.log(err);
-        });
+    // Temporarily allow logins for testing until nodejs dedicated server is set up.
+    localStorage.setItem('token', 'testToken');
+    this.router.navigate(['/wordgenerator']);
+    // this.auth.loginUser(this.loginUserData)
+    //   .subscribe(res => {
+    //     localStorage.setItem('token', res.token);
+    //     this.router.navigate(['/wordgenerator']);
+    //   },
+    //     err => {
+    //       console.log(err);
+    //     });
   }
 
 }
