@@ -1,6 +1,9 @@
+// Config
+import { AppConfig } from './app.config';
+
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +35,10 @@ import {
   OutputService, ProfileService, TokenInterceptorService, TranscriptionService
 } from './service/index';
 
+export function initConfig(config: AppConfig) {
+  return () => config.load();
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +61,9 @@ import {
     HttpClientModule
   ],
   providers: [
+    AppConfig,
+    { provide: APP_INITIALIZER, useFactory: initConfig, deps: [AppConfig], multi: true },
+    { provide: Window, useValue: window },
     AuthenticationService,
     AuthGuard,
     ErrorService,
