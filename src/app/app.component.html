@@ -6,32 +6,32 @@
       <li class="nav-item">
           <p class="display-4">Vocable</p>
       </li>
-      <li class="nav-item" [routerLink]="['home']" [routerLinkActive]="'is-active'" [routerLinkActiveOptions]="{ exact: true }" *ngIf="!isAuthenticated()">
+      <li class="nav-item" [routerLink]="['home']" [routerLinkActive]="'is-active'" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link">Home</a>
       </li>
-      <li class="nav-item" [routerLink]="['login']" [routerLinkActive]="'is-active'" *ngIf="!isAuthenticated()">
+      <li class="nav-item" [routerLink]="['login']" [routerLinkActive]="'is-active'">
         <a class="nav-link">Login</a>
       </li>
-      <li class="nav-item" [routerLink]="['register']" [routerLinkActive]="'is-active'" *ngIf="!isAuthenticated()">
+      <li class="nav-item" [routerLink]="['register']" [routerLinkActive]="'is-active'">
         <a class="nav-link">Sign Up</a>
       </li>
       <li class="nav-item" [routerLink]="['wordgenerator']" [routerLinkActive]="'is-active'">
           <a class="nav-link">Word Tools</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link disabled" *ngIf="isAuthenticated()">Grammar Tools</a>
+          <a class="nav-link disabled">Grammar Tools</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link disabled" *ngIf="isAuthenticated()">Dictionary</a>
+          <a class="nav-link disabled">Dictionary</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link disabled" *ngIf="isAuthenticated()">Stats</a>
+          <a class="nav-link disabled">Stats</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link disabled" [routerLink]="['output']" [routerLinkActive]="'is-active'" *ngIf="isAuthenticated()">Output Your Language</a>
+          <a class="nav-link disabled" [routerLink]="['output']" [routerLinkActive]="'is-active'">Output Your Language</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link disabled" *ngIf="isAuthenticated()">How To Use</a>
+          <a class="nav-link disabled">How To Use</a>
       </li>
       <li class="nav-item">
           <a class="nav-link disabled">About</a>
