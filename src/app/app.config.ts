@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 class EnvData {
   env: string;
@@ -37,8 +36,12 @@ export class AppConfig {
    */
   public load() {
     return new Promise((resolve, reject) => {
-      this.http.get('assets/config/env.json').pipe(map(env => env)).subscribe((envResponse: EnvData) => {
-        this.env = envResponse.env;
+      this.http.get('assets/config/env.json').map(res => res).catch((error: any): any => {
+        console.log('Config file env.json could not be read');
+        resolve(true);
+        return Observable.throw(error.json().error || 'Server error');
+      }).subscribe((envResponse: EnvData) => {
+        this.env = envResponse;
         let request: any = null;
 
         switch (envResponse.env) {
@@ -57,13 +60,19 @@ export class AppConfig {
         }
 
         if (request) {
-          request.pipe(map(res => res)).subscribe((responseData) => {
+          request
+            .map(res => res.json())
+            .catch((error: any) => {
+              console.log('Error reading ' + envResponse.env + ' config file.');
+              resolve(error);
+              return Observable.throw(error.json().error || 'Server error');
+            })
+            .subscribe((responseData) => {
               this.config = responseData;
               resolve(true);
             });
         } else {
           console.error('Env config file "env.json" is not valid.');
-          reject();
         }
       });
 

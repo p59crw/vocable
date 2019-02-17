@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AppConfig } from './../app.config';
-import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +15,10 @@ export class ConfigService {
 
   getHost(): string {
     let host = '';
-    if (!environment.production) {
-      host = environment.LOCAL_API;
-    } else {
-      host = environment.SECURE_HOST_API;
+    if (this.getCurrentEnv() === 'development') {
+      host = this.config.getConfig('server');
+    } else if (this.getCurrentEnv() === 'production') {
+      host = this.config.getConfig('secure_server');
     }
     return host;
   }
