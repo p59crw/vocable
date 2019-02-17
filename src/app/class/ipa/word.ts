@@ -28,9 +28,7 @@ export class Word {
 
     this.glossOutput = glossOutput;
 
-    return {
-      'gloss': '/' + this.glossOutput + '/',
-      'partOfSpeech': this.partOfSpeech, 'definition': '', 'isSelected': this.isSelected
-    };
+    return { 'gloss': '/' + this.glossOutput + '/',
+    'partOfSpeech': this.partOfSpeech, 'definition': '', 'isSelected': this.isSelected };
   }
 }
