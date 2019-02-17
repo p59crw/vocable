@@ -1,12 +1,14 @@
 import { Sound } from './../../class/index';
 import { ParserSymbols, Regex, SoundPosition } from './../../enum/index';
 import { Word } from './../../class/index';
+import { Vowel } from './vowel';
+import { Consonant } from './consonant';
 
 export class TranscriptionRule {
 
   inputRule: string;
   outputRule: string;
-  soundToBeChanged: string;
+  soundToBeChanged: Sound;
   changePosition: string;
   changeToMake: string;
   wordBoundary_start: boolean;
@@ -22,7 +24,14 @@ export class TranscriptionRule {
   public parse() {
     const start = this.inputRule.indexOf(ParserSymbols.CHANGE_START) + 1;
     const end = this.inputRule.indexOf(ParserSymbols.CHANGE_END);
-    this.soundToBeChanged = this.inputRule.substring(start, end);
+    switch (this.inputRule.substring(start, end)) {
+      case 'C':
+        this.soundToBeChanged = new Consonant(null, null, null, 'C');
+        break;
+      case 'V':
+        this.soundToBeChanged = new Vowel(null, null, null, 'V');
+        break;
+    }
 
     const soundContext = this.inputRule
       .replace(ParserSymbols.CHANGE_START, '')
@@ -31,9 +40,9 @@ export class TranscriptionRule {
       .replace(ParserSymbols.OPTIONAL_END, '')
       .split('');
     for (let i = 0; i < soundContext.length; i++) {
-      if (soundContext.indexOf(this.soundToBeChanged) === 0) {
+      if (soundContext.indexOf(this.soundToBeChanged.ipa_unicode) === 0) {
         this.changePosition = SoundPosition.INITIAL;
-      } else if (soundContext.indexOf(this.soundToBeChanged) === soundContext.length - 1) {
+      } else if (soundContext.indexOf(this.soundToBeChanged.ipa_unicode) === soundContext.length - 1) {
         this.changePosition = SoundPosition.FINAL;
       } else {
         this.changePosition = SoundPosition.MEDIAL;
