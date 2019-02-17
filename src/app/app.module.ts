@@ -2,7 +2,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 // Classes
@@ -24,8 +23,7 @@ import {
 import { ConsonantFilterPipe, VowelFilterPipe } from './pipe/index';
 
 // Services
-import { AuthenticationService, ErrorService, IpaService, LoaderService,
-  OutputService, TranscriptionService } from './service/index';
+import { ErrorService, IpaService, LoaderService, OutputService, TranscriptionService } from './service/index';
 
 @NgModule({
   declarations: [
@@ -44,11 +42,9 @@ import { AuthenticationService, ErrorService, IpaService, LoaderService,
   imports: [
     AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    HttpClientModule
+    FormsModule
   ],
   providers: [
-    AuthenticationService,
     ErrorService,
     IpaService,
     Inventory,

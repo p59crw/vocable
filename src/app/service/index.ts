@@ -1,4 +1,3 @@
-export { AuthenticationService } from './authentication.service';
 export { ErrorService } from './error.service';
 export { IpaService } from './ipa.service';
 export { LoaderService } from './loader.service';
