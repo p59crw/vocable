@@ -39,9 +39,6 @@ export function initConfig(config: AppConfig) {
   return () => config.load();
 }
 
-export class WindowWrapper extends Window { }
-export function getWindow() { return window; }
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +63,7 @@ export function getWindow() { return window; }
   providers: [
     AppConfig,
     { provide: APP_INITIALIZER, useFactory: initConfig, deps: [AppConfig], multi: true },
-    { provide: WindowWrapper, useValue: getWindow },
+    { provide: Window, useValue: window },
     AuthenticationService,
     AuthGuard,
     ErrorService,
