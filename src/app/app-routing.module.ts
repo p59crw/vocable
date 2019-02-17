@@ -5,15 +5,13 @@ import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { OutputComponent } from './component/output/output.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
-import { ProfileComponent } from './component/profile/profile.component';
 import { RegisterComponent } from './component/register/register.component';
 import { WordGeneratorComponent } from './component/word-generator/word-generator.component';
-import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/profile',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -30,18 +28,11 @@ const routes: Routes = [
   },
   {
     path: 'wordgenerator',
-    component: WordGeneratorComponent,
-    canActivate: [AuthGuard]
+    component: WordGeneratorComponent
   },
   {
     path: 'output',
-    component: OutputComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthGuard]
+    component: OutputComponent
   },
   { path: '**', component: PageNotFoundComponent }
 ];

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OutputService } from './../../service/output.service';
 import { Inventory } from './../../class/ipa/inventory';
-import { ProfileService } from './../../service/profile.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-output',
@@ -12,8 +9,7 @@ import { Router } from '@angular/router';
 })
 export class OutputComponent implements OnInit {
 
-  constructor(private inventory: Inventory, private outputService: OutputService,
-    private profileService: ProfileService, private router: Router) { }
+  constructor(private inventory: Inventory, private outputService: OutputService) { }
 
   languageFinalized: boolean;
 
@@ -35,17 +31,6 @@ export class OutputComponent implements OnInit {
     } else {
       this.languageFinalized = true;
     }
-    this.profileService.getProfile().subscribe(
-      res => { },
-      err => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 401 || err.status === 500) {
-            localStorage.removeItem('token');
-            this.router.navigate(['/home']);
-          }
-        }
-      }
-    );
   }
 
 }

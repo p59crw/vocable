@@ -25,7 +25,11 @@ export class AppComponent implements OnInit {
 
   /* Check whether user is currently logged in */
   isAuthenticated() {
-    return this.auth.isLoggedIn();
+    if (localStorage.key(0)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   ngOnInit() {

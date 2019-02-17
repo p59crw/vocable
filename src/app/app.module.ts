@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 // Classes
@@ -16,20 +16,17 @@ import {
 import { AppComponent } from './app.component';
 import {
   HomeComponent, InputComponent, IpaComponent, LoginComponent,
-  OutputComponent, PageNotFoundComponent, ProfileComponent,
+  OutputComponent, PageNotFoundComponent,
   RegisterComponent, WordGeneratorComponent
 } from './component/index';
 
 // Filter Pipes
 import { ConsonantFilterPipe, VowelFilterPipe } from './pipe/index';
 
-// Guard
-import { AuthGuard } from './guard/auth.guard';
-
 // Services
 import {
   AuthenticationService, ErrorService, IpaService, LoaderService,
-  OutputService, ProfileService, TokenInterceptorService, TranscriptionService
+  OutputService, TranscriptionService
 } from './service/index';
 
 @NgModule({
@@ -38,14 +35,13 @@ import {
     HomeComponent,
     IpaComponent,
     InputComponent,
-    LoginComponent,
     OutputComponent,
     PageNotFoundComponent,
-    ProfileComponent,
     RegisterComponent,
     WordGeneratorComponent,
     ConsonantFilterPipe,
     VowelFilterPipe,
+    LoginComponent
   ],
   imports: [
     AppRoutingModule,
@@ -55,19 +51,12 @@ import {
   ],
   providers: [
     AuthenticationService,
-    AuthGuard,
     ErrorService,
     IpaService,
     Inventory,
     LoaderService,
     Parser,
     OutputService,
-    ProfileService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true
-    },
     TranscriptionService,
     WordStructure
   ],
