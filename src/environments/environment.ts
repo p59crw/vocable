@@ -4,7 +4,5 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: true,
-  LOCAL_API: 'http://localhost:3000/api/',
-  SECURE_HOST_API: 'https://www.curtiswhite.ca/vocable/api/'
+  production: true
 };
