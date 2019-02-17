@@ -68,6 +68,9 @@ export class InputComponent implements AfterContentInit {
     this.glossesAsString = this.displayGlosses(filteredGlosses);
 
     this.phonemes = this.transcriptionService.generatePhonetics(filteredGlosses, transcriptionRuleArray);
+
+    // After all transcriptions done, add words to dictionary
+    this.addToDictionary(filteredGlosses);
   }
 
   displayGlosses(glosses: Array<Word>): Array<any> {
@@ -103,7 +106,7 @@ export class InputComponent implements AfterContentInit {
     this.ruleInput.value = '';
   }
 
-  addToDictionary(items: Array<any>) {
+  addToDictionary(items: Array<Word>) {
     items.forEach((word) => this.inventory.dictionary.push(word));
   }
 

@@ -1,11 +1,11 @@
 export class User {
 
-    public id: string;
-    public username: string;
-    public password: string;
-    public firstName: string;
-    public lastName: string;
-    public email: string;
+  public id: string;
+  public username: string;
+  public password: string;
+  public firstName: string;
+  public lastName: string;
+  public email: string;
 
   public constructor(username: string, password: string, email: string) {
     this.username = username;
@@ -14,14 +14,14 @@ export class User {
   }
 
   getUsername(): string {
-      return this.username;
+    return this.username;
   }
 
   getEmail(): string {
-      return this.email;
+    return this.email;
   }
 
   getID(): string {
-      return this.id;
+    return this.id;
   }
 }
