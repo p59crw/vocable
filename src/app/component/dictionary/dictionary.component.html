@@ -1,0 +1,27 @@
+<div class="col-md-8 component-spacing">
+  <div class="card">
+      <div class="card-header">
+          <h5>Your Dictionary</h5>
+      </div>
+      <div class="card-body">
+    <div *ngIf="dictionary.length === 0">Dictionary Empty</div>
+    <div class="columns">
+    <ul *ngFor="let item of dictionary; let i = index">
+      <table>
+        <tr>
+          <td>
+        <li class="glossItem">
+            {{ item.gloss }}
+        </li>
+      </td>
+      <td>
+        <input [value]="item.definition" placeholder="Definition" spellcheck="true" class="definitionInput" (input)="changeDefinition(item, $event.target.value)">
+      </td>
+      <td>
+        <a class="delete_button" (click)="deleteGloss(item)"><img src="assets/img/trash_24px.png"></a>
+        </td>
+      </tr>
+      </table>
+    </ul>
+  </div>
+</div>

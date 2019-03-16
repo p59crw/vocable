@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { DictionaryComponent } from './component/dictionary/dictionary.component';
 import { HomeComponent } from './component/home/home.component';
 import { OutputComponent } from './component/output/output.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
@@ -16,6 +17,10 @@ const routes: any = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'dictionary',
+    component: DictionaryComponent
   },
   {
     path: 'wordgenerator',

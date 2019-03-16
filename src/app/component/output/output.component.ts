@@ -13,6 +13,7 @@ export class OutputComponent implements OnInit {
 
   languageFinalized: boolean;
 
+
   saveToPDF() {
     this.outputService.saveToPDF();
   }

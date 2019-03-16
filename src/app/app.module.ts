@@ -22,6 +22,7 @@ import { ConsonantFilterPipe, VowelFilterPipe } from './pipe/index';
 
 // Services
 import { ErrorService, IpaService, LoaderService, OutputService, TranscriptionService } from './service/index';
+import { DictionaryComponent } from './component/dictionary/dictionary.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ErrorService, IpaService, LoaderService, OutputService, TranscriptionSe
     PageNotFoundComponent,
     WordGeneratorComponent,
     ConsonantFilterPipe,
-    VowelFilterPipe
+    VowelFilterPipe,
+    DictionaryComponent
   ],
   imports: [
     AppRoutingModule,
